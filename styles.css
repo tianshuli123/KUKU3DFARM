@@ -22,7 +22,7 @@
      clamp(最小, 随屏幕变化, 最大) —— 想固定就写成 520px
      ================================================== */
   --cat-width:    clamp(320px, 50vw, 760px);  /* 首屏那只猫 */
-  --cat-overlap:  clamp(36px, 12vw, 186px);   /* 猫越过波浪压进黄条的深度 */
+  --cat-overlap:  clamp(36px, 12vw, 228px);   /* 猫越过波浪压进黄条的深度 */
   --cat-width-sm: clamp(210px, 34vw, 300px);  /* 手机上那只猫 */
   --name-size:    clamp(52px, 8.2vw, 124px);  /* 「李天舒」的字号 */
   --lead-size:    clamp(17px, 1.6vw, 21px);   /* 首屏那段话的字号 */
@@ -128,7 +128,7 @@ img { max-width: 100%; display: block; }
   gap: clamp(20px, 4vw, 56px);
   max-width: var(--max);
   margin: 0 auto;
-  padding: clamp(92px, 7vw, 118px) clamp(20px, 3vw, 32px) 0;
+  padding: clamp(72px, 5.6vw, 92px) clamp(20px, 3vw, 32px) 0;
 }
 
 .hero-text { padding-top: 0; }
@@ -301,7 +301,7 @@ img { max-width: 100%; display: block; }
 .wave svg {
   display: block;
   width: 100%;
-  height: clamp(40px, 6vw, 92px);
+  height: clamp(32px, 4.2vw, 58px);
 }
 
 /* ---------------- 数字条：明黄 ---------------- */
@@ -313,7 +313,7 @@ img { max-width: 100%; display: block; }
 .stats-inner {
   max-width: var(--max);
   margin: 0 auto;
-  padding: clamp(16px, 2.4vw, 30px) clamp(20px, 3vw, 32px) clamp(30px, 4vw, 52px);
+  padding: clamp(10px, 1.4vw, 18px) clamp(20px, 3vw, 32px) clamp(30px, 4vw, 52px);
 }
 
 .stats-title {
