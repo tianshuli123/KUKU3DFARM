@@ -7,12 +7,12 @@
 <!-- ✏️ 浏览器标签页和分享卡片上的标题 -->
 <title>李天舒 · 3D 设计师 — UE5 场景 / 游戏资产</title>
 <meta name="description" content="李天舒（MarksLi），3D 设计师。普渡大学图形学硕士，做 UE5 / Unity 的 VR 场景与游戏资产：建模、材质、引擎内优化。">
-<meta name="theme-color" content="#f76bd8">
+<meta name="theme-color" content="#191a1d">
 <meta property="og:type" content="website">
 <meta property="og:title" content="李天舒 · 3D 设计师">
 <meta property="og:description" content="普渡大学图形学硕士。Maya / Blender 建模、Substance Painter 材质，在 Unity 和 UE5 里把场景搭到跑得动。">
 <meta property="og:locale" content="zh_CN">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f76bd8'/%3E%3Cpath d='M9 12l2.5-3 2 3zM18.5 12l2-3 2.5 3z' fill='%230b0b0b'/%3E%3Cpath d='M8 18c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5-3.6 6-8 6-8-2-8-6z' fill='%230b0b0b'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23191a1d'/%3E%3Cpath d='M9 12l2.5-3 2 3zM18.5 12l2-3 2.5 3z' fill='%230b0b0b'/%3E%3Cpath d='M8 18c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5-3.6 6-8 6-8-2-8-6z' fill='%230b0b0b'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -24,12 +24,12 @@
     <span class="brand-mark"></span>
     <span>李天舒</span>
   </a>
-  <nav class="nav-links" aria-label="页面导航">
-    <a href="#work">作品</a>
-    <a href="#students">学员</a>
-    <a href="#about">关于</a>
-    <a href="#contact">联系</a>
-  </nav>
+  <div class="jelly-radio" id="jellyNav" role="radiogroup" aria-label="页面分区">
+    <button class="jelly-chip" type="button" role="radio" aria-checked="true" data-target="top" data-on="true"><span class="jelly-skin">首页</span></button>
+    <button class="jelly-chip" type="button" role="radio" aria-checked="false" data-target="about"><span class="jelly-skin">关于作者</span></button>
+    <button class="jelly-chip" type="button" role="radio" aria-checked="false" data-target="work"><span class="jelly-skin">项目经历</span></button>
+    <button class="jelly-chip" type="button" role="radio" aria-checked="false" data-target="students"><span class="jelly-skin">艺术教育</span></button>
+  </div>
   <a class="nav-cta" href="mailto:664301622@qq.com">聊聊 ↗</a>
 </header>
 
@@ -38,20 +38,22 @@
   <!-- ============================================
        首屏：洋红底，左边大字，右边猫
        ============================================ -->
+  <div class="hero-band">
   <section class="hero" id="top">
     <div class="hero-text">
       <!-- ✏️ 城市 + 当前状态 -->
-      <p class="eyebrow"><span class="dot"></span>成都 · 求职中 · 3D 设计师</p>
+      <p class="eyebrow"><span class="dot"></span>李天舒 · 3D 设计师 · 成都 · 求职中</p>
 
       <h1>
         <span class="h1-small">你好，我是</span>
-        <span class="h1-big">李天舒</span>
+        <span class="h1-big">茄子</span>
       </h1>
 
       <!-- ✏️ 最重要的一句 -->
       <p class="lead">
-        用 Maya 和 Blender 把概念做成资产，再在 Unity 和 UE5 里把资产拼成跑得动的场景。
-        硕士论文研究的是 Nanite 对 VR 场景的影响——所以我在意的不只是好看，还有面数、帧率和穿模。
+        我是李天舒的猫，到今天陪了他三年，也是你在本站的向导。
+        这里放着他做的东西：3D 建模、交互游戏设计，还有他带学生做的作品集案例。
+        想找他的话，页面底部有邮箱。
       </p>
 
       <div class="actions">
@@ -64,53 +66,196 @@
          眼睛坐标是按 613×800 的原图量的，换图就要重新量 -->
     <div class="hero-media">
       <div class="cat-wrap">
-        <img class="cat" src="assets/cat.webp" alt="李天舒的猫" width="613" height="800">
-        <svg class="cat-eyes" viewBox="0 0 613 800" aria-hidden="true">
-          <g data-cx="197" data-cy="263">
-            <circle class="ball" cx="197" cy="263" r="52"/>
-            <circle class="glint" cx="213" cy="247" r="13"/>
+        <img class="cat" src="assets/cat-8.png" alt="茄子，陪伴李天舒三年的猫" width="658" height="760">
+        <svg class="cat-eyes" viewBox="0 0 658 760" aria-hidden="true">
+          <defs>
+            <radialGradient id="irisGrad" cx="46%" cy="38%" r="70%">
+              <stop offset="0" stop-color="#d6da92"/>
+              <stop offset="1" stop-color="#c2c76f"/>
+            </radialGradient>
+          </defs>
+          <g data-cx="205" data-cy="305">
+            <ellipse class="iris" cx="205" cy="305" rx="44" ry="52"/>
+            <ellipse class="pupil" cx="205" cy="305" rx="20" ry="28"/>
+            <circle class="glint" cx="196" cy="284" r="9"/>
           </g>
-          <g data-cx="427" data-cy="263">
-            <circle class="ball" cx="427" cy="263" r="52"/>
-            <circle class="glint" cx="443" cy="247" r="13"/>
+          <g data-cx="421" data-cy="307">
+            <ellipse class="iris" cx="421" cy="307" rx="42" ry="50"/>
+            <ellipse class="pupil" cx="421" cy="307" rx="20" ry="28"/>
+            <circle class="glint" cx="412" cy="286" r="9"/>
           </g>
         </svg>
       </div>
     </div>
   </section>
+  </div>
 
   <!-- 波浪：洋红 → 明黄 -->
   <div class="wave wave-a" aria-hidden="true">
     <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
-      <path d="M0,58 C 220,8 440,8 720,46 C 1000,84 1200,88 1440,34 L1440,90 L0,90 Z" fill="#ffd02f"/>
+      <path d="M0,58 C 220,8 440,8 720,46 C 1000,84 1200,88 1440,34 L1440,90 L0,90 Z" fill="#c8f24e"/>
     </svg>
   </div>
 
   <!-- ============================================
        数字条：全部来自简历
        ============================================ -->
-  <ul class="stats">
-    <li><strong>6</strong><span>年 3D 经验</span></li>
-    <li><strong>2</strong><span>个完整项目</span></li>
-    <li><strong>30+</strong><span>签约学员</span></li>
-    <li><strong>7</strong><span>所顶尖院校录取</span></li>
-  </ul>
+  <div class="stats-band">
+    <div class="stats-inner">
+      <p class="stats-title">李天舒的个人经历</p>
+      <ul class="stats">
+        <li><strong>7</strong><span>年游戏设计 / 3D 建模经验</span></li>
+        <li><strong>5</strong><span>年教育行业经验</span></li>
+        <li><strong>30+</strong><span>一对一客户学员</span></li>
+        <li><strong>200+</strong><span>OFFER 案例</span></li>
+      </ul>
+    </div>
+  </div>
 
   <!-- 波浪：明黄 → 奶油白 -->
   <div class="wave wave-b" aria-hidden="true">
     <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
-      <path d="M0,44 C 240,86 480,86 720,50 C 960,14 1200,12 1440,56 L1440,90 L0,90 Z" fill="#fff6ec"/>
+      <path d="M0,44 C 240,86 480,86 720,50 C 960,14 1200,12 1440,56 L1440,90 L0,90 Z" fill="#f2f1ea"/>
     </svg>
   </div>
 
   <div class="paper">
 
     <!-- ============================================
+         关于
+         ============================================ -->
+    <section class="section about" id="about">
+      <div class="chapter">关于作者</div>
+      <div class="about-body">
+        <p class="about-lead">
+          这是李天舒，3D 设计师。普渡大学图形学硕士，本科在犹他大学读游戏设计——
+          两段学历其实在干同一件事：把 3D 做到能在引擎里跑起来。
+        </p>
+        <p>
+          他平时的工作流是 Maya / Blender 起形、ZBrush 做高模、Substance Painter 贴材质，
+          最后在 Unity 或 UE5 里搭景、打光、压性能。VR 场景做得最多，也习惯在头显里一遍遍测——
+          穿模、掉帧、贴图糊，他都得亲手看过才算完。现在他在上海做游戏建模和作品集辅导，接下来想回成都。
+        </p>
+
+        <dl class="facts">
+          <div><dt>目前</dt><dd>上海洛素 · 游戏建模</dd></div>
+          <div><dt>工具</dt><dd>Maya、Blender、ZBrush、Substance Painter</dd></div>
+          <div><dt>引擎</dt><dd>Unity、UE5、VR 性能优化</dd></div>
+          <div><dt>学历</dt><dd>普渡大学 图形学 硕士</dd></div>
+          <div><dt>邮箱</dt><dd><a href="mailto:664301622@qq.com">664301622@qq.com</a></dd></div>
+        </dl>
+      </div>
+
+
+
+    <!-- 关于作者的照片：换图覆盖 assets/about.webp 即可 -->
+    <figure class="about-photo">
+      <img src="assets/about.webp" alt="李天舒在雪湖边" width="1000" height="1250">
+    </figure>
+    
+
+    <!-- 教育经历 -->
+    <div class="schools">
+      <p class="schools-kicker">教育经历</p>
+      <div class="schools-list">
+        <article class="school-card">
+          <figure class="school-photo">
+            <img src="assets/utah.webp" alt="犹他大学毕业照，坐在校园红色 U 雕塑上" width="900" height="600" loading="lazy">
+          </figure>
+          <div class="school-meta">
+            <div class="school-head">
+              <span class="school-years">2018 — 2022</span>
+              <span class="school-rank">专业排名 前 1%</span>
+            </div>
+            <h3 class="school-name">犹他大学</h3>
+            <p class="school-major">游戏设计学院 · 游戏设计 · 本科</p>
+            <ul class="school-items">
+              <li>游戏设计相关知识</li>
+              <li>3D 建模：Maya、ZBrush</li>
+              <li>3D 材质：Substance Painter</li>
+              <li>编程：Python</li>
+              <li>多人合作项目</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="school-card">
+          <figure class="school-photo">
+            <img src="assets/purdue.webp" alt="普渡大学毕业照，靠在校园 P 石旁" width="900" height="600" loading="lazy">
+          </figure>
+          <div class="school-meta">
+            <div class="school-head">
+              <span class="school-years">2022 — 2024</span>
+              <span class="school-rank">专业排名 前 1%</span>
+            </div>
+            <h3 class="school-name">普渡大学</h3>
+            <p class="school-major">理工学院 · 图形学 · 硕士</p>
+            <ul class="school-items">
+              <li>游戏引擎 Unreal</li>
+              <li>动画制作 Maya</li>
+              <li>数据分析以及统计</li>
+              <li>多人合作项目</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- 工作经历 -->
+    <div class="schools works">
+      <p class="schools-kicker">工作经历</p>
+      <div class="schools-list">
+        <article class="school-card">
+          <figure class="school-photo">
+            <img src="assets/bytedance.webp" alt="字节跳动校园大使工牌" width="600" height="800" loading="lazy">
+          </figure>
+          <div class="school-meta">
+            <div class="school-head">
+              <span class="school-years">2021.09 — 2022.10</span>
+            </div>
+            <h3 class="school-name">北京抖音信息服务有限公司</h3>
+            <p class="school-major">字节跳动 · 校招大使</p>
+            <ul class="school-items">
+              <li>在校内做公司宣传</li>
+              <li>为应届生做内部推荐</li>
+              <li>辅助公司活动</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="school-card">
+          <figure class="school-photo">
+            <img src="assets/tengda.webp" alt="腾大智培教育工牌，教学部" width="600" height="800" loading="lazy">
+          </figure>
+          <div class="school-meta">
+            <div class="school-head">
+              <span class="school-years">2020.08 — 2021.06</span>
+            </div>
+            <h3 class="school-name">苏州腾大教育咨询有限公司</h3>
+            <p class="school-major">腾大智培教育 · 教师 / 培训师</p>
+            <ul class="school-items">
+              <li>小初高英语教学</li>
+              <li>负责晚辅的纪律与作业</li>
+              <li>宣传发单拉客户</li>
+            </ul>
+            <p class="school-label">业绩</p>
+            <ul class="school-items">
+              <li>学生成绩提升显著</li>
+              <li>宣传到位，取得了很多客户的联系方式及其信任</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+
+</section>
+
+    <!-- ============================================
          作品
          ============================================ -->
     <section class="section" id="work">
       <div class="section-head">
-        <h2>精选作品</h2>
+        <h2>项目经历</h2>
         <p>2021 — 2024 · 2 个完整项目</p>
       </div>
 
@@ -165,46 +310,43 @@
          学员时间线：新 → 旧，点小人看资料
          数据在页面底部脚本的 STUDENTS 数组里
          ============================================ -->
-    <section class="section" id="students">
+    <div class="dark-band">
+      <div class="ribbon" aria-hidden="true">
+        <svg class="ribbon-top" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,0 H1440 V34 C 1180,4 940,58 720,30 C 500,2 260,58 0,30 Z" fill="#f2f1ea"/></svg>
+      </div>
+      <section class="section" id="students">
+      <div class="edu-lime">
       <div class="section-head">
-        <h2>学员 <span class="demo-chip" id="demoChip" hidden>示例数据</span></h2>
-        <p>2024 — 2026 · 从新到旧 · 点小人看作品</p>
+        <h2>艺术教育</h2>
+        <p>2024 — 2026 · 一年一张卡 · 点小人看作品</p>
+        <span class="demo-chip" id="demoChip" hidden>示例数据</span>
       </div>
-      <div class="timeline" id="timeline"></div>
-    </section>
 
-    <!-- ============================================
-         关于
-         ============================================ -->
-    <section class="section about" id="about">
-      <div class="chapter">关于</div>
-      <div class="about-body">
-        <p class="about-lead">
-          我是李天舒，3D 设计师。普渡大学图形学硕士，本科在犹他大学读游戏设计——
-          两段学历其实在干同一件事：把 3D 做到能在引擎里跑起来。
-        </p>
-        <p>
-          平时的工作流是 Maya / Blender 起形、ZBrush 做高模、Substance Painter 贴材质，
-          最后在 Unity 或 UE5 里搭景、打光、压性能。VR 场景做得最多，也习惯在头显里一遍遍测——
-          穿模、掉帧、贴图糊，都得亲手看过才算完。现在在上海做游戏建模和作品集辅导，接下来想回成都。
-        </p>
-
-        <dl class="facts">
-          <div><dt>目前</dt><dd>上海洛素 · 游戏建模</dd></div>
-          <div><dt>工具</dt><dd>Maya、Blender、ZBrush、Substance Painter</dd></div>
-          <div><dt>引擎</dt><dd>Unity、UE5、VR 性能优化</dd></div>
-          <div><dt>学历</dt><dd>普渡大学 图形学 硕士</dd></div>
-          <div><dt>邮箱</dt><dd><a href="mailto:664301622@qq.com">664301622@qq.com</a></dd></div>
-        </dl>
+      <!-- 轨道文字：名校录取案例，院校名从 STUDENTS 的 schools 自动汇总 -->
+      <div class="orbit-band" id="orbitBand">
+        <div class="orbit-center">
+          <span class="orbit-badge"><b class="orbit-big">名校录取案例</b></span>
+          <span class="orbit-sub" id="orbitCount">—</span>
+        </div>
+        <div class="orbit-layer" id="orbitOuter" aria-hidden="true"></div>
+        <div class="orbit-layer" id="orbitInner" aria-hidden="true"></div>
       </div>
+
+      <svg class="lime-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,26 C 240,58 480,2 720,34 C 960,66 1200,20 1440,44 L1440,60 L0,60 Z" fill="#10160f"/></svg>
+      </div>
+
+      <p class="edu-kicker">优秀学员作品集展示</p>
+      <div id="eduRails"></div>
     </section>
+    </div>
+
 
     <!-- ============================================
          联系：黑底面板
          ============================================ -->
     <section class="section contact" id="contact">
       <div class="contact-panel">
-        <p class="contact-label">在找 3D 设计师的岗位，也接外包</p>
+        <p class="contact-label">他在找 3D 设计师的岗位，也接外包</p>
         <a class="contact-mail" href="mailto:664301622@qq.com">664301622@qq.com</a>
         <p class="contact-note">简历和作品集 PDF 可以直接发你，回信更快。</p>
       </div>
@@ -294,7 +436,7 @@
   const INK = '#0b0b0b';
   const SKINS = ['#ffd9c0', '#eab38c', '#c98f68', '#8d5a3b'];
   const HAIRS = ['#241a14', '#5b3a22', '#a8622c', '#1b1b1b', '#d8b06a'];
-  const TOPS  = ['#f76bd8', '#ffd02f', '#6ef0c8', '#b7a4ff', '#ffffff', '#ff8f5a'];
+  const TOPS  = ['#c8f24e', '#e9e8e2', '#b9b8b2', '#4a4b50', '#ffffff', '#8a8b90'];
 
   const HAIR_STYLES = [
     // 0 短发
@@ -366,30 +508,216 @@
     s.look = s.look || autoLook(s, i);
   });
 
-  /* ---------- 时间线渲染（新 → 旧） ---------- */
-  const timeline = document.getElementById('timeline');
-  const years = [...new Set(STUDENTS.map(s => s.year))].sort((a, b) => b - a);
+  /* ---------- 艺术教育：每年一条圆弧轨道，无限循环 ---------- */
+  (function () {
+    const host = document.getElementById('eduRails');
+    const years = [...new Set(STUDENTS.map(s => s.year))].sort((a, b) => b - a);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const rails = [];
 
-  timeline.innerHTML = years.map(year => {
-    const list = STUDENTS.filter(s => s.year === year);
-    const people = list.map(s => `
-      <li>
-        <button class="person" type="button" data-id="${s.id}" aria-label="查看 ${s.name} 的作品">
-          <span class="person-tile">${figure(s.look)}</span>
-          <span class="person-name">${s.name}</span>
-        </button>
-      </li>`).join('');
-    return `
-      <div class="year">
-        <div class="year-head">
-          <span class="year-num">${year}</span>
-          <span class="year-meta">${list.length} 位学员</span>
-        </div>
-        <ul class="people">${people}</ul>
-      </div>`;
-  }).join('');
+    years.forEach(year => {
+      const list = STUDENTS.filter(s => s.year === year);
 
-  /* ---------- 详情弹窗 ---------- */
+      const rail = document.createElement('div');
+      rail.className = 'edu-rail';
+      rail.innerHTML =
+        '<div class="edu-head"><span class="edu-year">' + year + '</span>' +
+        '<span class="edu-count">' + list.length + ' 位学员</span></div>' +
+        '<div class="edu-track"><div class="edu-cards"></div></div>';
+
+      const cardsBox = rail.querySelector('.edu-cards');
+      // 复制三份，卡片首尾相接，营造"还有很多"的连续感
+      const seq = [];
+      for (let c = 0; c < 3; c++) seq.push(...list);
+
+      seq.forEach(st => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'edu-card';
+        btn.dataset.id = st.id;
+        btn.setAttribute('aria-label', '查看 ' + st.name + ' 的作品');
+        btn.innerHTML = '<span class="edu-tile">' + figure(st.look) + '</span>' +
+                        '<span class="edu-name">' + st.name + '</span>';
+        cardsBox.appendChild(btn);
+      });
+
+      host.appendChild(rail);
+
+      rails.push({
+        el: rail,
+        cards: [...cardsBox.querySelectorAll('.edu-card')],
+        offset: Math.random() * 400,
+        paused: false
+      });
+    });
+
+    rails.forEach(r => {
+      const w = r.cards[0].getBoundingClientRect().width || 176;
+      r.step = Math.round(w + 52);      // 卡片宽度 + 更宽的间距
+      r.half = (r.el.querySelector('.edu-track').clientWidth || 1200) / 2;
+    });
+    let last = performance.now();
+    let raf = null;
+
+    function frame(now) {
+      const dt = Math.min(48, now - last);
+      last = now;
+
+      rails.forEach(r => {
+        if (!r.hovered && !r.el.dataset.paused && !reducedMotion) r.offset -= dt * 0.045;
+
+        const n = r.cards.length;
+        const total = n * r.step;
+        const track = r.el.querySelector('.edu-track');
+        const trect = track.getBoundingClientRect();
+        const tw = track.clientWidth;
+        const th = track.clientHeight;
+        // 相对"卡片轨道"左上角，而不是整条 rail（rail 上还有年份标题）
+        const px = r.hasPointer ? r.cx - trect.left : null;
+        const py = r.hasPointer ? r.cy - trect.top : null;
+        let hit = false;
+
+        r.cards.forEach((card, i) => {
+          // 环形取模：走出右边就从左边回来（不旋转、不下沉，保持水平）
+          let x = ((i * r.step + r.offset) % total + total) % total - total / 2;
+          card.style.transform =
+            'translate(-50%, -50%) translateX(' + x.toFixed(1) + 'px)';
+
+          // 越靠边越模糊（量化到 0.5px 再写入，避免每帧重设样式）
+          const t = Math.abs(x) / r.half;
+          const raw = t > 0.5 ? Math.min(1, (t - 0.5) / 0.5) * 2.5 : 0;
+          const b = Math.round(raw * 2) / 2;
+          if (card.dataset.blur !== String(b)) {
+            card.dataset.blur = String(b);
+            card.style.filter = b ? 'blur(' + b + 'px)' : '';
+          }
+
+          // 鼠标是否真的压在这张卡上（留 6px 余量，别擦边就停）
+          if (px !== null && !hit) {
+            const cx = tw / 2 + x;
+            const cy = th / 2;
+            if (Math.abs(px - cx) < card.offsetWidth / 2 - 6 &&
+                Math.abs(py - cy) < card.offsetHeight / 2 - 6) hit = true;
+          }
+        });
+
+        r.hovered = hit;
+      });
+
+      raf = requestAnimationFrame(frame);
+    }
+
+    window.addEventListener('resize', () => {
+      rails.forEach(r => {
+        const w = r.cards[0].getBoundingClientRect().width || 176;
+        r.step = Math.round(w + 52);
+        r.half = (r.el.querySelector('.edu-track').clientWidth || 1200) / 2;
+      });
+    });
+
+    // 只有鼠标真正压在卡片上才停（卡片自己在动，所以每帧用坐标判断）
+    rails.forEach(r => {
+      r.cx = null;
+      r.cy = null;
+      r.hasPointer = false;
+      r.hovered = false;
+
+      r.el.addEventListener('pointermove', (e) => {
+        r.cx = e.clientX;
+        r.cy = e.clientY;
+        r.hasPointer = true;
+      });
+      r.el.addEventListener('pointerleave', () => { r.hasPointer = false; });
+    });
+
+    if (!reducedMotion) raf = requestAnimationFrame(frame);
+    else rails.forEach(r => r.cards.forEach((c, i) => {
+      const x = i * r.step - (r.cards.length * r.step) / 2;
+      c.style.transform = 'translate(-50%, -50%) translateX(' + x + 'px)';
+    }));
+  })();
+
+  /* ---------- 轨道文字：名校录取案例绕圈 ---------- */
+  (function () {
+    const band = document.getElementById('orbitBand');
+    if (!band) return;
+
+    // 从学员数据里汇总院校，自动去重
+    const schools = [...new Set(STUDENTS.flatMap(s => s.schools || []).filter(Boolean))];
+    if (!schools.length) { band.remove(); return; }
+
+    document.getElementById('orbitCount').textContent = '200+ OFFER 案例';
+
+    const outerHost = document.getElementById('orbitOuter');
+    const innerHost = document.getElementById('orbitInner');
+
+    function build(host, list) {
+      return list.map(name => {
+        const el = document.createElement('span');
+        el.className = 'orbit-item';
+        el.textContent = name;
+        host.appendChild(el);
+        return el;
+      });
+    }
+
+    const outerItems = build(outerHost, schools.filter((_, i) => i % 2 === 0));
+    const innerItems = build(innerHost, schools.filter((_, i) => i % 2 === 1));
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let t = 0;
+    let last = performance.now();
+    let paused = false;
+
+    // 悬停不停；只有点到具体院校才停下（再点一下继续）
+    function toggle() { paused = !paused; }
+    band.addEventListener('click', (e) => {
+      const item = e.target.closest('.orbit-item');
+      if (item) toggle();
+      else if (paused) paused = false;   // 点空白处继续转动
+    });
+    band.style.cursor = 'default';
+
+    function place(items, cx, cy, rx, ry, phase, dir) {
+      const n = items.length || 1;
+      items.forEach((el, i) => {
+        const a = phase + dir * (i * Math.PI * 2 / n);
+        const x = Math.cos(a) * rx;
+        const y = Math.sin(a) * ry;
+        const depth = (Math.sin(a) + 1) / 2;      // 0 = 远端，1 = 近端
+        el.style.transform =
+          'translate(-50%, -50%) translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) ' +
+          'scale(' + (0.78 + depth * 0.34).toFixed(3) + ')';
+        el.style.opacity = (0.25 + depth * 0.75).toFixed(3);
+        el.style.zIndex = String(Math.round(depth * 100));
+        const blur = Math.round((1 - depth) * 1.4 * 2) / 2;
+        if (el.dataset.b !== String(blur)) {
+          el.dataset.b = String(blur);
+          el.style.filter = blur ? 'blur(' + blur + 'px)' : '';
+        }
+      });
+    }
+
+    function frame(now) {
+      const dt = Math.min(48, now - last);
+      last = now;
+      if (!paused && !reduce) t += dt * 0.00016;
+
+      const w = band.clientWidth;
+      const h = band.clientHeight;
+      const rx = Math.min(w * 0.46, 1100);
+      const ry = Math.min(h * 0.45, 230);
+
+      place(outerItems, 0, 0, rx, ry, t, 1);
+      place(innerItems, 0, 0, rx * 0.58, ry * 0.58, -t * 1.15 + 1.2, -1);
+
+      requestAnimationFrame(frame);
+    }
+
+    requestAnimationFrame(frame);
+  })();
+
+/* ---------- 详情弹窗 ---------- */
   const dialog = document.getElementById('studentDialog');
   const dialogInner = document.getElementById('dialogInner');
 
@@ -425,16 +753,20 @@
       <ul class="tags">${s.tags.map(t => `<li>${t}</li>`).join('')}</ul>`;
   }
 
-  timeline.addEventListener('click', (e) => {
-    const btn = e.target.closest('.person');
+  document.getElementById('eduRails').addEventListener('click', (e) => {
+    const btn = e.target.closest('.edu-card');
     if (!btn) return;
     const s = STUDENTS.find(x => x.id === btn.dataset.id);
     if (!s) return;
     dialogInner.innerHTML = detailHTML(s);
     dialog.showModal();
+    document.querySelectorAll('.edu-rail').forEach(r => r.dataset.paused = 'true');
   });
 
   document.getElementById('dlgClose').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('close', () => {
+    document.querySelectorAll('.edu-rail').forEach(r => delete r.dataset.paused);
+  });
   dialog.addEventListener('click', (e) => {
     if (e.target === dialog) dialog.close(); // 点遮罩关闭
   });
@@ -450,7 +782,7 @@
     const eyes = [...svg.querySelectorAll('g[data-cx]')].map(g => ({
       cx: Number(g.dataset.cx),
       cy: Number(g.dataset.cy),
-      ball: g.querySelector('.ball'),
+      pupil: g.querySelector('.pupil'),
       glint: g.querySelector('.glint')
     }));
 
@@ -467,8 +799,9 @@
       const box = svg.getBoundingClientRect();
       if (!box.width) return;
 
-      const sx = box.width / 613;
-      const sy = box.height / 800;
+      const vb = svg.viewBox.baseVal;
+      const sx = box.width / (vb.width || 638);
+      const sy = box.height / (vb.height || 760);
 
       eyes.forEach(e => {
         const ex = box.left + e.cx * sx;
@@ -481,8 +814,8 @@
         const ny = (dy / dist) * k;
 
         // 眼珠小幅平移，高光大幅平移 —— 看起来像在转
-        e.ball.setAttribute('transform', `translate(${(nx * 3).toFixed(2)} ${(ny * 3).toFixed(2)})`);
-        e.glint.setAttribute('transform', `translate(${(nx * 13).toFixed(2)} ${(ny * 13).toFixed(2)})`);
+        e.pupil.setAttribute('transform', `translate(${(nx * 16).toFixed(2)} ${(ny * 16).toFixed(2)})`);
+        e.glint.setAttribute('transform', `translate(${(nx * 16).toFixed(2)} ${(ny * 16).toFixed(2)})`);
       });
     }
 
@@ -505,6 +838,87 @@
       io.observe(el);
     });
   }
+
+  /* ---------- 导航胶囊：悬停驱动果冻，点击切换选中 ---------- */
+  (function () {
+    const group = document.getElementById('jellyNav');
+    if (!group) return;
+    const chips = [...group.querySelectorAll('.jelly-chip')];
+    const skins = chips.map(c => c.querySelector('.jelly-skin'));
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let sel = 0;
+    let hover = -1;
+    let lockUntil = 0;
+
+    function paint(instant) {
+      // 果冻效果跟随鼠标（没有悬停时回到选中项）
+      const focus = hover >= 0 ? hover : sel;
+      const w = chips[focus]?.offsetWidth || 80;
+      const push = w * 0.10 + 6;
+
+      chips.forEach((chip, i) => {
+        const skin = skins[i];
+        const far = Math.abs(i - focus);
+        const dir = Math.sign(i - focus);
+        const swelled = i === focus;
+        const on = i === sel;
+
+        skin.style.transitionDuration = instant || reduced ? '0s' : '';
+        skin.style.transitionDelay = instant || reduced ? '0s' : Math.min(far, 3) * 22 + 'ms';
+        skin.style.transform =
+          'translateX(' + (dir * push).toFixed(1) + 'px) ' +
+          'scale(' + (swelled ? 1.16 : 0.96) + ',' + (swelled ? 1.09 : 0.96) + ')';
+
+        chip.dataset.on = on ? 'true' : 'false';
+        chip.setAttribute('aria-checked', on ? 'true' : 'false');
+        chip.tabIndex = on ? 0 : -1;
+      });
+    }
+
+    function select(i, instant) {
+      if (i === sel) return;
+      sel = i;
+      if (instant === 'click') lockUntil = Date.now() + 900;
+      paint(instant === true);
+    }
+
+    chips.forEach((chip, i) => {
+      chip.addEventListener('mouseenter', () => { hover = i; paint(false); });
+      chip.addEventListener('focus', () => { hover = i; paint(false); });
+      chip.addEventListener('blur', () => { hover = -1; paint(false); });
+
+      chip.addEventListener('click', () => {
+        select(i, 'click');
+        document.getElementById(chip.dataset.target)?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+      });
+
+      chip.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        const n = chips.length;
+        const next = (i + (e.key === 'ArrowRight' ? 1 : -1) + n) % n;
+        select(next, 'click');
+        chips[next].focus();
+      });
+    });
+
+    group.addEventListener('mouseleave', () => { hover = -1; paint(false); });
+
+    const ids = ['top', 'about', 'work', 'students'];
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting || Date.now() < lockUntil) return;
+          const idx = ids.indexOf(e.target.id);
+          if (idx !== -1) select(idx, false);
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      ids.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+    }
+
+    paint(true);
+    window.addEventListener('resize', () => paint(true));
+  })();
 </script>
 
 </body>

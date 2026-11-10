@@ -2,3 +2,13 @@ Thumbs.db
 .DS_Store
 desktop.ini
 *.log
+
+# 源图（成品是 assets/about.webp）
+assets/照片.jpg
+assets/cat.jfif
+
+# 上传的源图（页面用的是 cat-8.png）
+assets/cat.png
+
+# 毕业照原图（页面用的是 assets/utah.webp 和 purdue.webp）
+assets/creator/
