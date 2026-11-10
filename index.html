@@ -7,12 +7,12 @@
 <!-- ✏️ 浏览器标签页和分享卡片上的标题 -->
 <title>李天舒 · 3D 设计师 — UE5 场景 / 游戏资产</title>
 <meta name="description" content="李天舒（MarksLi），3D 设计师。普渡大学图形学硕士，做 UE5 / Unity 的 VR 场景与游戏资产：建模、材质、引擎内优化。">
-<meta name="theme-color" content="#f0eefa">
+<meta name="theme-color" content="#f76bd8">
 <meta property="og:type" content="website">
 <meta property="og:title" content="李天舒 · 3D 设计师">
 <meta property="og:description" content="普渡大学图形学硕士。Maya / Blender 建模、Substance Painter 材质，在 Unity 和 UE5 里把场景搭到跑得动。">
 <meta property="og:locale" content="zh_CN">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235a2ff0'/%3E%3Cpath d='M16 7l7 4v10l-7 4-7-4V11z' fill='%23fff' opacity='.9'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f76bd8'/%3E%3Cpath d='M9 12l2.5-3 2 3zM18.5 12l2-3 2.5 3z' fill='%230b0b0b'/%3E%3Cpath d='M8 18c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5-3.6 6-8 6-8-2-8-6z' fill='%230b0b0b'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,52 +20,62 @@
 <a class="skip" href="#main">跳到主要内容</a>
 
 <header class="nav">
-  <!-- ✏️ 左上角的名字 -->
   <a class="brand" href="#top">
     <span class="brand-mark"></span>
     <span>李天舒</span>
   </a>
   <nav class="nav-links" aria-label="页面导航">
     <a href="#work">作品</a>
+    <a href="#students">学员</a>
     <a href="#about">关于</a>
     <a href="#contact">联系</a>
   </nav>
+  <a class="nav-cta" href="mailto:664301622@qq.com">聊聊 ↗</a>
 </header>
 
 <main id="main">
 
   <!-- ============================================
-       首屏
+       首屏：洋红底，左边大字，右边猫
        ============================================ -->
   <section class="hero" id="top">
-    <!-- ✏️ 头像：现在是猫的插画（assets/cat.webp，透明底，直接压在渐变圆上）。
-         想换成真人照片，把 <img> 的 src 换成你的照片、alt 改成「李天舒」即可 -->
-    <div class="avatar">
-      <img src="assets/cat.webp" alt="李天舒的猫" width="613" height="800">
+    <div class="hero-text">
+      <!-- ✏️ 城市 + 当前状态 -->
+      <p class="eyebrow"><span class="dot"></span>成都 · 求职中 · 3D 设计师</p>
+
+      <h1>
+        <span class="h1-small">你好，我是</span>
+        <span class="h1-big">李天舒</span>
+      </h1>
+
+      <!-- ✏️ 最重要的一句 -->
+      <p class="lead">
+        用 Maya 和 Blender 把概念做成资产，再在 Unity 和 UE5 里把资产拼成跑得动的场景。
+        硕士论文研究的是 Nanite 对 VR 场景的影响——所以我在意的不只是好看，还有面数、帧率和穿模。
+      </p>
+
+      <div class="actions">
+        <a class="btn" href="#work">看作品</a>
+        <a class="mail-inline" href="mailto:664301622@qq.com">664301622@qq.com</a>
+      </div>
     </div>
 
-    <!-- ✏️ 城市 + 当前状态 -->
-    <p class="eyebrow"><span class="dot"></span>成都 · 求职中 · 3D 设计师</p>
-
-    <h1>
-      你好，我是<br>
-      <em>李天舒</em>
-    </h1>
-
-    <!-- ✏️ 最重要的一句：做什么、怎么做的 -->
-    <p class="lead">
-      用 Maya 和 Blender 把概念做成资产，再在 Unity 和 UE5 里把资产拼成跑得动的场景。
-      硕士论文研究的是 Nanite 对 VR 场景的影响——所以我在意的不只是好看，还有面数、帧率和穿模。
-    </p>
-
-    <div class="actions">
-      <a class="btn" href="#work">看作品</a>
-      <a class="link" href="mailto:664301622@qq.com">664301622@qq.com <span aria-hidden="true">↗</span></a>
+    <!-- ✏️ 猫：透明底插画，直接压在洋红上。
+         想换成真人照片，换 <img> 的 src 和 alt 即可 -->
+    <div class="hero-media">
+      <img class="cat" src="assets/cat.webp" alt="李天舒的猫" width="613" height="800">
     </div>
   </section>
 
+  <!-- 波浪：洋红 → 明黄 -->
+  <div class="wave wave-a" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+      <path d="M0,58 C 220,8 440,8 720,46 C 1000,84 1200,88 1440,34 L1440,90 L0,90 Z" fill="#ffd02f"/>
+    </svg>
+  </div>
+
   <!-- ============================================
-       数字条：全部来自简历，别编
+       数字条：全部来自简历
        ============================================ -->
   <ul class="stats">
     <li><strong>6</strong><span>年 3D 经验</span></li>
@@ -74,119 +84,129 @@
     <li><strong>7</strong><span>所顶尖院校录取</span></li>
   </ul>
 
-  <!-- ============================================
-       作品
-       ============================================ -->
-  <section class="section" id="work">
-    <div class="section-head">
-      <h2>精选作品</h2>
-      <!-- ✏️ 年份区间 + 项目数量 -->
-      <p>2021 — 2026 · 2 个项目 + 1 个教学系列</p>
-    </div>
+  <!-- 波浪：明黄 → 奶油白 -->
+  <div class="wave wave-b" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+      <path d="M0,44 C 240,86 480,86 720,50 C 960,14 1200,12 1440,56 L1440,90 L0,90 Z" fill="#fff6ec"/>
+    </svg>
+  </div>
 
-    <div class="grid">
+  <div class="paper">
 
-      <!-- ✏️ 项目 1 -->
-      <div class="card">
-        <div class="cover c1">
-          <span class="cover-num">01</span>
-          <span class="cover-hint">封面图待替换</span>
-        </div>
-        <div class="card-body">
-          <div class="card-meta">
-            <span>场景设计 / 建模</span><span>2022.03 — 2024.01</span>
-          </div>
-          <h3>Star Realm VR</h3>
-          <p>
-            Unity 里的 VR 可探索场景。从画风定调开始，Maya + Blender 建模、Substance Painter 上材质，
-            再回到头显里一遍遍测性能和穿模，直到 DEMO 能完整走完一遍。
-          </p>
-          <ul class="tags">
-            <li>Unity</li><li>Maya</li><li>Blender</li><li>Substance Painter</li><li>VR</li>
-          </ul>
-        </div>
+    <!-- ============================================
+         作品
+         ============================================ -->
+    <section class="section" id="work">
+      <div class="section-head">
+        <h2>精选作品</h2>
+        <p>2021 — 2024 · 2 个完整项目</p>
       </div>
 
-      <!-- ✏️ 项目 2 -->
-      <div class="card">
-        <div class="cover c2">
-          <span class="cover-num">02</span>
-          <span class="cover-hint">封面图待替换</span>
-        </div>
-        <div class="card-body">
-          <div class="card-meta">
-            <span>3D 建模 / 场景</span><span>2021.09 — 2022.05</span>
+      <div class="grid">
+
+        <!-- ✏️ 项目 1 -->
+        <div class="card">
+          <div class="cover c1">
+            <span class="cover-num">01</span>
+            <span class="cover-hint">封面图待替换</span>
           </div>
-          <h3>Revenge of the Killer Octopus</h3>
-          <p>
-            章鱼做主角的第三人称关卡。Maya 建模与动画、Substance 材质、玩法设计都压在同一条线上做，
-            最后在 Unreal Engine 里把整关跑通。
-          </p>
-          <ul class="tags">
-            <li>Unreal Engine</li><li>Maya</li><li>Substance Painter</li><li>动画</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- ✏️ 教学系列：横跨两列的宽卡片 -->
-      <div class="card card-wide">
-        <div class="cover c3">
-          <span class="cover-num">03</span>
-          <span class="cover-hint">学员作品合集 · 封面图待替换</span>
-        </div>
-        <div class="card-body">
-          <div class="card-meta">
-            <span>教学 / 作品集辅导</span><span>2024 — 至今</span>
+          <div class="card-body">
+            <div class="card-meta">
+              <span>场景设计 / 建模</span><span>2022.03 — 2024.01</span>
+            </div>
+            <h3>Star Realm VR</h3>
+            <p>
+              Unity 里的 VR 可探索场景。从画风定调开始，Maya + Blender 建模、Substance Painter 上材质，
+              再回到头显里一遍遍测性能和穿模，直到 DEMO 能完整走完一遍。
+            </p>
+            <ul class="tags">
+              <li>Unity</li><li>Maya</li><li>Blender</li><li>Substance Painter</li><li>VR</li>
+            </ul>
           </div>
-          <h3>学员作品集</h3>
-          <p>
-            带学生从选题、建模到排版，把作品集做到招生官能一眼看懂。签约 30 名学生，
-            录取涵盖南加大、犹他、纽大、伦艺、爱丁堡、皇艺、谢尔丹。
-          </p>
-          <ul class="tags">
-            <li>作品集规划</li><li>游戏建模</li><li>VR 技术教学</li>
-          </ul>
         </div>
+
+        <!-- ✏️ 项目 2 -->
+        <div class="card">
+          <div class="cover c2">
+            <span class="cover-num">02</span>
+            <span class="cover-hint">封面图待替换</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span>3D 建模 / 场景</span><span>2021.09 — 2022.05</span>
+            </div>
+            <h3>Revenge of the Killer Octopus</h3>
+            <p>
+              章鱼做主角的第三人称关卡。Maya 建模与动画、Substance 材质、玩法设计都压在同一条线上做，
+              最后在 Unreal Engine 里把整关跑通。
+            </p>
+            <ul class="tags">
+              <li>Unreal Engine</li><li>Maya</li><li>Substance Painter</li><li>动画</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- ============================================
+         学员时间线：新 → 旧，点小人看资料
+         数据在页面底部脚本的 STUDENTS 数组里
+         ============================================ -->
+    <section class="section" id="students">
+      <div class="section-head">
+        <h2>学员 <span class="demo-chip" id="demoChip" hidden>示例数据</span></h2>
+        <p>2024 — 2026 · 从新到旧 · 点小人看作品</p>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </section>
 
-  <!-- ============================================
-       关于
-       ============================================ -->
-  <section class="section about" id="about">
-    <div class="chapter">关于</div>
-    <div class="about-body">
-      <p class="about-lead">
-        我是李天舒，3D 设计师。普渡大学图形学硕士，本科在犹他大学读游戏设计——
-        两段学历其实在干同一件事：把 3D 做到能在引擎里跑起来。
-      </p>
-      <p>
-        平时的工作流是 Maya / Blender 起形、ZBrush 做高模、Substance Painter 贴材质，
-        最后在 Unity 或 UE5 里搭景、打光、压性能。VR 场景做得最多，也习惯在头显里一遍遍测——
-        穿模、掉帧、贴图糊，都得亲手看过才算完。现在在上海做游戏建模和作品集辅导，接下来想回成都。
-      </p>
+    <!-- ============================================
+         关于
+         ============================================ -->
+    <section class="section about" id="about">
+      <div class="chapter">关于</div>
+      <div class="about-body">
+        <p class="about-lead">
+          我是李天舒，3D 设计师。普渡大学图形学硕士，本科在犹他大学读游戏设计——
+          两段学历其实在干同一件事：把 3D 做到能在引擎里跑起来。
+        </p>
+        <p>
+          平时的工作流是 Maya / Blender 起形、ZBrush 做高模、Substance Painter 贴材质，
+          最后在 Unity 或 UE5 里搭景、打光、压性能。VR 场景做得最多，也习惯在头显里一遍遍测——
+          穿模、掉帧、贴图糊，都得亲手看过才算完。现在在上海做游戏建模和作品集辅导，接下来想回成都。
+        </p>
 
-      <dl class="facts">
-        <div><dt>目前</dt><dd>上海洛素 · 游戏建模</dd></div>
-        <div><dt>工具</dt><dd>Maya、Blender、ZBrush、Substance Painter</dd></div>
-        <div><dt>引擎</dt><dd>Unity、UE5、VR 性能优化</dd></div>
-        <div><dt>学历</dt><dd>普渡大学 图形学 硕士</dd></div>
-        <div><dt>邮箱</dt><dd><a href="mailto:664301622@qq.com">664301622@qq.com</a></dd></div>
-      </dl>
-    </div>
-  </section>
+        <dl class="facts">
+          <div><dt>目前</dt><dd>上海洛素 · 游戏建模</dd></div>
+          <div><dt>工具</dt><dd>Maya、Blender、ZBrush、Substance Painter</dd></div>
+          <div><dt>引擎</dt><dd>Unity、UE5、VR 性能优化</dd></div>
+          <div><dt>学历</dt><dd>普渡大学 图形学 硕士</dd></div>
+          <div><dt>邮箱</dt><dd><a href="mailto:664301622@qq.com">664301622@qq.com</a></dd></div>
+        </dl>
+      </div>
+    </section>
 
-  <!-- ============================================
-       联系
-       ============================================ -->
-  <section class="section contact" id="contact">
-    <p class="eyebrow">在找 3D 设计师的岗位，也接外包</p>
-    <a class="contact-mail" href="mailto:664301622@qq.com">664301622@qq.com</a>
-  </section>
+    <!-- ============================================
+         联系：黑底面板
+         ============================================ -->
+    <section class="section contact" id="contact">
+      <div class="contact-panel">
+        <p class="contact-label">在找 3D 设计师的岗位，也接外包</p>
+        <a class="contact-mail" href="mailto:664301622@qq.com">664301622@qq.com</a>
+        <p class="contact-note">简历和作品集 PDF 可以直接发你，回信更快。</p>
+      </div>
+    </section>
+
+  </div>
 
 </main>
+
+<!-- 学员详情弹窗：内容由脚本填 -->
+<dialog class="student-dialog" id="studentDialog" aria-labelledby="dlgName">
+  <div class="dialog-inner" id="dialogInner"></div>
+  <button class="dialog-close" type="button" id="dlgClose" aria-label="关闭">×</button>
+</dialog>
 
 <footer class="footer">
   <span>© <span id="year">2026</span> 李天舒 · 成都</span>
@@ -197,7 +217,220 @@
   // 年份
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // 滚动渐入（尊重系统「减少动态效果」设置）
+  /* ============================================================
+     学员数据 —— 只改这一块就行
+     - year：年份，页面按年份自动分组，从新到旧排
+     - schools / tags / works：数组，想加就加
+     - work 可以写成 '标题'（显示占位图），也可以写成
+       { title: '标题', img: 'assets/xxx.webp' } 有图就显示图
+     - look 不写的话，按名字自动分配发型、肤色、衣服
+     ============================================================ */
+  const STUDENTS = [
+    { name: '陈同学', year: 2026, major: '游戏设计', schools: ['南加大', '犹他大学'], tags: ['UE5 场景', '角色建模'],
+      note: '零基础起步，一年内做出三套完整场景，最后拿到南加大和犹他的双 offer。',
+      works: ['场景 · 废弃车站', '场景 · 地下温室', '角色 · 拾荒者'] },
+
+    { name: '林同学', year: 2026, major: '数字媒体', schools: ['伦敦艺术大学'], tags: ['VR 交互', '装置'],
+      note: '把 VR 当成叙事媒介而不是技术展示，作品集里三个项目都围绕同一条线索。',
+      works: ['VR 短片 · 潮汐', '互动装置原型', '声音设计测试'] },
+
+    { name: '周同学', year: 2026, major: '游戏设计', schools: ['纽约大学'], tags: ['关卡设计', '动画'],
+      note: '从玩法文档写起，先把规则跑通再做美术，作品集最完整的一位。',
+      works: ['关卡 · 天台追逐', '机制原型', '过场动画'] },
+
+    { name: '王同学', year: 2026, major: '3D 动画', schools: ['谢尔丹学院'], tags: ['角色动画', '绑定'],
+      note: '手 K 动画基础很扎实，作品集重点放在表演和重量感上。',
+      works: ['角色表演 · 起床', '四足行走循环', '绑定测试'] },
+
+    { name: '赵同学', year: 2026, major: '交互设计', schools: ['皇家艺术学院'], tags: ['空间交互', '原型'],
+      note: '本科是建筑，转专业做交互，作品集里能看到空间思维的优势。',
+      works: ['空间装置 · 回声', '传感器原型', '用户测试记录'] },
+
+    { name: '刘同学', year: 2025, major: '游戏设计', schools: ['犹他大学'], tags: ['场景美术', '材质'],
+      note: '材质这一步从零补起，最后做到了能进作品集主项目的水准。',
+      works: ['场景 · 港口', '材质研究', '光影测试'] },
+
+    { name: '孙同学', year: 2025, major: '数字媒体', schools: ['爱丁堡大学'], tags: ['生成艺术', 'TouchDesigner'],
+      note: '偏艺术方向，作品集里代码和视觉各占一半。',
+      works: ['生成影像 · 生长', '实时交互装置', '视觉研究'] },
+
+    { name: '吴同学', year: 2025, major: '3D 建模', schools: ['伦敦艺术大学'], tags: ['产品渲染', '建模'],
+      note: '产品渲染为主，对布光和材质的控制很细。',
+      works: ['产品 · 耳机', '产品 · 灯具', '材质合集'] },
+
+    { name: '郑同学', year: 2025, major: '游戏设计', schools: ['南加大'], tags: ['系统设计', '原型'],
+      note: '喜欢做系统而不是关卡，作品集里放了大量可玩原型。',
+      works: ['系统原型 · 交易', '玩法 Demo', '数值表'] },
+
+    { name: '黄同学', year: 2024, major: '游戏设计', schools: ['犹他大学'], tags: ['原型开发', 'Unity'],
+      note: '第一位主课学生，从 Unity 入门到能独立完成 Demo。',
+      works: ['Demo · 小岛', '交互实验', '场景练习'] },
+
+    { name: '何同学', year: 2024, major: '视觉传达', schools: ['爱丁堡大学'], tags: ['动态图形', '二维'],
+      note: '二维转三维，作品集保留了原本的平面功底。',
+      works: ['动态海报', '字体实验', '短片分镜'] },
+
+    { name: '马同学', year: 2024, major: '数字媒体', schools: ['谢尔丹学院'], tags: ['2D/3D 混合', '插画'],
+      note: '插画转 3D，作品集里两种语言混着用，反而成了特点。',
+      works: ['插画转 3D', '角色设定', '场景速写'] }
+  ];
+
+  // ⚠️ 换成真实数据后把这里改成 false，页面上的「示例数据」标记就会消失
+  const DEMO = true;
+
+  /* ---------- 小人：SVG 程序化生成 ---------- */
+  const INK = '#0b0b0b';
+  const SKINS = ['#ffd9c0', '#eab38c', '#c98f68', '#8d5a3b'];
+  const HAIRS = ['#241a14', '#5b3a22', '#a8622c', '#1b1b1b', '#d8b06a'];
+  const TOPS  = ['#f76bd8', '#ffd02f', '#6ef0c8', '#b7a4ff', '#ffffff', '#ff8f5a'];
+
+  const HAIR_STYLES = [
+    // 0 短发
+    h => `<path d="M23,44Q23,15 50,15Q77,15 77,44Q68,29 50,29Q32,29 23,44Z" fill="${h}" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>`,
+    // 1 丸子头
+    h => `<circle cx="50" cy="9" r="8.5" fill="${h}" stroke="${INK}" stroke-width="3"/>
+          <path d="M24,44Q24,18 50,18Q76,18 76,44Q67,31 50,31Q33,31 24,44Z" fill="${h}" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>`,
+    // 2 长发
+    h => `<rect x="17" y="34" width="12" height="36" rx="6" fill="${h}" stroke="${INK}" stroke-width="3"/>
+          <rect x="71" y="34" width="12" height="36" rx="6" fill="${h}" stroke="${INK}" stroke-width="3"/>
+          <path d="M24,44Q24,17 50,17Q76,17 76,44Q67,30 50,30Q33,30 24,44Z" fill="${h}" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>`,
+    // 3 卷发
+    h => `<circle cx="31" cy="25" r="10" fill="${h}" stroke="${INK}" stroke-width="3"/>
+          <circle cx="50" cy="18" r="12" fill="${h}" stroke="${INK}" stroke-width="3"/>
+          <circle cx="69" cy="25" r="10" fill="${h}" stroke="${INK}" stroke-width="3"/>`,
+    // 4 帽子
+    h => `<path d="M22,42Q22,15 50,15Q78,15 78,42Z" fill="${h}" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>
+          <rect x="16" y="38" width="68" height="9" rx="4.5" fill="${h}" stroke="${INK}" stroke-width="3"/>`
+  ];
+
+  function figure(look) {
+    const skin = SKINS[look.skin % SKINS.length];
+    const hair = HAIRS[look.hair % HAIRS.length];
+    const top  = TOPS[look.top % TOPS.length];
+    const style = HAIR_STYLES[look.hair % HAIR_STYLES.length];
+
+    const glasses = look.acc === 'glasses'
+      ? `<g stroke="${INK}" stroke-width="2.4" fill="rgba(255,255,255,.5)">
+           <circle cx="40" cy="44" r="7.5"/><circle cx="60" cy="44" r="7.5"/>
+           <path d="M47.5,44h5" fill="none"/>
+         </g>`
+      : '';
+
+    const phones = look.acc === 'headphones'
+      ? `<path d="M16,42A34,34 0 0 1 84,42" fill="none" stroke="${INK}" stroke-width="5" stroke-linecap="round"/>
+         <rect x="9" y="38" width="13" height="24" rx="6.5" fill="${top}" stroke="${INK}" stroke-width="3"/>
+         <rect x="78" y="38" width="13" height="24" rx="6.5" fill="${top}" stroke="${INK}" stroke-width="3"/>`
+      : '';
+
+    return `<svg class="figure" viewBox="0 0 100 138" aria-hidden="true">
+      <ellipse cx="50" cy="132" rx="24" ry="4.5" fill="rgba(11,11,11,.12)"/>
+      <rect x="15" y="74" width="13" height="32" rx="6.5" fill="${top}" stroke="${INK}" stroke-width="3"/>
+      <rect x="72" y="74" width="13" height="32" rx="6.5" fill="${top}" stroke="${INK}" stroke-width="3"/>
+      <rect x="27" y="66" width="46" height="58" rx="16" fill="${top}" stroke="${INK}" stroke-width="3"/>
+      <circle cx="50" cy="42" r="26" fill="${skin}" stroke="${INK}" stroke-width="3"/>
+      <circle cx="41" cy="44" r="3.3" fill="${INK}"/>
+      <circle cx="59" cy="44" r="3.3" fill="${INK}"/>
+      <ellipse cx="34" cy="51" rx="4" ry="2.3" fill="#ff9db5" opacity=".7"/>
+      <ellipse cx="66" cy="51" rx="4" ry="2.3" fill="#ff9db5" opacity=".7"/>
+      <path d="M45,54q5,4.5 10,0" fill="none" stroke="${INK}" stroke-width="2.4" stroke-linecap="round"/>
+      ${style(hair)}
+      <path d="M43,72q7,7 14,0" fill="none" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>
+      ${glasses}${phones}
+    </svg>`;
+  }
+
+  function autoLook(s, i) {
+    const seed = (s.name || '').split('').reduce((acc, ch) => acc + ch.charCodeAt(0), i * 17 + 3);
+    return {
+      hair: seed % HAIR_STYLES.length,
+      skin: (seed >> 3) % SKINS.length,
+      top:  (seed >> 5) % TOPS.length,
+      acc:  ['none', 'glasses', 'headphones'][(seed >> 7) % 3]
+    };
+  }
+
+  STUDENTS.forEach((s, i) => {
+    s.id = 'stu-' + i;
+    s.look = s.look || autoLook(s, i);
+  });
+
+  /* ---------- 时间线渲染（新 → 旧） ---------- */
+  const timeline = document.getElementById('timeline');
+  const years = [...new Set(STUDENTS.map(s => s.year))].sort((a, b) => b - a);
+
+  timeline.innerHTML = years.map(year => {
+    const list = STUDENTS.filter(s => s.year === year);
+    const people = list.map(s => `
+      <li>
+        <button class="person" type="button" data-id="${s.id}" aria-label="查看 ${s.name} 的作品">
+          <span class="person-tile">${figure(s.look)}</span>
+          <span class="person-name">${s.name}</span>
+        </button>
+      </li>`).join('');
+    return `
+      <div class="year">
+        <div class="year-head">
+          <span class="year-num">${year}</span>
+          <span class="year-meta">${list.length} 位学员</span>
+        </div>
+        <ul class="people">${people}</ul>
+      </div>`;
+  }).join('');
+
+  /* ---------- 详情弹窗 ---------- */
+  const dialog = document.getElementById('studentDialog');
+  const dialogInner = document.getElementById('dialogInner');
+
+  function workItem(w) {
+    if (typeof w === 'string') {
+      return `<li><div class="work-slot">${w}<br><span>图待补</span></div></li>`;
+    }
+    return `<li><figure class="work-item">
+      <img src="${w.img}" alt="${w.title}" loading="lazy">
+      <figcaption>${w.title}</figcaption>
+    </figure></li>`;
+  }
+
+  function detailHTML(s) {
+    return `
+      <div class="dlg-head">
+        <div class="dlg-figure">${figure(s.look)}</div>
+        <div class="dlg-meta">
+          <p class="dlg-year">${s.year} · ${s.major}</p>
+          <h3 id="dlgName">${s.name}</h3>
+          ${DEMO ? '<span class="demo-chip">示例数据</span>' : ''}
+        </div>
+      </div>
+      <p class="dlg-note">${s.note}</p>
+      <div class="dlg-block">
+        <h4>录取</h4>
+        <ul class="schools">${s.schools.map(x => `<li>${x}</li>`).join('')}</ul>
+      </div>
+      <div class="dlg-block">
+        <h4>作品</h4>
+        <ul class="works">${s.works.map(workItem).join('')}</ul>
+      </div>
+      <ul class="tags">${s.tags.map(t => `<li>${t}</li>`).join('')}</ul>`;
+  }
+
+  timeline.addEventListener('click', (e) => {
+    const btn = e.target.closest('.person');
+    if (!btn) return;
+    const s = STUDENTS.find(x => x.id === btn.dataset.id);
+    if (!s) return;
+    dialogInner.innerHTML = detailHTML(s);
+    dialog.showModal();
+  });
+
+  document.getElementById('dlgClose').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close(); // 点遮罩关闭
+  });
+
+  // 数据是示例时，在标题旁边挂个标记，换成真数据后自动消失
+  if (DEMO) document.getElementById('demoChip').hidden = false;
+
+  /* ---------- 滚动渐入（尊重系统「减少动态效果」设置） ---------- */
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reduced && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
@@ -205,13 +438,11 @@
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.card, .about-body, .section-head, .contact').forEach((el) => {
+    document.querySelectorAll('.card, .about-body, .section-head, .contact-panel, .year').forEach((el) => {
       el.classList.add('reveal');
       io.observe(el);
     });
   }
-
-  /* 头像现在是静态插画，不需要交互脚本 */
 </script>
 
 </body>
