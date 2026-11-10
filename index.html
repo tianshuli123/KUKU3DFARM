@@ -38,26 +38,10 @@
        首屏
        ============================================ -->
   <section class="hero" id="top">
-    <!-- ✏️ 头像：等距立方体，鼠标移动时会轻微倾斜。
-         想换成真人照片，把整个 <svg>…</svg> 换成
-         <img src="assets/avatar.webp" alt="李天舒"> -->
-    <div class="avatar" aria-hidden="true">
-      <svg viewBox="0 0 200 200" role="presentation">
-        <defs>
-          <linearGradient id="avBg" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#c9b6ff"/>
-            <stop offset="1" stop-color="#ffc2dc"/>
-          </linearGradient>
-        </defs>
-        <circle cx="100" cy="100" r="100" fill="url(#avBg)"/>
-        <g class="cube">
-          <polygon points="100,50 151,79 100,108 49,79" fill="#f7f4ff"/>
-          <polygon points="49,79 100,108 100,158 49,129" fill="#8b6bff"/>
-          <polygon points="151,79 100,108 100,158 151,129" fill="#5a2ff0"/>
-          <polyline points="49,79 100,108 151,79" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.5" stroke-linejoin="round"/>
-        </g>
-        <circle class="spark" cx="152" cy="56" r="6" fill="#fff" opacity=".85"/>
-      </svg>
+    <!-- ✏️ 头像：现在是猫的插画（assets/cat.webp，透明底，直接压在渐变圆上）。
+         想换成真人照片，把 <img> 的 src 换成你的照片、alt 改成「李天舒」即可 -->
+    <div class="avatar">
+      <img src="assets/cat.webp" alt="李天舒的猫" width="613" height="800">
     </div>
 
     <!-- ✏️ 城市 + 当前状态 -->
@@ -227,51 +211,7 @@
     });
   }
 
-  /* ---------- 头像：立方体跟着鼠标轻微倾斜 ---------- */
-  (function () {
-    const svg = document.querySelector('.avatar svg');
-    if (!svg || reduced) return;
-
-    const cube = svg.querySelector('.cube');
-    const spark = svg.querySelector('.spark');
-    const center = { x: 100, y: 100 };
-    let frame = 0;
-    let pointer = null;
-
-    function draw() {
-      frame = 0;
-      if (!pointer) return;
-
-      const box = svg.getBoundingClientRect();
-      if (!box.width) return;
-
-      const k = 200 / box.width;
-      const px = (pointer.x - box.left) * k;
-      const py = (pointer.y - box.top) * k;
-
-      // 归一化到 -1..1，最多倾斜 1 度
-      const nx = Math.max(-1, Math.min(1, (px - center.x) / 100));
-      const ny = Math.max(-1, Math.min(1, (py - center.y) / 100));
-
-      cube.setAttribute(
-        'transform',
-        'translate(' + (nx * 3).toFixed(2) + ' ' + (ny * 3).toFixed(2) + ') ' +
-        'rotate(' + (nx * 1.2).toFixed(2) + ' 100 100)'
-      );
-
-      if (spark) {
-        spark.setAttribute(
-          'transform',
-          'translate(' + (-nx * 6).toFixed(2) + ' ' + (-ny * 6).toFixed(2) + ')'
-        );
-      }
-    }
-
-    window.addEventListener('pointermove', (e) => {
-      pointer = { x: e.clientX, y: e.clientY };
-      if (!frame) frame = requestAnimationFrame(draw);
-    }, { passive: true });
-  })();
+  /* 头像现在是静态插画，不需要交互脚本 */
 </script>
 
 </body>
