@@ -134,8 +134,34 @@ body::after {
 .hero {
   max-width: var(--max);
   margin: 0 auto;
-  padding: clamp(56px, 9vw, 120px) 32px clamp(40px, 6vw, 80px);
+  padding: clamp(40px, 7vw, 96px) 32px clamp(40px, 6vw, 80px);
+  text-align: center;
 }
+
+/* ---------------- 头像 ---------------- */
+
+.avatar {
+  width: clamp(148px, 19vw, 208px);
+  margin: 0 auto clamp(26px, 3.6vw, 44px);
+  border-radius: 50%;
+  overflow: hidden;
+  background: #c9b6ff;
+  box-shadow:
+    0 34px 60px -32px rgba(8, 9, 9, .38),
+    0 0 0 1px rgba(8, 9, 9, .06);
+}
+
+.avatar svg { display: block; width: 100%; height: auto; }
+
+/* 眨眼 */
+.eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform .09s ease;
+}
+
+.eye.blink { transform: scaleY(.12); }
+
 
 .eyebrow {
   display: inline-flex;
@@ -171,7 +197,7 @@ body::after {
 
 .lead {
   max-width: 30em;
-  margin: clamp(28px, 4vw, 48px) 0 0;
+  margin: clamp(28px, 4vw, 48px) auto 0;
   font-size: clamp(17px, 1.7vw, 21px);
   line-height: 1.65;
   color: var(--muted);
@@ -181,6 +207,7 @@ body::after {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 24px;
   margin-top: clamp(28px, 4vw, 44px);
 }

@@ -38,6 +38,34 @@
        首屏
        ============================================ -->
   <section class="hero" id="top">
+    <!-- ✏️ 头像：SVG 画的，眼睛会跟着鼠标转。
+         想换成自己的照片，把整个 <svg>…</svg> 换成
+         <img src="assets/avatar.webp" alt="你的照片"> —— 但那样眼睛就不会动了 -->
+    <div class="avatar" aria-hidden="true">
+      <svg viewBox="0 0 200 200" role="presentation">
+        <defs>
+          <linearGradient id="avBg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#c9b6ff"/>
+            <stop offset="1" stop-color="#ffc2dc"/>
+          </linearGradient>
+        </defs>
+        <circle cx="100" cy="100" r="100" fill="url(#avBg)"/>
+        <ellipse cx="100" cy="110" rx="50" ry="54" fill="#ffe3cc"/>
+        <path d="M50 100a50 50 0 0 1 100 0Z" fill="#241f2e"/>
+        <ellipse cx="66" cy="139" rx="9" ry="5.5" fill="#ffb3c7" opacity=".7"/>
+        <ellipse cx="134" cy="139" rx="9" ry="5.5" fill="#ffb3c7" opacity=".7"/>
+        <g class="eye" data-cx="80" data-cy="118">
+          <ellipse cx="80" cy="118" rx="12" ry="13" fill="#fff" stroke="#2a2433" stroke-width="2.5"/>
+          <circle class="pupil" cx="80" cy="118" r="6" fill="#241f2e"/>
+        </g>
+        <g class="eye" data-cx="120" data-cy="118">
+          <ellipse cx="120" cy="118" rx="12" ry="13" fill="#fff" stroke="#2a2433" stroke-width="2.5"/>
+          <circle class="pupil" cx="120" cy="118" r="6" fill="#241f2e"/>
+        </g>
+        <path d="M89 144q11 9 22 0" fill="none" stroke="#2a2433" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+
     <!-- ✏️ 城市 + 当前状态（不想要这一行就整段删掉） -->
     <p class="eyebrow"><span class="dot"></span>现居城市 · 可接项目 / 求职中</p>
 
@@ -225,6 +253,66 @@
       io.observe(el);
     });
   }
+
+  /* ---------- 头像：眼睛跟着鼠标 ---------- */
+  (function () {
+    const svg = document.querySelector('.avatar svg');
+    if (!svg) return;
+
+    const eyes = Array.from(svg.querySelectorAll('.eye'));
+    const VB = 200;   // viewBox 宽度
+    const MAX = 5.5;  // 瞳孔最大偏移量
+    let pointer = null;
+    let frame = 0;
+
+    function draw() {
+      frame = 0;
+      if (!pointer) return;
+
+      const box = svg.getBoundingClientRect();
+      if (!box.width) return;
+
+      const k = VB / box.width;
+      const px = (pointer.x - box.left) * k;
+      const py = (pointer.y - box.top) * k;
+
+      eyes.forEach((eye) => {
+        const cx = Number(eye.dataset.cx);
+        const cy = Number(eye.dataset.cy);
+        const pupil = eye.querySelector('.pupil');
+
+        const dx = px - cx;
+        const dy = py - cy;
+        const dist = Math.hypot(dx, dy) || 1;
+        const r = Math.min(1, dist / 240) * MAX;
+
+        pupil.setAttribute(
+          'transform',
+          'translate(' + (dx / dist * r).toFixed(2) + ' ' + (dy / dist * r).toFixed(2) + ')'
+        );
+      });
+    }
+
+    window.addEventListener('pointermove', (e) => {
+      pointer = { x: e.clientX, y: e.clientY };
+      if (!frame) frame = requestAnimationFrame(draw);
+    }, { passive: true });
+
+    // 鼠标离开页面时，眼睛回到正前方
+    document.addEventListener('mouseleave', () => {
+      pointer = null;
+      eyes.forEach((eye) => eye.querySelector('.pupil').removeAttribute('transform'));
+    });
+
+    // 每 2.6–6 秒眨一次眼
+    if (!reduced) {
+      (function blink() {
+        eyes.forEach((eye) => eye.classList.add('blink'));
+        setTimeout(() => eyes.forEach((eye) => eye.classList.remove('blink')), 110);
+        setTimeout(blink, 2600 + Math.random() * 3600);
+      })();
+    }
+  })();
 </script>
 
 </body>
