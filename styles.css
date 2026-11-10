@@ -153,14 +153,7 @@ body::after {
 
 .avatar svg { display: block; width: 100%; height: auto; }
 
-/* 眨眼 */
-.eye {
-  transform-box: fill-box;
-  transform-origin: center;
-  transition: transform .09s ease;
-}
-
-.eye.blink { transform: scaleY(.12); }
+/* 立方体的倾斜由脚本每帧写 transform 属性，这里不需要过渡动画 */
 
 
 .eyebrow {
@@ -336,6 +329,10 @@ body::after {
   transform: scale(.985);
 }
 
+/* 卡片目前不跳转（div）：取消悬停反馈，免得看起来能点 */
+div.card:hover .cover { transform: none; }
+div.card:hover h3 { color: inherit; }
+
 .c1 { background: linear-gradient(150deg, #dcd4ff 0%, #b9a6ff 100%); }
 .c2 { background: linear-gradient(150deg, #d6e4ff 0%, #a8c0ff 100%); }
 .c3 { background: linear-gradient(150deg, #ffe0ef 0%, #ffc2dc 100%); }
@@ -362,6 +359,10 @@ body::after {
   height: 100%;
   object-fit: cover;
 }
+
+/* 横跨两列的宽卡片（教学 / 合集类） */
+.card-wide { grid-column: 1 / -1; }
+.card-wide .cover { aspect-ratio: 21 / 8; }
 
 .card-body { padding-top: 22px; }
 
@@ -488,17 +489,6 @@ body::after {
 
 .contact-mail:hover { color: var(--accent); border-color: var(--accent); }
 
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px 32px;
-  font-size: 14px;
-  color: var(--muted);
-}
-
-.contact-links a { text-decoration: none; transition: color .2s; }
-.contact-links a:hover { color: var(--ink); }
-
 /* ---------------- 页脚 ---------------- */
 
 .footer {
@@ -540,6 +530,7 @@ body::after {
   .nav-links { gap: 20px; }
   .hero, .section, .stats, .footer { padding-left: 20px; padding-right: 20px; }
   .cover { border-radius: var(--r); padding: 20px; }
+  .card-wide .cover { aspect-ratio: 4 / 3; }
   .stats { gap: 28px 40px; }
 }
 

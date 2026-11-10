@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- ✏️ 浏览器标签页和分享卡片上的标题 -->
-<title>你的名字 — 作品集</title>
-<meta name="description" content="你的名字的作品集：一句话说明你做什么。">
-<meta name="theme-color" content="#f7f5f2">
+<title>李天舒 · 3D 设计师 — UE5 场景 / 游戏资产</title>
+<meta name="description" content="李天舒（MarksLi），3D 设计师。普渡大学图形学硕士，做 UE5 / Unity 的 VR 场景与游戏资产：建模、材质、引擎内优化。">
+<meta name="theme-color" content="#f0eefa">
 <meta property="og:type" content="website">
-<meta property="og:title" content="你的名字 — 作品集">
-<meta property="og:description" content="你的名字的作品集：一句话说明你做什么。">
+<meta property="og:title" content="李天舒 · 3D 设计师">
+<meta property="og:description" content="普渡大学图形学硕士。Maya / Blender 建模、Substance Painter 材质，在 Unity 和 UE5 里把场景搭到跑得动。">
 <meta property="og:locale" content="zh_CN">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231a1815'/%3E%3Ccircle cx='23' cy='9' r='3.5' fill='%23c8452d'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235a2ff0'/%3E%3Cpath d='M16 7l7 4v10l-7 4-7-4V11z' fill='%23fff' opacity='.9'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,7 +23,7 @@
   <!-- ✏️ 左上角的名字 -->
   <a class="brand" href="#top">
     <span class="brand-mark"></span>
-    <span>你的名字</span>
+    <span>李天舒</span>
   </a>
   <nav class="nav-links" aria-label="页面导航">
     <a href="#work">作品</a>
@@ -38,9 +38,9 @@
        首屏
        ============================================ -->
   <section class="hero" id="top">
-    <!-- ✏️ 头像：SVG 画的，眼睛会跟着鼠标转。
-         想换成自己的照片，把整个 <svg>…</svg> 换成
-         <img src="assets/avatar.webp" alt="你的照片"> —— 但那样眼睛就不会动了 -->
+    <!-- ✏️ 头像：等距立方体，鼠标移动时会轻微倾斜。
+         想换成真人照片，把整个 <svg>…</svg> 换成
+         <img src="assets/avatar.webp" alt="李天舒"> -->
     <div class="avatar" aria-hidden="true">
       <svg viewBox="0 0 200 200" role="presentation">
         <defs>
@@ -50,164 +50,146 @@
           </linearGradient>
         </defs>
         <circle cx="100" cy="100" r="100" fill="url(#avBg)"/>
-        <ellipse cx="100" cy="110" rx="50" ry="54" fill="#ffe3cc"/>
-        <path d="M50 100a50 50 0 0 1 100 0Z" fill="#241f2e"/>
-        <ellipse cx="66" cy="139" rx="9" ry="5.5" fill="#ffb3c7" opacity=".7"/>
-        <ellipse cx="134" cy="139" rx="9" ry="5.5" fill="#ffb3c7" opacity=".7"/>
-        <g class="eye" data-cx="80" data-cy="118">
-          <ellipse cx="80" cy="118" rx="12" ry="13" fill="#fff" stroke="#2a2433" stroke-width="2.5"/>
-          <circle class="pupil" cx="80" cy="118" r="6" fill="#241f2e"/>
+        <g class="cube">
+          <polygon points="100,50 151,79 100,108 49,79" fill="#f7f4ff"/>
+          <polygon points="49,79 100,108 100,158 49,129" fill="#8b6bff"/>
+          <polygon points="151,79 100,108 100,158 151,129" fill="#5a2ff0"/>
+          <polyline points="49,79 100,108 151,79" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.5" stroke-linejoin="round"/>
         </g>
-        <g class="eye" data-cx="120" data-cy="118">
-          <ellipse cx="120" cy="118" rx="12" ry="13" fill="#fff" stroke="#2a2433" stroke-width="2.5"/>
-          <circle class="pupil" cx="120" cy="118" r="6" fill="#241f2e"/>
-        </g>
-        <path d="M89 144q11 9 22 0" fill="none" stroke="#2a2433" stroke-width="4" stroke-linecap="round"/>
+        <circle class="spark" cx="152" cy="56" r="6" fill="#fff" opacity=".85"/>
       </svg>
     </div>
 
-    <!-- ✏️ 城市 + 当前状态（不想要这一行就整段删掉） -->
-    <p class="eyebrow"><span class="dot"></span>现居城市 · 可接项目 / 求职中</p>
+    <!-- ✏️ 城市 + 当前状态 -->
+    <p class="eyebrow"><span class="dot"></span>成都 · 求职中 · 3D 设计师</p>
 
-    <!-- ✏️ 你的名字，显示成拼音/英文也可以 -->
     <h1>
       你好，我是<br>
-      <em>你的名字</em>
+      <em>李天舒</em>
     </h1>
 
-    <!-- ✏️ 最重要的一句：你做什么、为谁解决什么问题 -->
+    <!-- ✏️ 最重要的一句：做什么、怎么做的 -->
     <p class="lead">
-      一句话说清你做什么、为谁解决什么问题。比如：把复杂的后台系统，
-      做成一线员工不用培训就能上手的界面。
+      用 Maya 和 Blender 把概念做成资产，再在 Unity 和 UE5 里把资产拼成跑得动的场景。
+      硕士论文研究的是 Nanite 对 VR 场景的影响——所以我在意的不只是好看，还有面数、帧率和穿模。
     </p>
 
     <div class="actions">
       <a class="btn" href="#work">看作品</a>
-      <!-- ✏️ 邮箱，一共 4 处，全部替换 -->
-      <a class="link" href="mailto:you@example.com">you@example.com <span aria-hidden="true">↗</span></a>
+      <a class="link" href="mailto:664301622@qq.com">664301622@qq.com <span aria-hidden="true">↗</span></a>
     </div>
   </section>
 
   <!-- ============================================
-       数字条：只留你真的有数的。凑不出来（比如没有奖项）
-       就把对应的 <li> 整行删掉，剩两个也比编数字强
+       数字条：全部来自简历，别编
        ============================================ -->
   <ul class="stats">
-    <li><strong>4</strong><span>精选项目</span></li>
-    <li><strong>3</strong><span>年经验</span></li>
-    <li><strong>12</strong><span>合作客户</span></li>
-    <li><strong>2</strong><span>行业奖项</span></li>
+    <li><strong>6</strong><span>年 3D 经验</span></li>
+    <li><strong>2</strong><span>个完整项目</span></li>
+    <li><strong>30+</strong><span>签约学员</span></li>
+    <li><strong>7</strong><span>所顶尖院校录取</span></li>
   </ul>
 
   <!-- ============================================
-       作品：建议 3–6 个。不需要的整块 <a class="card">…</a> 删掉
+       作品
        ============================================ -->
   <section class="section" id="work">
     <div class="section-head">
       <h2>精选作品</h2>
       <!-- ✏️ 年份区间 + 项目数量 -->
-      <p>2022 — 2026 · 共 4 个项目</p>
+      <p>2021 — 2026 · 2 个项目 + 1 个教学系列</p>
     </div>
 
     <div class="grid">
 
-      <!-- ✏️ 项目 1：改 标题 / 年份 / 一句话 / 标签 / href（详情页或 PDF 链接） -->
-      <a class="card" href="#" aria-label="查看项目：项目名称一">
+      <!-- ✏️ 项目 1 -->
+      <div class="card">
         <div class="cover c1">
           <span class="cover-num">01</span>
-          <span class="cover-hint">替换为作品封面图</span>
+          <span class="cover-hint">封面图待替换</span>
         </div>
         <div class="card-body">
           <div class="card-meta">
-            <span>产品设计</span><span>2026</span>
+            <span>场景设计 / 建模</span><span>2022.03 — 2024.01</span>
           </div>
-          <h3>项目名称一</h3>
-          <p>一句话说明：做了什么、解决了什么问题、结果如何。</p>
+          <h3>Star Realm VR</h3>
+          <p>
+            Unity 里的 VR 可探索场景。从画风定调开始，Maya + Blender 建模、Substance Painter 上材质，
+            再回到头显里一遍遍测性能和穿模，直到 DEMO 能完整走完一遍。
+          </p>
           <ul class="tags">
-            <li>用户研究</li><li>交互设计</li><li>设计系统</li>
+            <li>Unity</li><li>Maya</li><li>Blender</li><li>Substance Painter</li><li>VR</li>
           </ul>
         </div>
-      </a>
+      </div>
 
       <!-- ✏️ 项目 2 -->
-      <a class="card" href="#" aria-label="查看项目：项目名称二">
+      <div class="card">
         <div class="cover c2">
           <span class="cover-num">02</span>
-          <span class="cover-hint">替换为作品封面图</span>
+          <span class="cover-hint">封面图待替换</span>
         </div>
         <div class="card-body">
           <div class="card-meta">
-            <span>品牌视觉</span><span>2025</span>
+            <span>3D 建模 / 场景</span><span>2021.09 — 2022.05</span>
           </div>
-          <h3>项目名称二</h3>
-          <p>一句话说明：做了什么、解决了什么问题、结果如何。</p>
+          <h3>Revenge of the Killer Octopus</h3>
+          <p>
+            章鱼做主角的第三人称关卡。Maya 建模与动画、Substance 材质、玩法设计都压在同一条线上做，
+            最后在 Unreal Engine 里把整关跑通。
+          </p>
           <ul class="tags">
-            <li>品牌</li><li>视觉规范</li>
+            <li>Unreal Engine</li><li>Maya</li><li>Substance Painter</li><li>动画</li>
           </ul>
         </div>
-      </a>
+      </div>
 
-      <!-- ✏️ 项目 3 -->
-      <a class="card" href="#" aria-label="查看项目：项目名称三">
+      <!-- ✏️ 教学系列：横跨两列的宽卡片 -->
+      <div class="card card-wide">
         <div class="cover c3">
           <span class="cover-num">03</span>
-          <span class="cover-hint">替换为作品封面图</span>
+          <span class="cover-hint">学员作品合集 · 封面图待替换</span>
         </div>
         <div class="card-body">
           <div class="card-meta">
-            <span>前端开发</span><span>2025</span>
+            <span>教学 / 作品集辅导</span><span>2024 — 至今</span>
           </div>
-          <h3>项目名称三</h3>
-          <p>一句话说明：做了什么、解决了什么问题、结果如何。</p>
+          <h3>学员作品集</h3>
+          <p>
+            带学生从选题、建模到排版，把作品集做到招生官能一眼看懂。签约 30 名学生，
+            录取涵盖南加大、犹他、纽大、伦艺、爱丁堡、皇艺、谢尔丹。
+          </p>
           <ul class="tags">
-            <li>HTML/CSS</li><li>性能优化</li>
+            <li>作品集规划</li><li>游戏建模</li><li>VR 技术教学</li>
           </ul>
         </div>
-      </a>
-
-      <!-- ✏️ 项目 4 -->
-      <a class="card" href="#" aria-label="查看项目：项目名称四">
-        <div class="cover c4">
-          <span class="cover-num">04</span>
-          <span class="cover-hint">替换为作品封面图</span>
-        </div>
-        <div class="card-body">
-          <div class="card-meta">
-            <span>个人项目</span><span>2024</span>
-          </div>
-          <h3>项目名称四</h3>
-          <p>一句话说明：做了什么、解决了什么问题、结果如何。</p>
-          <ul class="tags">
-            <li>Side Project</li>
-          </ul>
-        </div>
-      </a>
+      </div>
 
     </div>
   </section>
 
   <!-- ============================================
-       关于：3–5 行就够，别写成简历
+       关于
        ============================================ -->
   <section class="section about" id="about">
     <div class="chapter">关于</div>
     <div class="about-body">
-      <!-- ✏️ 第一段：大字，最重要的一句自我描述 -->
       <p class="about-lead">
-        我是谁、现在在做什么、擅长什么。保持 3–5 行，别写成简历自传。
+        我是李天舒，3D 设计师。普渡大学图形学硕士，本科在犹他大学读游戏设计——
+        两段学历其实在干同一件事：把 3D 做到能在引擎里跑起来。
       </p>
-      <!-- ✏️ 第二段：工作方式、偏好、行业背景 -->
       <p>
-        可以补充：你的工作方式、偏好的合作类型、待过的行业。
-        比如「做过 3 年 B 端工具，习惯先跑现场再画图，交付时会给组件和规范，而不是只有一张设计稿。」
+        平时的工作流是 Maya / Blender 起形、ZBrush 做高模、Substance Painter 贴材质，
+        最后在 Unity 或 UE5 里搭景、打光、压性能。VR 场景做得最多，也习惯在头显里一遍遍测——
+        穿模、掉帧、贴图糊，都得亲手看过才算完。现在在上海做游戏建模和作品集辅导，接下来想回成都。
       </p>
 
-      <!-- ✏️ 四行事实，改内容或加一行都行 -->
       <dl class="facts">
-        <div><dt>目前</dt><dd>你的公司 / 自由职业</dd></div>
-        <div><dt>工具</dt><dd>Figma、Cinema 4D、Illustrator</dd></div>
-        <div><dt>领域</dt><dd>SaaS 后台、移动端、品牌</dd></div>
-        <div><dt>邮箱</dt><dd><a href="mailto:you@example.com">you@example.com</a></dd></div>
+        <div><dt>目前</dt><dd>上海洛素 · 游戏建模</dd></div>
+        <div><dt>工具</dt><dd>Maya、Blender、ZBrush、Substance Painter</dd></div>
+        <div><dt>引擎</dt><dd>Unity、UE5、VR 性能优化</dd></div>
+        <div><dt>学历</dt><dd>普渡大学 图形学 硕士</dd></div>
+        <div><dt>邮箱</dt><dd><a href="mailto:664301622@qq.com">664301622@qq.com</a></dd></div>
       </dl>
     </div>
   </section>
@@ -216,24 +198,15 @@
        联系
        ============================================ -->
   <section class="section contact" id="contact">
-    <p class="eyebrow">有项目、有职位、或者只是想聊聊</p>
-    <!-- ✏️ 邮箱，字号最大，是这页的行动点 -->
-    <a class="contact-mail" href="mailto:you@example.com">you@example.com</a>
-    <!-- ✏️ 换成你的主页；没有的删掉整行 -->
-    <div class="contact-links">
-      <a href="#" target="_blank" rel="noopener">站酷</a>
-      <a href="#" target="_blank" rel="noopener">GitHub</a>
-      <a href="#" target="_blank" rel="noopener">小红书</a>
-      <a href="#" target="_blank" rel="noopener">下载 PDF 作品集</a>
-    </div>
+    <p class="eyebrow">在找 3D 设计师的岗位，也接外包</p>
+    <a class="contact-mail" href="mailto:664301622@qq.com">664301622@qq.com</a>
   </section>
 
 </main>
 
-<!-- ✏️ 页脚 -->
 <footer class="footer">
-  <span>© <span id="year">2026</span> 你的名字</span>
-  <span>Made with HTML &amp; CSS</span>
+  <span>© <span id="year">2026</span> 李天舒 · 成都</span>
+  <span>手写 HTML &amp; CSS</span>
 </footer>
 
 <script>
@@ -254,16 +227,16 @@
     });
   }
 
-  /* ---------- 头像：眼睛跟着鼠标 ---------- */
+  /* ---------- 头像：立方体跟着鼠标轻微倾斜 ---------- */
   (function () {
     const svg = document.querySelector('.avatar svg');
-    if (!svg) return;
+    if (!svg || reduced) return;
 
-    const eyes = Array.from(svg.querySelectorAll('.eye'));
-    const VB = 200;   // viewBox 宽度
-    const MAX = 5.5;  // 瞳孔最大偏移量
-    let pointer = null;
+    const cube = svg.querySelector('.cube');
+    const spark = svg.querySelector('.spark');
+    const center = { x: 100, y: 100 };
     let frame = 0;
+    let pointer = null;
 
     function draw() {
       frame = 0;
@@ -272,46 +245,32 @@
       const box = svg.getBoundingClientRect();
       if (!box.width) return;
 
-      const k = VB / box.width;
+      const k = 200 / box.width;
       const px = (pointer.x - box.left) * k;
       const py = (pointer.y - box.top) * k;
 
-      eyes.forEach((eye) => {
-        const cx = Number(eye.dataset.cx);
-        const cy = Number(eye.dataset.cy);
-        const pupil = eye.querySelector('.pupil');
+      // 归一化到 -1..1，最多倾斜 1 度
+      const nx = Math.max(-1, Math.min(1, (px - center.x) / 100));
+      const ny = Math.max(-1, Math.min(1, (py - center.y) / 100));
 
-        const dx = px - cx;
-        const dy = py - cy;
-        const dist = Math.hypot(dx, dy) || 1;
-        const r = Math.min(1, dist / 240) * MAX;
+      cube.setAttribute(
+        'transform',
+        'translate(' + (nx * 3).toFixed(2) + ' ' + (ny * 3).toFixed(2) + ') ' +
+        'rotate(' + (nx * 1.2).toFixed(2) + ' 100 100)'
+      );
 
-        pupil.setAttribute(
+      if (spark) {
+        spark.setAttribute(
           'transform',
-          'translate(' + (dx / dist * r).toFixed(2) + ' ' + (dy / dist * r).toFixed(2) + ')'
+          'translate(' + (-nx * 6).toFixed(2) + ' ' + (-ny * 6).toFixed(2) + ')'
         );
-      });
+      }
     }
 
     window.addEventListener('pointermove', (e) => {
       pointer = { x: e.clientX, y: e.clientY };
       if (!frame) frame = requestAnimationFrame(draw);
     }, { passive: true });
-
-    // 鼠标离开页面时，眼睛回到正前方
-    document.addEventListener('mouseleave', () => {
-      pointer = null;
-      eyes.forEach((eye) => eye.querySelector('.pupil').removeAttribute('transform'));
-    });
-
-    // 每 2.6–6 秒眨一次眼
-    if (!reduced) {
-      (function blink() {
-        eyes.forEach((eye) => eye.classList.add('blink'));
-        setTimeout(() => eyes.forEach((eye) => eye.classList.remove('blink')), 110);
-        setTimeout(blink, 2600 + Math.random() * 3600);
-      })();
-    }
   })();
 </script>
 
