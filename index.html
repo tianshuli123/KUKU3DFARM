@@ -60,10 +60,22 @@
       </div>
     </div>
 
-    <!-- ✏️ 猫：透明底插画，直接压在洋红上。
-         想换成真人照片，换 <img> 的 src 和 alt 即可 -->
+    <!-- ✏️ 猫：透明底插画 + 覆盖上去的眼睛（会跟着鼠标看）
+         眼睛坐标是按 613×800 的原图量的，换图就要重新量 -->
     <div class="hero-media">
-      <img class="cat" src="assets/cat.webp" alt="李天舒的猫" width="613" height="800">
+      <div class="cat-wrap">
+        <img class="cat" src="assets/cat.webp" alt="李天舒的猫" width="613" height="800">
+        <svg class="cat-eyes" viewBox="0 0 613 800" aria-hidden="true">
+          <g data-cx="197" data-cy="263">
+            <circle class="ball" cx="197" cy="263" r="52"/>
+            <circle class="glint" cx="213" cy="247" r="13"/>
+          </g>
+          <g data-cx="427" data-cy="263">
+            <circle class="ball" cx="427" cy="263" r="52"/>
+            <circle class="glint" cx="443" cy="247" r="13"/>
+          </g>
+        </svg>
+      </div>
     </div>
   </section>
 
@@ -429,6 +441,56 @@
 
   // 数据是示例时，在标题旁边挂个标记，换成真数据后自动消失
   if (DEMO) document.getElementById('demoChip').hidden = false;
+
+  /* ---------- 猫的眼睛跟着鼠标看 ---------- */
+  (function () {
+    const svg = document.querySelector('.cat-eyes');
+    if (!svg) return;
+
+    const eyes = [...svg.querySelectorAll('g[data-cx]')].map(g => ({
+      cx: Number(g.dataset.cx),
+      cy: Number(g.dataset.cy),
+      ball: g.querySelector('.ball'),
+      glint: g.querySelector('.glint')
+    }));
+
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (still) return;
+
+    let pointer = null;
+    let frame = 0;
+
+    function draw() {
+      frame = 0;
+      if (!pointer) return;
+
+      const box = svg.getBoundingClientRect();
+      if (!box.width) return;
+
+      const sx = box.width / 613;
+      const sy = box.height / 800;
+
+      eyes.forEach(e => {
+        const ex = box.left + e.cx * sx;
+        const ey = box.top + e.cy * sy;
+        const dx = pointer.x - ex;
+        const dy = pointer.y - ey;
+        const dist = Math.hypot(dx, dy) || 1;
+        const k = Math.min(1, dist / 140);      // 离得远就满偏，贴近时收着一点
+        const nx = (dx / dist) * k;
+        const ny = (dy / dist) * k;
+
+        // 眼珠小幅平移，高光大幅平移 —— 看起来像在转
+        e.ball.setAttribute('transform', `translate(${(nx * 3).toFixed(2)} ${(ny * 3).toFixed(2)})`);
+        e.glint.setAttribute('transform', `translate(${(nx * 13).toFixed(2)} ${(ny * 13).toFixed(2)})`);
+      });
+    }
+
+    window.addEventListener('pointermove', (ev) => {
+      pointer = { x: ev.clientX, y: ev.clientY };
+      if (!frame) frame = requestAnimationFrame(draw);
+    }, { passive: true });
+  })();
 
   /* ---------- 滚动渐入（尊重系统「减少动态效果」设置） ---------- */
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
