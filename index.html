@@ -1377,9 +1377,18 @@
       clearTimeout(promoteTimer);
     }
 
+    // 每个区块说不一样的话
+    const PERCH_TEXT = {
+      '#portfolio': '滚动滑轮即可观看全部内容',
+      '#students': '点击学员卡片看作品集',
+      '#work': '点开项目看详情',
+      '#contact': '这里可以点'
+    };
+
     function updatePerch() {
       const vh = window.innerHeight;
       let best = null;
+      let bestSel = '';
       let bestRatio = 0;
 
       PERCH_SECTIONS.forEach((sel) => {
@@ -1388,7 +1397,7 @@
         const r = s.getBoundingClientRect();
         const seen = Math.min(r.bottom, vh) - Math.max(r.top, 0);
         const ratio = seen / Math.min(r.height || 1, vh);
-        if (ratio > bestRatio) { bestRatio = ratio; best = s; }
+        if (ratio > bestRatio) { bestRatio = ratio; best = s; bestSel = sel; }
       });
 
       // 这一屏没有哪个区块占主导，就放手回到鼠标旁边
@@ -1401,9 +1410,9 @@
       perchSection = best;
       perchEl = t;
       el.classList.add('is-pointing');
-      showBubble('这里可以点击');
+      showBubble(PERCH_TEXT[bestSel] || '这里可以点击');
       clearTimeout(promoteTimer);
-      promoteTimer = setTimeout(() => bubble.classList.remove('is-on'), 2400);
+      promoteTimer = setTimeout(() => bubble.classList.remove('is-on'), 2600);
     }
 
     let perchFrame = 0;
@@ -1428,8 +1437,9 @@
       if (perchEl) {
         const r = perchEl.getBoundingClientRect();
         if (r.width) {
+          // 悬在元素正上方，底部留出 10px，别压住它的文字
           gx = r.left + r.width / 2 - w / 2;
-          gy = r.top - w * 0.92;
+          gy = r.top - w * 1.16 - 10;
         }
       }
 
