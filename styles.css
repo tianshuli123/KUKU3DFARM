@@ -337,6 +337,8 @@ img { max-width: 100%; display: block; }
 }
 
 .stats {
+  position: relative;
+  top: clamp(-16px, -1vw, -6px);
   display: flex;
   flex-wrap: wrap;
   gap: clamp(24px, 4vw, 64px);
