@@ -406,6 +406,26 @@ img { max-width: 100%; display: block; }
   box-shadow: 8px 8px 0 var(--ink);
 }
 
+/* 能点开的卡片（有外链的项目） */
+a.card {
+  color: inherit;
+  text-decoration: none;
+  transition: transform .18s var(--ease), box-shadow .18s var(--ease);
+}
+
+a.card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 12px 12px 0 var(--ink);
+}
+
+.card-arrow {
+  display: inline-block;
+  font-size: .5em;
+  vertical-align: super;
+  color: var(--accent);
+  margin-left: 2px;
+}
+
 .cover {
   position: relative;
   aspect-ratio: var(--cover-ratio);
