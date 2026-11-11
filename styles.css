@@ -864,8 +864,9 @@ body:has(.student-dialog[open]) { overflow: hidden; }
   color: rgba(11, 11, 11, .6);
 }
 
-/* 弹窗里的作品列表：图片和小方块并排，PDF 是文字链接 */
-.works {
+/* 弹窗里的作品列表：图片和小方块并排，PDF 是文字链接
+   ⚠️ 必须限定在弹窗内：页面上的「工作经历」区块也用了 .works 这个类名 */
+.dlg-block .works {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
   gap: 12px;
