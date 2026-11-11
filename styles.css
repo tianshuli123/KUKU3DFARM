@@ -14,7 +14,7 @@
   --ink: #0b0b0b;
 
   --deep:  #10160f;   /* 黑绿：艺术教育那一节 */
-  --max: 1440px;
+  --max: 1600px;
   --ease: cubic-bezier(.22, 1, .36, 1);
 
   /* ==================================================
@@ -776,7 +776,7 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 /* ---------------- 关于 ---------------- */
 
 #about {
-  max-width: min(2400px, 96vw);
+  max-width: var(--max);
 }
 
 .about {
