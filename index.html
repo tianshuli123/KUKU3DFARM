@@ -29,6 +29,8 @@
     <button class="jelly-chip" type="button" role="radio" aria-checked="false" data-target="about"><span class="jelly-skin">关于作者</span></button>
     <button class="jelly-chip" type="button" role="radio" aria-checked="false" data-target="work"><span class="jelly-skin">项目经历</span></button>
     <button class="jelly-chip" type="button" role="radio" aria-checked="false" data-target="students"><span class="jelly-skin">艺术教育</span></button>
+    <button class="jelly-chip" type="button" role="radio" aria-checked="false" data-target="printing"><span class="jelly-skin">3D 打印</span></button>
+    <button class="jelly-chip" type="button" role="radio" aria-checked="false" data-target="cat"><span class="jelly-skin">关于茄子</span></button>
   </div>
   <a class="nav-cta" href="mailto:664301622@qq.com">聊聊 ↗</a>
 </header>
@@ -416,6 +418,45 @@
     </section>
     </div>
 
+    <!-- ============================================
+         3D 打印
+         ============================================ -->
+    <section class="section" id="printing">
+      <div class="section-head">
+        <h2>3D 打印</h2>
+        <p>整理中 · 后续补充</p>
+      </div>
+
+      <div class="soon-card">
+        <span class="soon-badge">Coming soon</span>
+        <p class="soon-lead">把建模软件里的东西，真的打出来拿在手上。</p>
+        <p class="soon-note">打印件、模型文件和制作过程正在整理，之后会陆续放到这里。</p>
+      </div>
+    </section>
+
+    <!-- ============================================
+         关于茄子
+         ============================================ -->
+    <section class="section" id="cat">
+      <div class="section-head">
+        <h2>关于茄子</h2>
+        <p>本站向导 · 一只猫</p>
+      </div>
+
+      <div class="cat-about">
+        <figure class="cat-about-photo">
+          <img src="assets/个人材料/cat-8.png" alt="茄子，李天舒的猫">
+        </figure>
+        <div class="cat-about-text">
+          <p class="soon-lead">茄子是李天舒的猫，也是这个网站的向导。</p>
+          <p class="soon-note">
+            页面上那只跟着鼠标跑、会趴在按钮上的小家伙就是他。
+            关于他的更多内容正在准备中。
+          </p>
+          <span class="soon-badge">Coming soon</span>
+        </div>
+      </div>
+    </section>
 
     <!-- ============================================
          联系：黑底面板
@@ -1274,7 +1315,7 @@
 
     group.addEventListener('mouseleave', () => { hover = -1; paint(false); });
 
-    const ids = ['top', 'about', 'work', 'students'];
+    const ids = ['top', 'about', 'work', 'students', 'printing', 'cat'];
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
