@@ -57,7 +57,7 @@
       </p>
 
       <div class="actions">
-        <a class="btn" href="#work">看作品</a>
+        <a class="btn" href="#contact">联系方式</a>
         <a class="mail-inline" href="mailto:664301622@qq.com">664301622@qq.com</a>
       </div>
     </div>
@@ -385,6 +385,13 @@
       <div class="contact-panel">
         <p class="contact-label">他在找 3D 设计师的岗位，也接外包</p>
         <a class="contact-mail" href="mailto:664301622@qq.com">664301622@qq.com</a>
+        <div class="contact-rows">
+          <button class="contact-wechat" type="button" data-copy="lts66159" aria-label="复制微信号 lts66159">
+            <span class="cw-k">微信</span>
+            <span class="cw-v">lts66159</span>
+            <span class="cw-tip">点击复制</span>
+          </button>
+        </div>
         <p class="contact-note">简历和作品集 PDF 可以直接发你，回信更快。</p>
       </div>
     </section>
@@ -978,6 +985,37 @@
         toggle.setAttribute('aria-expanded', String(full));
       });
     }
+  })();
+
+  /* ---------- 微信：点一下复制 ---------- */
+  (function () {
+    const btn = document.querySelector('.contact-wechat');
+    if (!btn) return;
+
+    const tip = btn.querySelector('.cw-tip');
+    const label = tip ? tip.textContent : '';
+    const id = btn.dataset.copy;
+
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(id);
+      } catch (err) {
+        // 不支持剪贴板时（比如 file:// 打开），选中文字让用户自己复制
+        const range = document.createRange();
+        range.selectNodeContents(btn.querySelector('.cw-v'));
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        return;
+      }
+
+      btn.classList.add('is-copied');
+      if (tip) tip.textContent = '已复制';
+      setTimeout(() => {
+        btn.classList.remove('is-copied');
+        if (tip) tip.textContent = label;
+      }, 1600);
+    });
   })();
 </script>
 
