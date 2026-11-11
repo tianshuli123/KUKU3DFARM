@@ -1408,30 +1408,75 @@ a.work-card:hover {
 
 .cat-facts dd { margin: 0; font-weight: 700; text-align: right; }
 
+/* 照片墙：左边一张大图，右边瀑布流 */
 .cat-gallery {
-  columns: 4;
+  display: grid;
+  grid-template-columns: minmax(0, 430px) minmax(0, 1fr);
+  gap: clamp(14px, 1.6vw, 22px);
+  align-items: start;
+}
+
+.cat-thumbs {
+  columns: 3;
   column-gap: clamp(12px, 1.3vw, 18px);
 }
 
 .cat-gallery figure {
-  break-inside: avoid;
-  margin: 0 0 clamp(12px, 1.3vw, 18px);
+  margin: 0;
   border: 3px solid var(--ink);
   border-radius: 18px;
   overflow: hidden;
   background: var(--accent);
   box-shadow: 6px 6px 0 var(--ink);
   cursor: zoom-in;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+
+.cat-thumbs figure {
+  break-inside: avoid;
+  margin-bottom: clamp(12px, 1.3vw, 18px);
+}
+
+.cat-gallery figure:hover {
+  transform: translateY(-4px);
+  box-shadow: 9px 9px 0 var(--ink);
 }
 
 .cat-gallery img {
   display: block;
   width: 100%;
   height: auto;
-  transition: transform .45s var(--ease);
+  transition: transform .5s var(--ease);
 }
 
-.cat-gallery figure:hover img { transform: scale(1.05); }
+.cat-gallery figure:hover img { transform: scale(1.04); }
+
+/* 左边那张大图：贴一张黄绿标签 */
+.cat-feature {
+  position: relative;
+  box-shadow: 10px 10px 0 var(--ink);
+}
+
+.cat-feature::after {
+  content: "本人";
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 5px 14px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+
+.cat-caption {
+  margin: 22px 0 0;
+  font-size: 15px;
+  color: rgba(11, 11, 11, .5);
+}
 
 /* 大图预览 */
 .cat-lightbox {
@@ -1473,16 +1518,19 @@ a.work-card:hover {
   box-shadow: 4px 4px 0 var(--ink);
 }
 
-@media (max-width: 1100px) {
-  .cat-gallery { columns: 3; }
+@media (max-width: 1180px) {
+  .cat-gallery { grid-template-columns: minmax(0, 360px) minmax(0, 1fr); }
+  .cat-thumbs { columns: 2; }
 }
 
 @media (max-width: 900px) {
   .cat-intro { grid-template-columns: 1fr; gap: 22px; }
+  .cat-gallery { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 680px) {
-  .cat-gallery { columns: 2; }
+  .cat-thumbs { columns: 2; }
+  .cat-feature { max-width: 380px; }
 }
 
 /* ---------------- 全页跟随的小猫 ---------------- */
