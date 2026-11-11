@@ -1558,13 +1558,6 @@ body:has(.student-dialog[open]) { overflow: hidden; }
   font-weight: 900;
 }
 
-.school-note {
-  margin: 6px 0 0;
-  font-size: 13.5px;
-  line-height: 1.7;
-  color: rgba(11, 11, 11, .62);
-}
-
 @media (max-width: 860px) {
   .school-card--wide { grid-template-columns: 1fr; }
 }
