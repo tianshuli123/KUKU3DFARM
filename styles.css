@@ -604,6 +604,15 @@ a.card:hover {
   max-width: 34em;
 }
 
+/* 「我负责什么」这句，比项目介绍更重一点 */
+.card .card-role {
+  margin-top: 10px;
+  padding-left: 12px;
+  border-left: 3px solid var(--accent);
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;
