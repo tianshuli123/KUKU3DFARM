@@ -226,7 +226,7 @@
             </ul>
             <p class="school-label">录取案例</p>
             <ul class="school-items">
-              <li>南加大、犹他、纽大、伦艺、爱丁堡、皇艺、谢尔丹等院校，覆盖游戏设计与数媒交互方向</li>
+              <li>南加州大学、犹他大学、纽大、伦艺、爱丁堡、皇艺、谢尔丹等院校，覆盖游戏设计与数媒交互方向</li>
             </ul>
           </div>
 
@@ -731,8 +731,21 @@
     const band = document.getElementById('orbitBand');
     if (!band) return;
 
-    // 从学员数据里汇总院校，自动去重
-    const schools = [...new Set(STUDENTS.flatMap(s => s.schools || []).filter(Boolean))];
+    // 手动补充的院校（学员数据里没写的），和上面汇总的合并去重
+    const ORBIT_EXTRA = [
+      '迪吉彭理工学院', '金斯顿大学', '金史密斯学院', '提赛德大学',
+      '南加州大学', '澳门科技大学', '香港理工大学', '伯恩茅斯艺术大学',
+      '瑞格林艺术设计大学', '犹他大学', '南卫理公会大学', '南安普顿大学',
+      '艺术中心设计学院', '伍斯特理工学院', '萨凡纳艺术设计学院'
+    ];
+
+    // 从学员数据里汇总院校，再并入手动补充的，统一去重
+    const normalize = (s) => s.replace('南加大', '南加州大学');
+    const schools = [...new Set(
+      [...STUDENTS.flatMap(s => s.schools || []), ...ORBIT_EXTRA]
+        .filter(Boolean)
+        .map(normalize)
+    )];
     if (!schools.length) { band.remove(); return; }
 
     document.getElementById('orbitCount').textContent = '200+ OFFER 案例';
