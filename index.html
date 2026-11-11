@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1325,8 +1325,18 @@
     let cy = ty;
     let face = 1;
     let visible = false;
+    let lastMoveAt = 0;
+
+    // 正在被「推荐」的可点元素
+    let promoting = null;
+    let promoteTimer = 0;
 
     window.addEventListener('pointermove', (e) => {
+      lastMoveAt = Date.now();
+
+      // 用户一动手，立刻放弃推荐，回到鼠标旁边
+      if (promoting) stopPromote();
+
       const nx = e.clientX + 20;
       const ny = e.clientY + 12;
       if (visible) face = nx < tx ? -1 : 1;
@@ -1338,9 +1348,76 @@
       }
     }, { passive: true });
 
+    function showBubble(text) {
+      bubble.textContent = text;
+      bubble.classList.add('is-on');
+    }
+
+    function stopPromote() {
+      promoting = null;
+      clearTimeout(promoteTimer);
+      bubble.classList.remove('is-on');
+    }
+
+    /* 找当前视野里最值得点的那个：排除导航、已提示过的、太小的 */
+    function pickTarget() {
+      const vh = window.innerHeight;
+      const mid = vh / 2;
+      let best = null;
+      let bestGap = Infinity;
+
+      document.querySelectorAll('a[href], button:not([disabled]), .edu-card, .work-card').forEach((node) => {
+        if (node.closest('.nav')) return;
+        if (node.dataset.catTold) return;
+
+        const r = node.getBoundingClientRect();
+        if (r.width < 56 || r.height < 20) return;
+        if (r.top > vh - 60 || r.bottom < 60) return;
+
+        const gap = Math.abs((r.top + r.bottom) / 2 - mid);
+        if (gap < bestGap) { bestGap = gap; best = node; }
+      });
+
+      return best;
+    }
+
+    let lastPick = 0;
+
+    window.addEventListener('scroll', () => {
+      // 用户在用鼠标、或正在推荐、或刚推荐过，都不打断
+      if (Date.now() - lastMoveAt < 700) return;
+      if (promoting) return;
+      if (Date.now() - lastPick < 1400) return;
+
+      const target = pickTarget();
+      if (!target) return;
+
+      lastPick = Date.now();
+      target.dataset.catTold = '1';
+      promoting = target;
+      showBubble('这里可以点击');
+
+      promoteTimer = setTimeout(stopPromote, 2400);
+    }, { passive: true });
+
     function tick() {
-      cx += (tx - cx) * 0.15;
-      cy += (ty - cy) * 0.15;
+      // 有推荐目标时，跑过去蹲在它左上角
+      let gx = tx;
+      let gy = ty;
+
+      if (promoting) {
+        const r = promoting.getBoundingClientRect();
+        if (r.width) {
+          gx = r.left + Math.min(r.width * 0.5, 120);
+          gy = r.top - 26;
+        }
+      }
+
+      const ease = promoting ? 0.24 : 0.15;
+      cx += (gx - cx) * ease;
+      cy += (gy - cy) * ease;
+
+      if (Math.abs(gx - cx) > 1.5) face = gx < cx ? -1 : 1;
 
       const w = el.offsetWidth || 80;
       const x = Math.min(window.innerWidth - w - 6, Math.max(6, cx));
@@ -1362,14 +1439,12 @@
       lastHop = now;
 
       el.classList.add('is-hop');
-      bubble.textContent = lines[Math.floor(Math.random() * lines.length)];
-      bubble.classList.add('is-on');
+      showBubble(lines[Math.floor(Math.random() * lines.length)]);
 
       setTimeout(() => el.classList.remove('is-hop'), 480);
-      setTimeout(() => bubble.classList.remove('is-on'), 1200);
+      setTimeout(() => { if (!promoting) bubble.classList.remove('is-on'); }, 1200);
     });
   })();
-
   /* ---------- 微信：点一下复制 ---------- */
   (function () {
     const btn = document.querySelector('.contact-wechat');
