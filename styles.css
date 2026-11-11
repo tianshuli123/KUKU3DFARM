@@ -1408,20 +1408,15 @@ a.work-card:hover {
 
 .cat-facts dd { margin: 0; font-weight: 700; text-align: right; }
 
-/* 照片墙：左边一张大图，右边瀑布流 */
+/* 照片墙：一大八小，严格对齐的方阵 */
 .cat-gallery {
   display: grid;
-  grid-template-columns: minmax(0, 430px) minmax(0, 1fr);
-  gap: clamp(14px, 1.6vw, 22px);
-  align-items: start;
-}
-
-.cat-thumbs {
-  columns: 3;
-  column-gap: clamp(12px, 1.3vw, 18px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 1.4vw, 18px);
 }
 
 .cat-gallery figure {
+  position: relative;
   margin: 0;
   border: 3px solid var(--ink);
   border-radius: 18px;
@@ -1432,11 +1427,6 @@ a.work-card:hover {
   transition: transform .35s var(--ease), box-shadow .35s var(--ease);
 }
 
-.cat-thumbs figure {
-  break-inside: avoid;
-  margin-bottom: clamp(12px, 1.3vw, 18px);
-}
-
 .cat-gallery figure:hover {
   transform: translateY(-4px);
   box-shadow: 9px 9px 0 var(--ink);
@@ -1445,18 +1435,27 @@ a.work-card:hover {
 .cat-gallery img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   transition: transform .5s var(--ease);
 }
 
-.cat-gallery figure:hover img { transform: scale(1.04); }
+.cat-gallery figure:hover img { transform: scale(1.05); }
 
-/* 左边那张大图：贴一张黄绿标签 */
+/* 大图占 2×2，其余各占 1 格 */
 .cat-feature {
-  position: relative;
-  box-shadow: 10px 10px 0 var(--ink);
+  grid-column: span 2;
+  grid-row: span 2;
+  box-shadow: 9px 9px 0 var(--ink);
 }
 
+.cat-feature img {
+  aspect-ratio: auto;
+  height: 100%;
+}
+
+/* 大图上的「本人」标签 */
 .cat-feature::after {
   content: "本人";
   position: absolute;
@@ -1518,21 +1517,15 @@ a.work-card:hover {
   box-shadow: 4px 4px 0 var(--ink);
 }
 
-@media (max-width: 1180px) {
-  .cat-gallery { grid-template-columns: minmax(0, 360px) minmax(0, 1fr); }
-  .cat-thumbs { columns: 2; }
-}
-
 @media (max-width: 900px) {
   .cat-intro { grid-template-columns: 1fr; gap: 22px; }
-  .cat-gallery { grid-template-columns: 1fr; }
+  .cat-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-@media (max-width: 680px) {
-  .cat-thumbs { columns: 2; }
-  .cat-feature { max-width: 380px; }
+@media (max-width: 620px) {
+  .cat-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cat-feature { grid-column: span 1; grid-row: span 2; }
 }
-
 /* ---------------- 全页跟随的小猫 ---------------- */
 
 .cat-companion {
