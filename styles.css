@@ -1280,6 +1280,11 @@ body:has(.student-dialog[open]) { overflow: hidden; }
   letter-spacing: -.05em;
 }
 
+/* 没有任何学员的年份：只留标题，下面空一段 */
+.edu-empty {
+  height: clamp(28px, 3vw, 44px);
+}
+
 /* 「静待好消息中」：压在滚动轨道正中间 */
 .edu-wip {
   position: absolute;

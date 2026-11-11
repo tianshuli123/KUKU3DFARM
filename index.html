@@ -588,18 +588,11 @@
         { title: '2D Practice', pdf: 'assets/学员作品集/2025/马远芝美国硕士/Project8—2D Practice 2024.pdf' }
       ] },
 
-    { name: '黄同学', year: 2024, major: '美国 · 本科', schools: ['犹他大学'], tags: ['原型开发', 'Unity'],
-      note: '第一位主课学生，从 Unity 入门到能独立完成 Demo。',
-      works: ['Demo · 小岛', '交互实验', '场景练习'] },
-
-    { name: '何同学', year: 2024, major: '英国 · 硕士', schools: ['爱丁堡大学'], tags: ['动态图形', '二维'],
-      note: '二维转三维，作品集保留了原本的平面功底。',
-      works: ['动态海报', '字体实验', '短片分镜'] },
-
-    { name: '马同学', year: 2024, major: '加拿大 · 本科', schools: ['谢尔丹学院'], tags: ['2D/3D 混合', '插画'],
-      note: '插画转 3D，作品集里两种语言混着用，反而成了特点。',
-      works: ['插画转 3D', '角色设定', '场景速写'] }
+    /* 2024 届的作品暂时找不到，但年份这一栏要保留 —— 见下面 EMPTY_YEARS */
   ];
+
+  // 只保留年份标题、不展示任何学员的年份
+  const EMPTY_YEARS = [2024];
 
   // ⚠️ 换成真实数据后把这里改成 false，页面上的「示例数据」标记就会消失
   const DEMO = true;
@@ -683,12 +676,23 @@
   /* ---------- 艺术教育：每年一条圆弧轨道，无限循环 ---------- */
   (function () {
     const host = document.getElementById('eduRails');
-    const years = [...new Set(STUDENTS.map(s => s.year))].sort((a, b) => b - a);
+    const years = [...new Set([...STUDENTS.map(s => s.year), ...EMPTY_YEARS])].sort((a, b) => b - a);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const rails = [];
 
     years.forEach(year => {
       const list = STUDENTS.filter(s => s.year === year);
+
+      // 这一年没有任何学员：只留年份标题，下面空着
+      if (!list.length) {
+        const blank = document.createElement('div');
+        blank.className = 'edu-rail';
+        blank.innerHTML =
+          '<div class="edu-head"><span class="edu-year">' + year + '</span></div>' +
+          '<div class="edu-empty" aria-hidden="true"></div>';
+        host.appendChild(blank);
+        return;
+      }
 
       const isWip = year >= 2026;
 
@@ -827,7 +831,7 @@
       '迪吉彭理工学院', '金斯顿大学', '金史密斯学院', '提赛德大学',
       '南加州大学', '澳门科技大学', '香港理工大学', '伯恩茅斯艺术大学',
       '瑞格林艺术设计大学', '犹他大学', '南卫理公会大学', '南安普顿大学',
-      '艺术中心设计学院', '伍斯特理工学院', '萨凡纳艺术设计学院'
+      '艺术中心设计学院', '伍斯特理工学院', '萨凡纳艺术设计学院', '爱丁堡大学'
     ];
 
     // 从学员数据里汇总院校，再并入手动补充的，统一去重
