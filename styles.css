@@ -981,6 +981,95 @@ body:has(.student-dialog[open]) { overflow: hidden; }
   color: rgba(11, 11, 11, .6);
 }
 
+/* 学员作品：一个项目一整栏，下面依次是这本作品集的每一页 */
+.pf-stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2vw, 28px);
+}
+
+.pf-proj {
+  border: 3px solid var(--ink);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #141414;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.pf-proj-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  background: var(--accent);
+  border-bottom: 3px solid var(--ink);
+}
+
+.pf-proj-name {
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pf-proj-open {
+  flex: none;
+  margin-left: auto;
+  padding: 3px 11px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background .16s, color .16s;
+}
+
+.pf-proj-open:hover { background: var(--ink); color: var(--accent); }
+
+.pf-proj-pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  min-height: 90px;
+}
+
+.pf-proj-pages canvas {
+  width: 100%;
+  height: auto;
+  background: #fff;
+  border-radius: 6px;
+}
+
+.pf-proj-pages img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+.pf-proj-pages .work-slot { width: 100%; }
+
+/* 还没渲染的页：先占位，避免滚动条跳动 */
+.pf-ph {
+  width: 100%;
+  border-radius: 6px;
+  background: #232323;
+  animation: pfPh 1.4s ease-in-out infinite;
+}
+
+.pf-ph.is-failed { background: #2c1414; }
+
+@keyframes pfPh {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .55; }
+}
+
 /* 弹窗里的作品：一格一个项目，封面是 PDF 首页
    ⚠️ 必须限定在弹窗内：页面上的「工作经历」区块也用了 .works 这个类名 */
 .dlg-block .works {
