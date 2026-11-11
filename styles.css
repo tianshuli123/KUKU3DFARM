@@ -1372,14 +1372,14 @@ a.work-card:hover {
 
 .cat-about {
   display: grid;
-  grid-template-columns: minmax(0, .78fr) minmax(0, 1.44fr) minmax(0, .78fr);
+  grid-template-columns: minmax(0, .6fr) minmax(0, 1.6fr) minmax(0, .6fr);
   gap: clamp(16px, 2.4vw, 36px);
   align-items: center;
 }
 
 .cat-photo {
   margin: 0;
-  max-width: 360px;
+  max-width: 280px;
   justify-self: center;
   border: 3px solid var(--ink);
   border-radius: 22px;
@@ -1422,8 +1422,8 @@ a.work-card:hover {
     gap: 22px;
   }
 
-  .cat-photo { max-width: 300px; }
-  .cat-photo:last-child { max-width: 300px; }
+  .cat-photo { max-width: 240px; }
+  .cat-photo:last-child { max-width: 240px; }
 }
 
 /* ---------------- 全页跟随的小猫 ---------------- */
