@@ -1,4 +1,4 @@
-﻿/* ==========================================================
+/* ==========================================================
    高饱和风格：洋红 + 明黄 + 纯黑
    黑导航条 / 3px 描边 / 硬投影 / 波浪分隔 / 超大字号
    无外部字体、无 JS 依赖 —— 保持国内加载速度
@@ -1372,13 +1372,15 @@ a.work-card:hover {
 
 .cat-about {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, .78fr) minmax(0, 1.44fr) minmax(0, .78fr);
   gap: clamp(16px, 2.4vw, 36px);
   align-items: center;
 }
 
 .cat-photo {
   margin: 0;
+  max-width: 360px;
+  justify-self: center;
   border: 3px solid var(--ink);
   border-radius: 22px;
   overflow: hidden;
@@ -1395,7 +1397,7 @@ a.work-card:hover {
 .cat-photo img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 
