@@ -1372,27 +1372,51 @@ a.work-card:hover {
 
 .cat-about {
   display: grid;
-  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-  gap: clamp(20px, 4vw, 48px);
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
 }
 
-.cat-about-photo {
+.cat-photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+.cat-photos figure {
   margin: 0;
   border: 3px solid var(--ink);
-  border-radius: 24px;
+  border-radius: 20px;
   overflow: hidden;
   background: var(--accent);
-  box-shadow: 8px 8px 0 var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
 }
 
-.cat-about-photo img { display: block; width: 100%; height: auto; }
+.cat-photos img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
 
-.cat-about-text .soon-badge { margin: 16px 0 0; }
+.cat-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 28px;
+  margin: 22px 0;
+  padding-top: 20px;
+  border-top: 2px solid rgba(11, 11, 11, .14);
+}
 
-@media (max-width: 860px) {
+.cat-facts div { display: flex; gap: 12px; font-size: 14px; }
+
+.cat-facts dt { color: rgba(11, 11, 11, .5); min-width: 38px; }
+
+.cat-facts dd { margin: 0; font-weight: 700; }
+
+@media (max-width: 980px) {
   .cat-about { grid-template-columns: 1fr; }
-  .cat-about-photo { max-width: 260px; }
+  .cat-photos { max-width: 560px; }
 }
 
 /* ---------------- 全页跟随的小猫 ---------------- */
