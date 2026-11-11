@@ -1333,27 +1333,18 @@
       if (visible && !perchEl) face = nx < tx ? -1 : 1;
       tx = nx;
       ty = ny;
-      if (!visible) {
-        visible = true;
-        setTimeout(() => el.classList.add('is-on'), 30);
-      }
+      visible = true;
     }, { passive: true });
 
     function showBubble(text) {
       bubble.textContent = text;
       bubble.classList.add('is-on');
-    }    // 一开始就让它待在右下角：只滚动、不动鼠标的用户也能看到
-    setTimeout(() => {
-      if (!visible) {
-        visible = true;
-        el.classList.add('is-on');
-      }
-    }, 1200);
+    }
 
     /* ---------- 进入某个区块就趴在可点元素上，离开才回来 ---------- */
 
     // 只有这些区块会触发「趴上去」；学员区只趴不说话，文案在 2025 年份旁边
-    const PERCH_SECTIONS = ['#work', '#students', '#contact', '#portfolio'];
+    const PERCH_SECTIONS = ['#about', '#work', '#students', '#contact', '#portfolio'];
 
     let perchEl = null;
     let perchSection = null;
@@ -1367,6 +1358,12 @@
         const years = [...section.querySelectorAll('.edu-year')];
         const y2025 = years.find(n => n.textContent.trim().indexOf('2025') === 0);
         if (y2025) return y2025;
+      }
+
+      // 关于作者区固定蹲在那张照片上
+      if (section.id === 'about') {
+        const photo = section.querySelector('.about-photo');
+        if (photo) return photo;
       }
 
       // 联系方式区固定蹲在二维码上方
@@ -1397,7 +1394,8 @@
       '#portfolio': '滚动查看',
       '#work': '点开项目',
       '#contact': '扫码可以添加李天舒微信',
-      '#students': '卡片可以点击'
+      '#students': '卡片可以点击',
+      '#about': '就是这个人'
     };
 
     /* 找某位学员的卡片：必须滚到屏幕中间那一段才算「出现」 */
@@ -1441,6 +1439,20 @@
 
     function updatePerch() {
       const vh = window.innerHeight;
+
+      // 首屏不出猫：hero 还占着大半屏就先藏起来
+      const hero = document.getElementById('top');
+      if (hero) {
+        const hr = hero.getBoundingClientRect();
+        const hSeen = Math.min(hr.bottom, vh) - Math.max(hr.top, 0);
+        const hRatio = hSeen / Math.min(hr.height || 1, vh);
+        if (hRatio > 0.45) {
+          el.classList.remove('is-on');
+          releasePerch();
+          return;
+        }
+      }
+      el.classList.add('is-on');
 
       // 已经蹲在简雨笳的卡上：只要她还在中间那一段，就别动
       if (perchEl && perchEl.classList.contains('edu-card')) {
