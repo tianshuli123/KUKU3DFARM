@@ -950,7 +950,7 @@
   const dialog = document.getElementById('studentDialog');
   const dialogInner = document.getElementById('dialogInner');
 
-  /* 一个项目 = 一个整栏：标题条 + 下面依次是这本 PDF 的所有页 */
+  /* 一个项目 = 一张大卡片，点开进预览看完整本 */
   function projectBlock(w) {
     const isStr = typeof w === 'string';
     const title = isStr ? w : w.title;
@@ -958,29 +958,33 @@
     const img = !isStr && w.img ? w.img : '';
 
     if (pdf) {
-      return `<section class="pf-proj" data-pdf="${pdf}" data-title="${title}">
-        <div class="pf-proj-bar">
-          <span class="pf-proj-name">${title}</span>
-          <a class="pf-proj-open" href="${pdf}" target="_blank" rel="noopener">新窗口 ↗</a>
-        </div>
-        <div class="pf-proj-pages"></div>
-      </section>`;
+      return `<li><a class="work-card" href="${pdf}" data-pdf="${pdf}" data-title="${title}">
+        <span class="work-cover" data-pdf="${pdf}"></span>
+        <span class="work-card-body">
+          <span class="work-card-eyebrow">作品集 PDF</span>
+          <span class="work-card-name">${title}</span>
+          <span class="work-card-cta">点开看完整版 ↗</span>
+        </span>
+      </a></li>`;
     }
 
     if (img) {
-      return `<section class="pf-proj">
-        <div class="pf-proj-bar">
-          <span class="pf-proj-name">${title}</span>
-          <a class="pf-proj-open" href="${img}" target="_blank" rel="noopener">原图 ↗</a>
-        </div>
-        <div class="pf-proj-pages"><img src="${img}" alt="${title}" loading="lazy"></div>
-      </section>`;
+      return `<li><a class="work-card" href="${img}" target="_blank" rel="noopener">
+        <span class="work-cover"><img src="${img}" alt="${title}" loading="lazy"></span>
+        <span class="work-card-body">
+          <span class="work-card-eyebrow">作品图</span>
+          <span class="work-card-name">${title}</span>
+        </span>
+      </a></li>`;
     }
 
-    return `<section class="pf-proj">
-      <div class="pf-proj-bar"><span class="pf-proj-name">${title}</span></div>
-      <div class="pf-proj-pages"><div class="work-slot">图待补</div></div>
-    </section>`;
+    return `<li><div class="work-card work-card--empty">
+      <span class="work-cover"></span>
+      <span class="work-card-body">
+        <span class="work-card-name">${title}</span>
+        <span class="work-card-cta">图待补</span>
+      </span>
+    </div></li>`;
   }
 
   function detailHTML(s) {
@@ -999,8 +1003,8 @@
         <ul class="schools">${s.schools.map(x => `<li>${x}</li>`).join('')}</ul>
       </div>` : ''}
       <div class="dlg-block">
-        <h4>作品 · 往下滑</h4>
-        <div class="pf-stack">${s.works.map(projectBlock).join('')}</div>
+        <h4>作品 · 点开看完整版</h4>
+        <ul class="works">${s.works.map(projectBlock).join('')}</ul>
       </div>
       <ul class="tags">${s.tags.map(t => `<li>${t}</li>`).join('')}</ul>`;
   }
@@ -1053,49 +1057,47 @@
     }
   }
 
-  function buildProjects() {
-    const blocks = dialogInner.querySelectorAll('.pf-proj[data-pdf]');
-    if (!blocks.length) return;
-    // file:// 下读不了本地 PDF
+  /* 卡片封面：渲染每本 PDF 的第 1 页 */
+  function buildCovers() {
+    const covers = dialogInner.querySelectorAll('.work-cover[data-pdf]');
+    if (!covers.length) return;
     if (location.protocol === 'file:') return;
 
-    if (projObserver) projObserver.disconnect();
-    if (pageObserver) pageObserver.disconnect();
+    const cache = new Map();
 
-    // 每页一个占位块，滚到附近才真渲染
-    pageObserver = new IntersectionObserver((entries) => {
-      entries.forEach((en) => {
-        if (!en.isIntersecting) return;
-        pageObserver.unobserve(en.target);
-        renderPage(en.target);
-      });
-    }, { root: dialog, rootMargin: '700px 0px' });
-
-    // 每个项目进入视野才去解析那本 PDF，并把页数摆出来
-    projObserver = new IntersectionObserver((entries) => {
+    const io = new IntersectionObserver((entries) => {
       entries.forEach(async (en) => {
         if (!en.isIntersecting) return;
-        projObserver.unobserve(en.target);
+        io.unobserve(en.target);
 
-        const block = en.target;
-        const body = block.querySelector('.pf-proj-pages');
-        const doc = await getDoc(block.dataset.pdf);
-        if (!doc || !body.isConnected) return;
-        if (body.dataset.filled) return;
-        body.dataset.filled = '1';
+        const el = en.target;
+        const url = el.dataset.pdf;
+        if (!cache.has(url)) cache.set(url, getDoc(url));
+        const doc = await cache.get(url);
+        if (!doc || !el.isConnected) return;
 
-        for (let i = 1; i <= doc.numPages; i++) {
-          const ph = document.createElement('div');
-          ph.className = 'pf-ph';
-          ph.dataset.pdf = block.dataset.pdf;
-          ph.dataset.page = i;
-          body.appendChild(ph);
-          pageObserver.observe(ph);
+        try {
+          const page = await doc.getPage(1);
+          const base = page.getViewport({ scale: 1 });
+          const w = el.clientWidth || 400;
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          const vp = page.getViewport({ scale: (w / base.width) * dpr });
+
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.floor(vp.width);
+          canvas.height = Math.floor(vp.height);
+          canvas.style.width = '100%';
+          canvas.style.height = 'auto';
+          el.appendChild(canvas);
+
+          await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+        } catch (err) {
+          el.classList.add('is-failed');
         }
       });
-    }, { root: dialog, rootMargin: '900px 0px' });
+    }, { root: dialog, rootMargin: '400px 0px' });
 
-    blocks.forEach(b => projObserver.observe(b));
+    covers.forEach(c => io.observe(c));
   }
 
   document.getElementById('eduRails').addEventListener('click', (e) => {
@@ -1105,7 +1107,7 @@
     if (!s) return;
     dialogInner.innerHTML = detailHTML(s);
     dialog.showModal();
-    buildProjects();
+    buildCovers();
     document.querySelectorAll('.edu-rail').forEach(r => r.dataset.paused = 'true');
   });
 
