@@ -1360,6 +1360,13 @@
 
     // 区块里优先趴哪一个：大卡片 > 主按钮 > 第一个链接
     function targetFor(section) {
+      // 学员区固定蹲在 2025 那个年份标题上，不随机挑卡片
+      if (section.id === 'students') {
+        const years = [...section.querySelectorAll('.edu-year')];
+        const y2025 = years.find(n => n.textContent.trim().indexOf('2025') === 0);
+        if (y2025) return y2025;
+      }
+
       const prefer = section.querySelector('.card, .edu-card, .work-card, .contact-mail, .pf-toggle, .btn, .hero-qr');
       if (prefer) return prefer;
 
