@@ -1315,7 +1315,7 @@
 
     const img = el.querySelector('img');
     const bubble = document.getElementById('catBubble');
-    const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const fine = !window.matchMedia('(pointer: coarse)').matches;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!fine || reduce) return;
 
@@ -1357,6 +1357,16 @@
       promoting = null;
       clearTimeout(promoteTimer);
       bubble.classList.remove('is-on');
+      el.classList.remove('is-pointing');
+    }
+
+    function startPromote(target) {
+      target.dataset.catTold = '1';
+      promoting = target;
+      el.classList.add('is-pointing');
+      showBubble('这里可以点击');
+      clearTimeout(promoteTimer);
+      promoteTimer = setTimeout(stopPromote, 2800);
     }
 
     /* 找当前视野里最值得点的那个：排除导航、已提示过的、太小的 */
@@ -1395,18 +1405,21 @@
       // 用户在用鼠标、或正在推荐、或刚推荐过，都不打断
       if (Date.now() - lastMoveAt < 500) return;
       if (promoting) return;
-      if (Date.now() - lastPick < 1400) return;
+      if (Date.now() - lastPick < 1200) return;
 
       const target = pickTarget();
       if (!target) return;
 
       lastPick = Date.now();
-      target.dataset.catTold = '1';
-      promoting = target;
-      showBubble('这里可以点击');
-
-      promoteTimer = setTimeout(stopPromote, 2400);
+      startPromote(target);
     }, { passive: true });
+
+    // 进页面两秒先示范一次，不滚也能看到
+    setTimeout(() => {
+      if (promoting) return;
+      const target = pickTarget();
+      if (target) startPromote(target);
+    }, 2200);
 
     function tick() {
       // 有推荐目标时，跑过去蹲在它左上角

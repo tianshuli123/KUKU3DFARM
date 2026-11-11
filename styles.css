@@ -1359,6 +1359,16 @@ a.work-card:hover {
   animation: catHop .46s var(--ease);
 }
 
+/* 指着东西时轻轻晃动，容易注意到 */
+.cat-companion.is-pointing img {
+  animation: catPoint 1s ease-in-out infinite;
+}
+
+@keyframes catPoint {
+  0%, 100% { rotate: -6deg; }
+  50% { rotate: 6deg; }
+}
+
 @keyframes catHop {
   0%, 100% { translate: 0 0; }
   38% { translate: 0 -16px; }
@@ -1387,8 +1397,8 @@ a.work-card:hover {
   transform: translate(-50%, 0) scale(1);
 }
 
-/* 触屏和「减少动态效果」下不出现 */
-@media (hover: none), (prefers-reduced-motion: reduce) {
+/* 只在「减少动态效果」时隐藏；触屏由 JS 判断，避免把带触屏的笔记本一起干掉 */
+@media (prefers-reduced-motion: reduce) {
   .cat-companion { display: none; }
 }
 
