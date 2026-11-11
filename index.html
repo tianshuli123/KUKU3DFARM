@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1404,7 +1404,7 @@
     function findStudentCard(name) {
       const vh = window.innerHeight;
       const midX = window.innerWidth / 2;
-      const band = Math.min(420, window.innerWidth * 0.2);   // 中央带半宽
+      const band = Math.min(230, window.innerWidth * 0.11);   // 中央带半宽
       let best = null;
       let bestGap = Infinity;
 
@@ -1446,7 +1446,7 @@
       if (perchEl && perchEl.classList.contains('edu-card')) {
         const r0 = perchEl.getBoundingClientRect();
         const cx = r0.left + r0.width / 2;
-        const keepBand = Math.min(560, window.innerWidth * 0.28);
+        const keepBand = Math.min(330, window.innerWidth * 0.16);
         if (Math.abs(cx - window.innerWidth / 2) <= keepBand && visibleRatio(perchEl) > 0.15) {
           return;
         }
@@ -1526,7 +1526,7 @@
         if (++perchTick % 12 === 0) {
           const rr = perchEl.getBoundingClientRect();
           const ccx = rr.left + rr.width / 2;
-          const band = Math.min(560, window.innerWidth * 0.28);
+          const band = Math.min(330, window.innerWidth * 0.16);
           if (Math.abs(ccx - window.innerWidth / 2) > band) {
             releasePerch();
             updatePerch();
