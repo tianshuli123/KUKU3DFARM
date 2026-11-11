@@ -958,8 +958,12 @@
     const img = !isStr && w.img ? w.img : '';
 
     if (pdf) {
+      // 封面是预先截好的第一页，和 PDF 同名、后缀换掉
+      const cover = w.cover || pdf.replace(/\.pdf$/i, '.cover.webp');
       return `<li><a class="work-card" href="${pdf}" data-pdf="${pdf}" data-title="${title}">
-        <span class="work-cover" data-pdf="${pdf}"></span>
+        <span class="work-cover">
+          <img src="${cover}" alt="${title} 第一页" loading="lazy" onerror="this.style.display='none'">
+        </span>
         <span class="work-card-body">
           <span class="work-card-eyebrow">作品集 PDF</span>
           <span class="work-card-name">${title}</span>
