@@ -319,13 +319,21 @@ img { max-width: 100%; display: block; }
   padding: 0 clamp(20px, 3vw, 32px) clamp(20px, 2.6vw, 32px);
 }
 
+/* 标题做成一个深底 + 绿字 + 绿框的小标签，压在波浪上 */
 .stats-title {
-  margin: 0 0 clamp(10px, 1.4vw, 18px);
-  font-size: clamp(22px, 2.4vw, 36px);
-  font-weight: 900;
-  letter-spacing: -.01em;
-  line-height: 1.15;
-  color: var(--ink);
+  display: inline-block;
+  position: relative;
+  top: clamp(-20px, -1.5vw, -8px);
+  margin: 0 0 clamp(4px, 0.9vw, 12px);
+  padding: 7px 18px;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--accent);
+  font-size: clamp(18px, 1.9vw, 28px);
+  font-weight: 800;
+  letter-spacing: .02em;
+  line-height: 1.2;
 }
 
 .stats {
