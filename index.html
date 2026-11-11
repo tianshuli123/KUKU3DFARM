@@ -1352,8 +1352,8 @@
 
     /* ---------- 进入某个区块就趴在可点元素上，离开才回来 ---------- */
 
-    // 只有这些区块会触发「趴上去」；想加就往后塞选择器
-    const PERCH_SECTIONS = ['#work', '#students', '#contact', '#portfolio'];
+    // 只有这些区块会触发「趴上去」；学员区不参与，它的提示在 2025 年份旁边
+    const PERCH_SECTIONS = ['#work', '#contact', '#portfolio'];
 
     let perchEl = null;
     let perchSection = null;
@@ -1380,7 +1380,6 @@
     // 每个区块说不一样的话，只留关键词
     const PERCH_TEXT = {
       '#portfolio': '滚动查看',
-      '#students': '点击学员',
       '#work': '点开项目',
       '#contact': '点这里'
     };
