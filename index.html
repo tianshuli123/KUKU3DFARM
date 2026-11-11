@@ -1352,8 +1352,8 @@
 
     /* ---------- 进入某个区块就趴在可点元素上，离开才回来 ---------- */
 
-    // 只有这些区块会触发「趴上去」；学员区不参与，它的提示在 2025 年份旁边
-    const PERCH_SECTIONS = ['#work', '#contact', '#portfolio'];
+    // 只有这些区块会触发「趴上去」；学员区只趴不说话，文案在 2025 年份旁边
+    const PERCH_SECTIONS = ['#work', '#students', '#contact', '#portfolio'];
 
     let perchEl = null;
     let perchSection = null;
@@ -1377,11 +1377,12 @@
       clearTimeout(promoteTimer);
     }
 
-    // 每个区块说不一样的话，只留关键词
+    // 每个区块说不一样的话，只留关键词；留空就只趴着不说话
     const PERCH_TEXT = {
       '#portfolio': '滚动查看',
       '#work': '点开项目',
-      '#contact': '点这里'
+      '#contact': '点这里',
+      '#students': ''
     };
 
     function updatePerch() {
@@ -1409,9 +1410,14 @@
       perchSection = best;
       perchEl = t;
       el.classList.add('is-pointing');
-      showBubble(PERCH_TEXT[bestSel] || '这里可以点击');
+
+      // 有文案才弹气泡；空字符串就安静地趴着
       clearTimeout(promoteTimer);
-      promoteTimer = setTimeout(() => bubble.classList.remove('is-on'), 2600);
+      bubble.classList.remove('is-on');
+      if (PERCH_TEXT[bestSel]) {
+        showBubble(PERCH_TEXT[bestSel]);
+        promoteTimer = setTimeout(() => bubble.classList.remove('is-on'), 2600);
+      }
     }
 
     let perchFrame = 0;
