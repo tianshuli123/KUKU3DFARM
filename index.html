@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1061,7 +1061,12 @@
   function buildCovers() {
     const covers = dialogInner.querySelectorAll('.work-cover[data-pdf]');
     if (!covers.length) return;
-    if (location.protocol === 'file:') return;
+
+    // file:// 下浏览器不允许读本地 PDF，直接说明原因，别留个空白
+    if (location.protocol === 'file:') {
+      covers.forEach(c => c.classList.add('is-local'));
+      return;
+    }
 
     const cache = new Map();
 
