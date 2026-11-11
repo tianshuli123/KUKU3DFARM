@@ -1472,6 +1472,32 @@
       // 她滑走了：放开，让下面的逻辑重新挑
       if (perchEl && perchEl.classList.contains('edu-card')) releasePerch();
 
+      // 名校录取案例那一圈出现时，蹲在「名校录取案例」旁边说一句
+      const orbit = document.getElementById('orbitBand');
+      if (orbit) {
+        const br = orbit.getBoundingClientRect();
+        const seenO = Math.min(br.bottom, vh) - Math.max(br.top, 0);
+        const ratioO = seenO / Math.min(br.height || 1, vh);
+
+        if (ratioO > 0.45) {
+          const badge = orbit.querySelector('.orbit-badge');
+          if (badge) {
+            if (perchEl !== badge) {
+              perchEl = badge;
+              perchSection = document.querySelector('#students');
+              perchPos = 'right';
+              el.classList.add('is-pointing');
+              showBubble('我也好想去');
+              clearTimeout(promoteTimer);
+              promoteTimer = setTimeout(() => bubble.classList.remove('is-on'), 3200);
+            }
+            return;
+          }
+        } else if (perchEl && orbit.contains(perchEl)) {
+          releasePerch();
+        }
+      }
+
       let best = null;
       let bestSel = '';
       let bestRatio = 0;
