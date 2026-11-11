@@ -588,11 +588,13 @@
         { title: '2D Practice', pdf: 'assets/学员作品集/2025/马远芝美国硕士/Project8—2D Practice 2024.pdf' }
       ] },
 
-    /* 2024 届的作品暂时找不到，但年份这一栏要保留 —— 见下面 EMPTY_YEARS */
+    /* 2024 届的作品暂时找不到：只留年份 + 模糊占位，见下面的 PLACEHOLDER_YEARS */
   ];
 
-  // 只保留年份标题、不展示任何学员的年份
-  const EMPTY_YEARS = [2024];
+  // 没有真实作品的年份：生成模糊占位卡，并在轨道中间写一句话
+  const PLACEHOLDER_YEARS = {
+    2024: { count: 6, note: '早期案例 · 最新成果见 2025' }
+  };
 
   // ⚠️ 换成真实数据后把这里改成 false，页面上的「示例数据」标记就会消失
   const DEMO = true;
@@ -676,14 +678,29 @@
   /* ---------- 艺术教育：每年一条圆弧轨道，无限循环 ---------- */
   (function () {
     const host = document.getElementById('eduRails');
-    const years = [...new Set([...STUDENTS.map(s => s.year), ...EMPTY_YEARS])].sort((a, b) => b - a);
+    const years = [...new Set([...STUDENTS.map(s => s.year), ...Object.keys(PLACEHOLDER_YEARS).map(Number)])]
+      .sort((a, b) => b - a);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const rails = [];
 
     years.forEach(year => {
-      const list = STUDENTS.filter(s => s.year === year);
+      let list = STUDENTS.filter(s => s.year === year);
+      const ph = PLACEHOLDER_YEARS[year];
+      let note = '';
 
-      // 这一年没有任何学员：只留年份标题，下面空着
+      // 没有真实学员、但配了占位：造几张空白卡，只有小人没有名字
+      if (!list.length && ph) {
+        list = Array.from({ length: ph.count }, (_, k) => ({
+          id: 'ph-' + year + '-' + k,
+          blank: true,
+          name: '',
+          major: '',
+          look: { hair: k % 5, skin: k % 3, top: k % 6, acc: k % 3 === 1 ? 'glasses' : 'none' }
+        }));
+        note = ph.note;
+      }
+
+      // 既没有学员也没有占位：只留年份标题
       if (!list.length) {
         const blank = document.createElement('div');
         blank.className = 'edu-rail';
@@ -694,14 +711,15 @@
         return;
       }
 
-      const isWip = year >= 2026;
+      const isWip = year >= 2026 || !!note;
 
       const rail = document.createElement('div');
       rail.className = 'edu-rail' + (isWip ? ' is-wip' : '');
       rail.innerHTML =
         '<div class="edu-head"><span class="edu-year">' + year + '</span></div>' +
         '<div class="edu-track"><div class="edu-cards"></div>' +
-        (isWip ? '<span class="edu-wip">静待好消息中</span>' : '') +
+        (isWip ? '<span class="edu-wip' + (note ? ' edu-wip--note' : '') + '">' +
+                  (note || '静待好消息中') + '</span>' : '') +
         '</div>';
 
       const cardsBox = rail.querySelector('.edu-cards');
@@ -714,14 +732,15 @@
         btn.type = 'button';
         btn.className = 'edu-card';
         btn.dataset.id = st.id;
-        // 还没出结果的年份：卡片模糊、不可点
+        // 模糊的年份：卡片不可点
         if (isWip) btn.disabled = true;
-        btn.setAttribute('aria-label', '查看 ' + st.name + ' 的作品');
+        if (!st.blank) btn.setAttribute('aria-label', '查看 ' + st.name + ' 的作品');
         btn.innerHTML = '<span class="edu-tile">' + figure(st.look) + '</span>' +
-                        '<span class="edu-label">' +
-                          '<span class="edu-name">' + st.name + '</span>' +
-                          '<span class="edu-sub">' + st.major + '</span>' +
-                        '</span>';
+                        (st.blank ? '' :
+                          '<span class="edu-label">' +
+                            '<span class="edu-name">' + st.name + '</span>' +
+                            '<span class="edu-sub">' + st.major + '</span>' +
+                          '</span>');
         cardsBox.appendChild(btn);
       });
 
