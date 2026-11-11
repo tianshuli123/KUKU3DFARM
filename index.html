@@ -59,6 +59,12 @@
       <div class="actions">
         <a class="btn" href="#contact">联系方式</a>
         <a class="mail-inline" href="mailto:664301622@qq.com">664301622@qq.com</a>
+
+        <!-- ✏️ 首屏的小二维码，点它可以跳到页面底部的联系方式 -->
+        <a class="hero-qr" href="#contact" aria-label="扫码加微信，或跳到联系方式">
+          <img src="assets/个人材料/wechat-qr.webp" alt="李天舒的微信二维码" width="96" height="96">
+          <span>扫码加微信</span>
+        </a>
       </div>
     </div>
 
@@ -396,12 +402,12 @@
           <p class="contact-note">简历和作品集 PDF 可以直接发你，回信更快。</p>
         </div>
 
-        <!-- ✏️ 微信二维码：图放在 assets/个人材料/wechat-qr.png
-             图片加载成功才显示，没有图时不会出现裂图 -->
-        <figure class="contact-qr" id="contactQr" hidden>
-          <img src="assets/个人材料/wechat-qr.png" alt="李天舒的微信二维码"
+        <!-- ✏️ 微信二维码：图在 assets/个人材料/wechat-qr.webp
+             加载失败时自动隐藏，不会出现裂图 -->
+        <figure class="contact-qr" id="contactQr">
+          <img src="assets/个人材料/wechat-qr.webp" alt="李天舒的微信二维码"
                width="220" height="220" loading="lazy"
-               onload="document.getElementById('contactQr').hidden = false">
+               onerror="document.getElementById('contactQr').hidden = true">
           <figcaption>扫码加微信</figcaption>
         </figure>
       </div>
