@@ -1448,7 +1448,7 @@
     /* ---------- 进入某个区块就趴在可点元素上，离开才回来 ---------- */
 
     // 只有这些区块会触发「趴上去」；学员区只趴不说话，文案在 2025 年份旁边
-    const PERCH_SECTIONS = ['#about', '#work', '#students', '#contact', '#portfolio'];
+    const PERCH_SECTIONS = ['#about', '#work', '#students', '#contact', '#portfolio', '#cat'];
 
     let perchEl = null;
     let perchSection = null;
@@ -1462,6 +1462,12 @@
         const years = [...section.querySelectorAll('.edu-year')];
         const y2025 = years.find(n => n.textContent.trim().indexOf('2025') === 0);
         if (y2025) return y2025;
+      }
+
+      // 关于茄子：蹲在那张「本人」大图上
+      if (section.id === 'cat') {
+        const feature = section.querySelector('.cat-feature');
+        if (feature) return feature;
       }
 
       // 关于作者区固定蹲在那张照片上
@@ -1499,7 +1505,8 @@
       '#work': '点开项目',
       '#contact': '扫码可以添加李天舒微信',
       '#students': '卡片可以点击',
-      '#about': '就是这个人'
+      '#about': '就是这个人',
+      '#cat': '这是我，真可爱'
     };
 
     /* 找某位学员的卡片：必须滚到屏幕中间那一段才算「出现」 */
