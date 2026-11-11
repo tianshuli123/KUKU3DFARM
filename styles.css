@@ -316,11 +316,11 @@ img { max-width: 100%; display: block; }
   position: relative;
   top: clamp(-38px, -2.4vw, -18px);
   margin: 0 auto;
-  padding: 4px clamp(20px, 3vw, 32px) clamp(24px, 3vw, 40px);
+  padding: 0 clamp(20px, 3vw, 32px) clamp(20px, 2.6vw, 32px);
 }
 
 .stats-title {
-  margin: 0 0 clamp(16px, 2vw, 26px);
+  margin: 0 0 clamp(10px, 1.4vw, 18px);
   font-size: clamp(22px, 2.4vw, 36px);
   font-weight: 900;
   letter-spacing: -.01em;
@@ -342,7 +342,7 @@ img { max-width: 100%; display: block; }
 .stats strong {
   font-size: clamp(38px, 4.4vw, 68px);
   font-weight: 900;
-  line-height: 1.06;
+  line-height: 1;
   letter-spacing: -.05em;
   font-variant-numeric: tabular-nums;
 }
