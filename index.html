@@ -1016,6 +1016,9 @@
     if (!el.isConnected || el.dataset.loaded) return;
     el.dataset.loaded = '1';
 
+    // file:// 下读不了本地 PDF，封面留空
+    if (location.protocol === 'file:') return;
+
     const lib = await waitPdfLib();
     if (!lib) return;
 
@@ -1309,6 +1312,12 @@
     }
 
     async function openPreview(href, label) {
+      // 直接双击 HTML（file://）时浏览器不让读本地 PDF，交给新标签页打开
+      if (location.protocol === 'file:') {
+        window.open(href, '_blank');
+        return;
+      }
+
       const my = ++token;
       box.innerHTML = '';
       titleEl.textContent = label || '作品集';
@@ -1387,12 +1396,14 @@
   })();
 </script>
 
-<!-- pdf.js：本地托管，不依赖外网 -->
-<script type="module">
-  import * as pdfjsLib from './assets/vendor/pdfjs/pdf.min.mjs';
-  pdfjsLib.GlobalWorkerOptions.workerSrc = './assets/vendor/pdfjs/pdf.worker.min.mjs';
-  window.__pdfjs = pdfjsLib;
-  window.dispatchEvent(new Event('pdfjs-ready'));
+<!-- pdf.js：本地托管，不依赖外网。用 UMD 版本，file:// 和 http 都能加载 -->
+<script src="assets/vendor/pdfjs/pdf.min.js"></script>
+<script>
+  if (window.pdfjsLib) {
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'assets/vendor/pdfjs/pdf.worker.min.js';
+    window.__pdfjs = window.pdfjsLib;
+    window.dispatchEvent(new Event('pdfjs-ready'));
+  }
 </script>
 
 </body>
