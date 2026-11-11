@@ -1372,27 +1372,27 @@ a.work-card:hover {
 
 .cat-about {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
-  gap: clamp(24px, 4vw, 56px);
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: clamp(16px, 2.4vw, 36px);
+  align-items: center;
 }
 
-.cat-photos {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(12px, 1.6vw, 20px);
-}
-
-.cat-photos figure {
+.cat-photo {
   margin: 0;
   border: 3px solid var(--ink);
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
   background: var(--accent);
-  box-shadow: 6px 6px 0 var(--ink);
+  box-shadow: 7px 7px 0 var(--ink);
+  transform: rotate(-1.2deg);
+  transition: transform .3s var(--ease);
 }
 
-.cat-photos img {
+.cat-photo:last-child { transform: rotate(1.2deg); }
+
+.cat-photo:hover { transform: rotate(0deg) translateY(-3px); }
+
+.cat-photo img {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 5;
@@ -1415,8 +1415,13 @@ a.work-card:hover {
 .cat-facts dd { margin: 0; font-weight: 700; }
 
 @media (max-width: 980px) {
-  .cat-about { grid-template-columns: 1fr; }
-  .cat-photos { max-width: 560px; }
+  .cat-about {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .cat-photo { max-width: 420px; }
+  .cat-photo:last-child { max-width: 420px; }
 }
 
 /* ---------------- 全页跟随的小猫 ---------------- */
