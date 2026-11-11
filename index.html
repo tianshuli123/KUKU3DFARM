@@ -1358,6 +1358,7 @@
     let perchEl = null;
     let perchSection = null;
     let perchPos = 'top';   // top = 悬在元素上方；right = 站在元素右边
+    let perchTick = 0;
 
     // 区块里优先趴哪一个：大卡片 > 主按钮 > 第一个链接
     function targetFor(section) {
@@ -1441,9 +1442,16 @@
     function updatePerch() {
       const vh = window.innerHeight;
 
-      // 已经蹲在简雨笳的卡上：只要她还露着，就别动，避免来回跳
-      if (perchEl && perchEl.classList.contains('edu-card') && visibleRatio(perchEl) > 0.15) {
-        return;
+      // 已经蹲在简雨笳的卡上：只要她还在中间那一段，就别动
+      if (perchEl && perchEl.classList.contains('edu-card')) {
+        const r0 = perchEl.getBoundingClientRect();
+        const cx = r0.left + r0.width / 2;
+        const keepBand = Math.min(560, window.innerWidth * 0.28);
+        if (Math.abs(cx - window.innerWidth / 2) <= keepBand && visibleRatio(perchEl) > 0.15) {
+          return;
+        }
+        // 她滚出中间了，放开，回到 2025 旁边
+        releasePerch();
       }
 
       // 1) 简雨笳的卡出现就蹲她，说一句特别的
@@ -1512,6 +1520,19 @@
 
     function tick() {
       const w = el.offsetWidth || 80;
+
+      // 蹲在学员卡上时定期复查：她滚出中间就立刻回 2025 旁边
+      if (perchEl && perchEl.classList.contains('edu-card')) {
+        if (++perchTick % 12 === 0) {
+          const rr = perchEl.getBoundingClientRect();
+          const ccx = rr.left + rr.width / 2;
+          const band = Math.min(560, window.innerWidth * 0.28);
+          if (Math.abs(ccx - window.innerWidth / 2) > band) {
+            releasePerch();
+            updatePerch();
+          }
+        }
+      }
 
       // 有目标就趴在它上面，否则跟着鼠标
       let gx = tx;
