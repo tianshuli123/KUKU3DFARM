@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -32,7 +32,7 @@
     <button class="jelly-chip" type="button" role="radio" aria-checked="false" data-target="printing"><span class="jelly-skin">3D 打印</span></button>
     <button class="jelly-chip" type="button" role="radio" aria-checked="false" data-target="cat"><span class="jelly-skin">关于茄子</span></button>
   </div>
-  <a class="nav-cta" href="mailto:664301622@qq.com">聊聊 ↗</a>
+  <a class="nav-cta" href="#contact">聊聊 ↗</a>
 </header>
 
 <main id="main">
@@ -55,18 +55,11 @@
       <p class="lead">
         我是李天舒的猫，到今天陪了他三年，也是你在本站的向导。
         这里放着他做的东西：3D 建模、交互游戏设计，还有他带学生做的作品集案例。
-        想找他的话，页面底部有邮箱。
+        想找他的话，页面底部有联系方式。
       </p>
 
       <div class="actions">
         <a class="btn" href="#contact">联系方式</a>
-        <a class="mail-inline" href="mailto:664301622@qq.com">664301622@qq.com</a>
-
-        <!-- ✏️ 首屏的小二维码，点它可以跳到页面底部的联系方式 -->
-        <a class="hero-qr" href="#contact" aria-label="扫码加微信，或跳到联系方式">
-          <img src="assets/个人材料/wechat-qr.webp" alt="李天舒的微信二维码" width="96" height="96">
-          <span>扫码加微信</span>
-        </a>
       </div>
     </div>
 
@@ -155,7 +148,7 @@
           <div><dt>工具</dt><dd>Maya、ZBrush、Substance Painter</dd></div>
           <div><dt>引擎</dt><dd>Unity、UE5、VR 性能优化</dd></div>
           <div><dt>学历</dt><dd>普渡大学 图形学 硕士</dd></div>
-          <div><dt>邮箱</dt><dd><a href="mailto:664301622@qq.com">664301622@qq.com</a></dd></div>
+          <div><dt>邮箱</dt><dd>暂不公开</dd></div>
         </dl>
       </div>
 
@@ -481,26 +474,10 @@
     <section class="section contact" id="contact">
       <div class="contact-panel">
         <div class="contact-main">
-          <p class="contact-label">他在找 3D 设计师的岗位，也接外包</p>
-          <a class="contact-mail" href="mailto:664301622@qq.com">664301622@qq.com</a>
-          <div class="contact-rows">
-            <button class="contact-wechat" type="button" data-copy="lts66159" aria-label="复制微信号 lts66159">
-              <span class="cw-k">微信</span>
-              <span class="cw-v">lts66159</span>
-              <span class="cw-tip">点击复制</span>
-            </button>
-          </div>
-          <p class="contact-note">简历和作品集 PDF 可以直接发你，回信更快。</p>
+          <p class="contact-label">联系方式暂时收起</p>
+          <p class="contact-mail contact-mail--off">先不公开</p>
+          <p class="contact-note">需要联系的话，请通过你手上已有的渠道找他。</p>
         </div>
-
-        <!-- ✏️ 微信二维码：图在 assets/个人材料/wechat-qr.webp
-             加载失败时自动隐藏，不会出现裂图 -->
-        <figure class="contact-qr" id="contactQr">
-          <img src="assets/个人材料/wechat-qr.webp" alt="李天舒的微信二维码"
-               width="220" height="220" loading="lazy"
-               onerror="document.getElementById('contactQr').hidden = true">
-          <figcaption>扫码加微信</figcaption>
-        </figure>
       </div>
     </section>
 
@@ -1407,7 +1384,7 @@
     /* ---------- 进入某个区块就趴在可点元素上，离开才回来 ---------- */
 
     // 只有这些区块会触发「趴上去」；学员区只趴不说话，文案在 2025 年份旁边
-    const PERCH_SECTIONS = ['#about', '#work', '#students', '#contact', '#portfolio'];
+    const PERCH_SECTIONS = ['#about', '#work', '#students', '#portfolio'];
 
     let perchEl = null;
     let perchSection = null;
@@ -1456,7 +1433,6 @@
     const PERCH_TEXT = {
       '#portfolio': '滚动查看',
       '#work': '点开项目',
-      '#contact': '扫码可以添加李天舒微信',
       '#students': '卡片可以点击',
       '#about': '就是这个人'
     };

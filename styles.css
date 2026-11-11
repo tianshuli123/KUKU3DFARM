@@ -1,4 +1,4 @@
-﻿/* ==========================================================
+/* ==========================================================
    高饱和风格：洋红 + 明黄 + 纯黑
    黑导航条 / 3px 描边 / 硬投影 / 波浪分隔 / 超大字号
    无外部字体、无 JS 依赖 —— 保持国内加载速度
@@ -1263,6 +1263,13 @@ a.work-card:hover {
 }
 
 .contact-mail:hover { color: var(--accent); border-color: var(--accent); }
+
+/* 联系方式收起时的占位，不要看起来像链接 */
+.contact-mail--off {
+  color: rgba(242, 241, 234, .45);
+  border-bottom-color: transparent;
+  cursor: default;
+}
 
 .contact-note {
   margin: 22px 0 0;
