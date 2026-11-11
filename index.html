@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -443,12 +443,8 @@
         <p>本站向导 · 一只猫</p>
       </div>
 
-      <div class="cat-about">
-        <figure class="cat-photo">
-          <img src="assets/个人材料/cat-photo-1.webp" alt="茄子，虎斑纹、绿眼睛" width="640" height="640" loading="lazy">
-        </figure>
-
-        <div class="cat-about-text">
+      <div class="cat-intro">
+        <div class="cat-intro-text">
           <p class="soon-lead">茄子，公，豹猫和美短虎斑的串串，2024 年 8 月生的。</p>
 
           <p class="soon-note">
@@ -457,22 +453,36 @@
             他是这个家里最贵的一件东西。
           </p>
 
-          <dl class="cat-facts">
-            <div><dt>品种</dt><dd>豹猫 × 美短虎斑</dd></div>
-            <div><dt>生日</dt><dd>2024.08</dd></div>
-            <div><dt>性别</dt><dd>公</dd></div>
-            <div><dt>身价</dt><dd>300 元入手 · 医药费 1 万+</dd></div>
-          </dl>
-
           <p class="soon-note">
             页面上那只跟着鼠标跑、会趴在按钮上说话的小家伙，就是他。
+            下面这些是他平时的样子，点开可以看大图。
           </p>
         </div>
 
-        <figure class="cat-photo">
-          <img src="assets/个人材料/cat-photo-2.webp" alt="茄子戴着甜甜圈颈圈坐在垫子上" width="640" height="640" loading="lazy">
-        </figure>
+        <dl class="cat-facts">
+          <div><dt>品种</dt><dd>豹猫 × 美短虎斑</dd></div>
+          <div><dt>生日</dt><dd>2024.08</dd></div>
+          <div><dt>性别</dt><dd>公</dd></div>
+          <div><dt>身价</dt><dd>300 元入手 · 医药费 1 万+</dd></div>
+        </dl>
       </div>
+
+      <div class="cat-gallery" id="catGallery">
+        <figure><img src="assets/个人材料/猫咪/g1.webp" alt="茄子坐直了往上看" loading="lazy" width="506" height="900"></figure>
+        <figure><img src="assets/个人材料/猫咪/g2.webp" alt="茄子仰面躺着" loading="lazy" width="506" height="900"></figure>
+        <figure><img src="assets/个人材料/猫咪/g5.webp" alt="茄子蜷着睡觉" loading="lazy" width="900" height="506"></figure>
+        <figure><img src="assets/个人材料/猫咪/g3.webp" alt="茄子窝在甜甜圈猫窝里" loading="lazy" width="497" height="900"></figure>
+        <figure><img src="assets/个人材料/猫咪/g6.webp" alt="茄子站在地板上看镜头" loading="lazy" width="506" height="900"></figure>
+        <figure><img src="assets/个人材料/猫咪/g4.webp" alt="茄子戴着甜甜圈颈圈坐在垫子上" loading="lazy" width="506" height="900"></figure>
+        <figure><img src="assets/个人材料/猫咪/g7.webp" alt="茄子被摸肚子，四脚朝天" loading="lazy" width="900" height="506"></figure>
+        <figure><img src="assets/个人材料/猫咪/g8.webp" alt="茄子把自己卷成一团" loading="lazy" width="578" height="900"></figure>
+        <figure><img src="assets/个人材料/猫咪/g9.webp" alt="茄子站在灰色毯子上" loading="lazy" width="506" height="900"></figure>
+      </div>
+
+      <dialog class="cat-lightbox" id="catLightbox">
+        <button class="cat-lightbox-close" type="button" aria-label="关闭大图">×</button>
+        <img id="catLightboxImg" alt="">
+      </dialog>
     </section>
 
     <!-- ============================================
@@ -1369,6 +1379,30 @@
         toggle.setAttribute('aria-expanded', String(full));
       });
     }
+  })();
+
+  /* ---------- 茄子的照片墙：点开看大图 ---------- */
+  (function () {
+    const gallery = document.getElementById('catGallery');
+    const dlg = document.getElementById('catLightbox');
+    const big = document.getElementById('catLightboxImg');
+    if (!gallery || !dlg || !big) return;
+
+    gallery.addEventListener('click', (e) => {
+      const fig = e.target.closest('figure');
+      if (!fig) return;
+      const img = fig.querySelector('img');
+      if (!img) return;
+      big.src = img.currentSrc || img.src;
+      big.alt = img.alt || '';
+      dlg.showModal();
+    });
+
+    dlg.addEventListener('click', (e) => {
+      if (e.target === dlg || e.target.classList.contains('cat-lightbox-close')) dlg.close();
+    });
+
+    dlg.addEventListener('close', () => { big.removeAttribute('src'); });
   })();
 
   /* ---------- 全页跟随的小猫 ---------- */
