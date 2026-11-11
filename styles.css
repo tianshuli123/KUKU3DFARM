@@ -732,9 +732,9 @@ a.card:hover {
 /* ---------------- 学员弹窗 ---------------- */
 
 .student-dialog {
-  width: min(92vw, 720px);
+  width: min(94vw, 1120px);
   max-width: none;
-  max-height: 86vh;
+  max-height: 90vh;
   margin: auto;
   padding: 0;
   border: 3px solid var(--ink);
@@ -749,6 +749,123 @@ a.card:hover {
 
 /* 弹窗打开时锁住背景滚动 */
 body:has(.student-dialog[open]) { overflow: hidden; }
+
+/* ---------------- PDF 预览弹窗 ---------------- */
+
+.pdf-dialog {
+  width: min(1080px, 94vw);
+  height: min(90vh, 940px);
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  background: #141414;
+  color: #fff;
+  overflow: hidden;
+}
+
+.pdf-dialog[open] { display: flex; flex-direction: column; }
+
+.pdf-dialog::backdrop { background: rgba(11, 11, 11, .74); }
+
+.pdf-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 14px;
+  background: var(--accent);
+  color: var(--ink);
+  border-bottom: 3px solid var(--ink);
+}
+
+.pdf-title {
+  min-width: 0;
+  font-size: 13.5px;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pdf-meta {
+  flex: none;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: rgba(11, 11, 11, .62);
+}
+
+.pdf-open {
+  flex: none;
+  margin-left: auto;
+  padding: 3px 11px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background .16s, color .16s;
+}
+
+.pdf-open:hover { background: var(--ink); color: var(--accent); }
+
+.pdf-close {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pdf-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 16px;
+}
+
+.pdf-pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.pdf-pages canvas {
+  max-width: 100%;
+  height: auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .55);
+}
+
+/* 还没渲染的页：先占住位置，避免滚动条跳动 */
+.pdf-ph {
+  max-width: 100%;
+  border-radius: 8px;
+  background: #1f1f1f;
+  animation: pdfPh 1.4s ease-in-out infinite;
+}
+
+@keyframes pdfPh {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .55; }
+}
+
+@media (max-width: 720px) {
+  .pdf-dialog { width: 96vw; height: 92vh; border-radius: 18px; }
+  .pdf-meta { display: none; }
+}
 
 .dialog-inner { padding: clamp(22px, 4vw, 36px); }
 

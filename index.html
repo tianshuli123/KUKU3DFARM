@@ -451,6 +451,19 @@
   <button class="dialog-close" type="button" id="dlgClose" aria-label="关闭">×</button>
 </dialog>
 
+<!-- 作品集 PDF 预览：全部页面渲染成图，上下滑动看 -->
+<dialog class="pdf-dialog" id="pdfDialog" aria-label="作品集预览">
+  <div class="pdf-bar">
+    <span class="pdf-title" id="pdfTitle">作品集</span>
+    <span class="pdf-meta" id="pdfMeta">加载中…</span>
+    <a class="pdf-open" id="pdfOpen" href="#" target="_blank" rel="noopener">新窗口 ↗</a>
+    <button class="pdf-close" id="pdfClose" type="button" aria-label="关闭">×</button>
+  </div>
+  <div class="pdf-scroll" id="pdfScroll">
+    <div class="pdf-pages" id="pdfPages"></div>
+  </div>
+</dialog>
+
 <footer class="footer">
   <span>© <span id="year">2026</span> 李天舒 · 成都</span>
   <span>手写 HTML &amp; CSS</span>
@@ -942,7 +955,7 @@
       return `<li><div class="work-slot">${w}<br><span>图待补</span></div></li>`;
     }
     if (w.pdf) {
-      return `<li><a class="work-file" href="${w.pdf}" target="_blank" rel="noopener">
+      return `<li><a class="work-file" href="${w.pdf}" data-title="${w.title}" target="_blank" rel="noopener">
         <span class="work-file-name">${w.title}</span>
         <span class="work-file-tag">PDF</span>
       </a></li>`;
@@ -1195,6 +1208,114 @@
       }, 1600);
     });
   })();
+
+  /* ---------- PDF 预览：把每页渲染成画布，上下滑动看 ---------- */
+  (function () {
+    const dlg = document.getElementById('pdfDialog');
+    if (!dlg) return;
+
+    const box = document.getElementById('pdfPages');
+    const scroll = document.getElementById('pdfScroll');
+    const titleEl = document.getElementById('pdfTitle');
+    const metaEl = document.getElementById('pdfMeta');
+    const openEl = document.getElementById('pdfOpen');
+    const closeBtn = document.getElementById('pdfClose');
+
+    let token = 0;
+
+    function getLib() {
+      if (window.__pdfjs) return Promise.resolve(window.__pdfjs);
+      return new Promise((resolve) => {
+        const t = setTimeout(() => resolve(null), 8000);
+        window.addEventListener('pdfjs-ready', () => { clearTimeout(t); resolve(window.__pdfjs); }, { once: true });
+      });
+    }
+
+    async function openPreview(href, label) {
+      const my = ++token;
+      box.innerHTML = '';
+      titleEl.textContent = label || '作品集';
+      metaEl.textContent = '加载中…';
+      openEl.href = href;
+      dlg.showModal();
+
+      const lib = await getLib();
+      if (my !== token) return;
+      if (!lib) { metaEl.textContent = '预览组件未加载，可点右上角新窗口'; return; }
+
+      let doc;
+      try {
+        doc = await lib.getDocument({ url: href }).promise;
+      } catch (err) {
+        metaEl.textContent = '打开失败，可点右上角新窗口';
+        return;
+      }
+      if (my !== token) return;
+
+      metaEl.textContent = '共 ' + doc.numPages + ' 页 · 上下滑动';
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const maxW = Math.min(scroll.clientWidth - 32, 900);
+
+      // 先摆好占位块，滚到哪页才真渲染，避免一次吃掉几十张画布的内存
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          io.unobserve(en.target);
+          paint(en.target);
+        });
+      }, { root: scroll, rootMargin: '800px 0px' });
+
+      async function paint(holder) {
+        if (my !== token) return;
+        const page = await doc.getPage(Number(holder.dataset.page));
+        if (my !== token) return;
+
+        const base = page.getViewport({ scale: 1 });
+        const vp = page.getViewport({ scale: (maxW / base.width) * dpr });
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.floor(vp.width);
+        canvas.height = Math.floor(vp.height);
+        canvas.style.width = maxW + 'px';
+        holder.replaceWith(canvas);
+
+        await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+      }
+
+      for (let i = 1; i <= doc.numPages; i++) {
+        if (my !== token) return;
+        const page = await doc.getPage(i);
+        const base = page.getViewport({ scale: 1 });
+
+        const ph = document.createElement('div');
+        ph.className = 'pdf-ph';
+        ph.dataset.page = i;
+        ph.style.width = maxW + 'px';
+        ph.style.aspectRatio = base.width + ' / ' + base.height;
+        box.appendChild(ph);
+        io.observe(ph);
+      }
+    }
+
+    closeBtn.addEventListener('click', () => { token++; dlg.close(); });
+    dlg.addEventListener('close', () => { token++; box.innerHTML = ''; });
+
+    // 点作品条目：有 PDF 就开预览，没有就让它正常跳转
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('.work-file');
+      if (!a) return;
+      e.preventDefault();
+      openPreview(a.getAttribute('href'), a.dataset.title || '作品集');
+    });
+  })();
+</script>
+
+<!-- pdf.js：本地托管，不依赖外网 -->
+<script type="module">
+  import * as pdfjsLib from './assets/vendor/pdfjs/pdf.min.mjs';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = './assets/vendor/pdfjs/pdf.worker.min.mjs';
+  window.__pdfjs = pdfjsLib;
+  window.dispatchEvent(new Event('pdfjs-ready'));
 </script>
 
 </body>
