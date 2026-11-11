@@ -1621,7 +1621,7 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 }
 
 /* 工作经历块：自己也当网格，避免嵌套网格被压窄 */
-.works .schools-kicker { grid-column: 1 / -1; margin-bottom: 0; }
+.works .schools-kicker { grid-column: 1 / -1; }
 .works .school-card { width: 100%; }
 
 /* 工牌是竖版照片 */
