@@ -1,4 +1,4 @@
-/* ==========================================================
+﻿/* ==========================================================
    高饱和风格：洋红 + 明黄 + 纯黑
    黑导航条 / 3px 描边 / 硬投影 / 波浪分隔 / 超大字号
    无外部字体、无 JS 依赖 —— 保持国内加载速度
@@ -151,7 +151,7 @@ img { max-width: 100%; display: block; }
   border: 2px solid var(--ink);
   border-radius: 999px;
   background: rgba(255, 246, 236, .92);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: .06em;
   color: var(--ink);
@@ -172,7 +172,7 @@ img { max-width: 100%; display: block; }
 
 .h1-small {
   display: block;
-  font-size: clamp(22px, 2.9vw, 40px);
+  font-size: clamp(22px, 3.25vw, 40px);
   font-weight: 600;
   letter-spacing: .01em;
   line-height: 1.1;
@@ -222,7 +222,7 @@ img { max-width: 100%; display: block; }
 .btn:active { transform: translateY(0); }
 
 .mail-inline {
-  font-size: clamp(18px, 1.4vw, 21px);
+  font-size: clamp(18px, 1.57vw, 21px);
   font-weight: 700;
   color: #fff;
   text-decoration: none;
@@ -262,7 +262,7 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-qr span {
-  font-size: 10.5px;
+  font-size: 14.5px;
   font-weight: 800;
   letter-spacing: .02em;
   color: rgba(11, 11, 11, .6);
@@ -373,7 +373,7 @@ img { max-width: 100%; display: block; }
   border-radius: 999px;
   background: var(--ink);
   color: var(--accent);
-  font-size: clamp(18px, 1.9vw, 28px);
+  font-size: clamp(18px, 2.13vw, 28px);
   font-weight: 800;
   letter-spacing: .02em;
   line-height: 1.2;
@@ -393,7 +393,7 @@ img { max-width: 100%; display: block; }
 .stats li { display: flex; flex-direction: column; gap: 2px; max-width: 260px; }
 
 .stats strong {
-  font-size: clamp(38px, 4.4vw, 68px);
+  font-size: clamp(38px, 4.93vw, 68px);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -.05em;
@@ -401,7 +401,7 @@ img { max-width: 100%; display: block; }
 }
 
 .stats span {
-  font-size: clamp(14px, 1.15vw, 17px);
+  font-size: clamp(16px, 1.29vw, 17px);
   font-weight: 700;
   letter-spacing: .02em;
   text-transform: none;
@@ -428,7 +428,7 @@ img { max-width: 100%; display: block; }
 
 .section-head h2 {
   margin: 0;
-  font-size: clamp(46px, 6.2vw, 92px);
+  font-size: clamp(46px, 6.94vw, 92px);
   font-weight: 900;
   letter-spacing: -.045em;
   line-height: 1;
@@ -436,7 +436,7 @@ img { max-width: 100%; display: block; }
 
 .section-head p {
   margin: 0;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -486,7 +486,7 @@ img { max-width: 100%; display: block; }
 .pf-dots i:first-child { opacity: 1; }
 
 .pf-name {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: .04em;
   color: var(--ink);
@@ -500,7 +500,7 @@ img { max-width: 100%; display: block; }
   background: var(--paper);
   color: var(--ink);
   font-family: inherit;
-  font-size: 12.5px;
+  font-size: 15px;
   font-weight: 800;
   cursor: pointer;
   transition: background .16s, color .16s;
@@ -529,7 +529,7 @@ img { max-width: 100%; display: block; }
   border-radius: 999px;
   background: var(--accent);
   color: var(--ink);
-  font-size: 12.5px;
+  font-size: 15px;
   font-weight: 800;
   pointer-events: none;
   transition: opacity .25s var(--ease);
@@ -598,7 +598,7 @@ a.card:hover {
 .c4 { background: var(--lilac); }
 
 .cover-num {
-  font-size: clamp(40px, 5vw, 64px);
+  font-size: clamp(40px, 5.6vw, 64px);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -.05em;
@@ -606,7 +606,7 @@ a.card:hover {
 }
 
 .cover-hint {
-  font-size: 11.5px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: .04em;
   color: var(--paper);
@@ -630,7 +630,7 @@ a.card:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  font-size: 12.5px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -653,7 +653,7 @@ a.card:hover {
   border-radius: 999px;
   background: var(--accent);
   color: var(--ink);
-  font-size: 11.5px;
+  font-size: 15px;
   font-weight: 900;
   letter-spacing: .05em;
   line-height: 1.6;
@@ -679,7 +679,7 @@ a.card:hover {
 
 .card h3 {
   margin: 8px 0 10px;
-  font-size: clamp(21px, 2.2vw, 29px);
+  font-size: clamp(21px, 2.46vw, 29px);
   font-weight: 800;
   letter-spacing: -.025em;
   line-height: 1.15;
@@ -712,7 +712,7 @@ a.card:hover {
 }
 
 .tags li {
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: .05em;
   text-transform: uppercase;
@@ -730,7 +730,7 @@ a.card:hover {
   border: 2px solid var(--ink);
   border-radius: 999px;
   background: var(--accent);
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: .02em;
   vertical-align: middle;
@@ -790,7 +790,7 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 
 .pdf-title {
   min-width: 0;
-  font-size: 13.5px;
+  font-size: 15.5px;
   font-weight: 800;
   white-space: nowrap;
   overflow: hidden;
@@ -799,7 +799,7 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 
 .pdf-meta {
   flex: none;
-  font-size: 11.5px;
+  font-size: 15px;
   font-weight: 700;
   color: rgba(11, 11, 11, .62);
 }
@@ -810,7 +810,7 @@ body:has(.student-dialog[open]) { overflow: hidden; }
   padding: 3px 11px;
   border: 2px solid var(--ink);
   border-radius: 999px;
-  font-size: 11.5px;
+  font-size: 15px;
   font-weight: 800;
   text-decoration: none;
   color: var(--ink);
@@ -925,7 +925,7 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 
 .dlg-year {
   margin: 0;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -934,7 +934,7 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 
 .dlg-meta h3 {
   margin: 4px 0 6px;
-  font-size: clamp(24px, 3vw, 32px);
+  font-size: clamp(24px, 3.36vw, 32px);
   font-weight: 900;
   letter-spacing: -.03em;
   line-height: 1.1;
@@ -951,7 +951,7 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 
 .dlg-block h4 {
   margin: 0 0 10px;
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: .14em;
   text-transform: uppercase;
@@ -968,14 +968,14 @@ body:has(.student-dialog[open]) { overflow: hidden; }
   border: 2px dashed rgba(11, 11, 11, .32);
   border-radius: 14px;
   text-align: center;
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 1.4;
   color: rgba(11, 11, 11, .6);
 }
 
 .work-slot span {
-  font-size: 10px;
+  font-size: 14.5px;
   font-weight: 500;
   color: rgba(11, 11, 11, .35);
 }
@@ -992,7 +992,7 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 
 .work-item figcaption {
   margin-top: 4px;
-  font-size: 10.5px;
+  font-size: 14.5px;
   font-weight: 700;
   color: rgba(11, 11, 11, .6);
 }
@@ -1051,7 +1051,7 @@ a.work-card:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 800;
   color: rgba(11, 11, 11, .45);
 }
@@ -1065,7 +1065,7 @@ a.work-card:hover {
   justify-content: center;
   padding: 16px;
   text-align: center;
-  font-size: 11.5px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 1.6;
   color: rgba(11, 11, 11, .45);
@@ -1083,7 +1083,7 @@ a.work-card:hover {
 }
 
 .work-card-eyebrow {
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -1091,7 +1091,7 @@ a.work-card:hover {
 }
 
 .work-card-name {
-  font-size: clamp(17px, 1.6vw, 22px);
+  font-size: clamp(17px, 1.79vw, 22px);
   font-weight: 800;
   letter-spacing: -.02em;
   line-height: 1.25;
@@ -1099,7 +1099,7 @@ a.work-card:hover {
 
 .work-card-cta {
   margin-top: 2px;
-  font-size: 12.5px;
+  font-size: 15px;
   font-weight: 800;
   color: rgba(11, 11, 11, .55);
 }
@@ -1142,7 +1142,7 @@ a.work-card:hover {
 .chapter {
   grid-column: 1 / -1;
   text-align: center;
-  font-size: clamp(46px, 6.2vw, 92px);
+  font-size: clamp(46px, 6.94vw, 92px);
   font-weight: 900;
   letter-spacing: -.045em;
   line-height: 1;
@@ -1159,7 +1159,7 @@ a.work-card:hover {
 }
 
 .about-body .about-lead {
-  font-size: clamp(23px, 2.9vw, 38px);
+  font-size: clamp(23px, 3.25vw, 38px);
   font-weight: 800;
   line-height: 1.35;
   letter-spacing: -.025em;
@@ -1229,7 +1229,7 @@ a.work-card:hover {
 .contact-qr figcaption {
   margin-top: 9px;
   text-align: center;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: .04em;
   color: rgba(11, 11, 11, .62);
@@ -1241,7 +1241,7 @@ a.work-card:hover {
 
 .contact-label {
   margin: 0 0 18px;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
@@ -1250,7 +1250,7 @@ a.work-card:hover {
 
 .contact-mail {
   display: inline-block;
-  font-size: clamp(26px, 6vw, 76px);
+  font-size: clamp(26px, 6.72vw, 76px);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -.045em;
@@ -1266,7 +1266,7 @@ a.work-card:hover {
 
 .contact-note {
   margin: 22px 0 0;
-  font-size: 14px;
+  font-size: 16px;
   color: rgba(255, 246, 236, .62);
 }
 
@@ -1300,7 +1300,7 @@ a.work-card:hover {
 }
 
 .cw-k {
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: .16em;
   text-transform: uppercase;
@@ -1313,7 +1313,7 @@ a.work-card:hover {
 .cw-v { font-weight: 800; letter-spacing: .04em; }
 
 .cw-tip {
-  font-size: 11.5px;
+  font-size: 15px;
   color: rgba(255, 246, 236, .45);
   transition: color .18s;
 }
@@ -1347,7 +1347,7 @@ a.work-card:hover {
   border-radius: 999px;
   background: var(--accent);
   color: var(--ink);
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -1355,7 +1355,7 @@ a.work-card:hover {
 
 .soon-lead {
   margin: 0 0 10px;
-  font-size: clamp(20px, 2.2vw, 30px);
+  font-size: clamp(20px, 2.46vw, 30px);
   font-weight: 800;
   line-height: 1.3;
   letter-spacing: -.02em;
@@ -1408,7 +1408,7 @@ a.work-card:hover {
   border-top: 2px solid rgba(11, 11, 11, .14);
 }
 
-.cat-facts div { display: flex; gap: 12px; font-size: 14px; }
+.cat-facts div { display: flex; gap: 12px; font-size: 16px; }
 
 .cat-facts dt { color: rgba(11, 11, 11, .5); min-width: 38px; }
 
@@ -1481,7 +1481,7 @@ a.work-card:hover {
   border-radius: 999px;
   background: var(--accent);
   color: var(--ink);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: .02em;
   line-height: 1.3;
@@ -1512,7 +1512,7 @@ a.work-card:hover {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -1578,11 +1578,11 @@ a.work-card:hover {
 
 /* 顶栏有 6 个栏目了，窄屏把胶囊收紧一点，别溢出 */
 @media (max-width: 1180px) {
-  .jelly-skin { padding: 0 13px; font-size: 13px; }
+  .jelly-skin { padding: 0 12px; font-size: 14px; }
 }
 
 @media (max-width: 900px) {
-  .jelly-skin { height: 32px; padding: 0 11px; font-size: 12.5px; }
+  .jelly-skin { height: 32px; padding: 0 10px; font-size: 13px; }
 }
 
 .jelly-chip {
@@ -1605,7 +1605,7 @@ a.work-card:hover {
   border-radius: 18px;
   background: rgba(11, 11, 11, .10);
   color: rgba(11, 11, 11, .72);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1;
   white-space: nowrap;
@@ -1634,7 +1634,7 @@ a.work-card:hover {
   .brand span:last-child { display: none; }
   .nav-cta { display: none; }
   .nav { padding: 9px 12px; gap: 8px; }
-  .jelly-skin { height: 30px; padding: 0 9px; font-size: 12px; }
+  .jelly-skin { height: 30px; padding: 0 8px; font-size: 12.5px; }
   .jelly-radio { gap: 2px; }
 }
 
@@ -1662,7 +1662,7 @@ a.work-card:hover {
 }
 
 .edu-year {
-  font-size: clamp(30px, 3.4vw, 44px);
+  font-size: clamp(30px, 3.81vw, 44px);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -.05em;
@@ -1682,7 +1682,7 @@ a.work-card:hover {
   border-radius: 999px;
   background: var(--accent);
   color: var(--ink);
-  font-size: clamp(17px, 1.7vw, 27px);
+  font-size: clamp(17px, 1.9vw, 27px);
   font-weight: 900;
   letter-spacing: .01em;
   line-height: 1.2;
@@ -1702,7 +1702,7 @@ a.work-card:hover {
   border-radius: 999px;
   background: var(--accent);
   color: var(--ink);
-  font-size: clamp(20px, 2.4vw, 34px);
+  font-size: clamp(20px, 2.69vw, 34px);
   font-weight: 900;
   letter-spacing: .04em;
   line-height: 1.1;
@@ -1776,7 +1776,7 @@ a.work-card:hover {
 
 .edu-name {
   display: inline;
-  font-size: clamp(15px, 1.25vw, 19px);
+  font-size: clamp(15px, 1.4vw, 19px);
   font-weight: 800;
   letter-spacing: .01em;
   text-align: center;
@@ -1786,7 +1786,7 @@ a.work-card:hover {
 /* 申请方向：国家 · 学历 */
 .edu-sub {
   display: inline;
-  font-size: clamp(11.5px, 0.92vw, 13.5px);
+  font-size: clamp(15px, 1.03vw, 15.5px);
   font-weight: 700;
   letter-spacing: .02em;
   color: rgba(11, 11, 11, .55);
@@ -1800,7 +1800,7 @@ a.work-card:hover {
   .edu-track { height: 320px; }
   .edu-card { width: 168px; }
   .edu-name { font-size: 15px; }
-  .edu-sub { font-size: 12px; }
+  .edu-sub { font-size: 15px; }
   .edu-tile { border-radius: 15px; box-shadow: 3px 3px 0 var(--ink); }
 }
 
@@ -1830,7 +1830,7 @@ a.work-card:hover {
   left: 50%;
   top: 50%;
   white-space: nowrap;
-  font-size: clamp(21px, 1.9vw, 30px);
+  font-size: clamp(21px, 2.13vw, 30px);
   font-weight: 800;
   letter-spacing: .01em;
   color: var(--ink);
@@ -1891,7 +1891,7 @@ a.work-card:hover {
   background: var(--ink);
   color: var(--accent);
   border-radius: 16px;
-  font-size: clamp(36px, 4vw, 60px);
+  font-size: clamp(36px, 4.48vw, 60px);
   font-weight: 900;
   letter-spacing: -.02em;
   line-height: 1;
@@ -1902,13 +1902,13 @@ a.work-card:hover {
 
 .orbit-sub {
   margin-top: 4px;
-  font-size: 12px;
+  font-size: 15px;
   color: rgba(11, 11, 11, .5);
 }
 
 @media (max-width: 720px) {
   .orbit-band { height: 300px; }
-  .orbit-item { font-size: 14px; }
+  .orbit-item { font-size: 16px; }
 }
 
 /* ---------------- 艺术教育：黑绿色块 ---------------- */
@@ -1995,7 +1995,7 @@ a.work-card:hover {
 
 .schools-kicker {
   margin: 0 0 clamp(14px, 1.8vw, 22px);
-  font-size: clamp(21px, 1.9vw, 29px);
+  font-size: clamp(21px, 2.13vw, 29px);
   font-weight: 900;
   letter-spacing: .02em;
   color: rgba(11, 11, 11, .82);
@@ -2070,21 +2070,21 @@ a.work-card:hover {
 }
 
 .sstat b {
-  font-size: clamp(22px, 2vw, 32px);
+  font-size: clamp(22px, 2.24vw, 32px);
   font-weight: 900;
   letter-spacing: -.04em;
   line-height: 1;
 }
 
 .sstat span {
-  font-size: 12.5px;
+  font-size: 15px;
   font-weight: 700;
   color: rgba(11, 11, 11, .55);
 }
 
 .sstat em {
   font-style: normal;
-  font-size: clamp(14px, 1.2vw, 17px);
+  font-size: clamp(16px, 1.34vw, 17px);
   font-weight: 900;
 }
 
@@ -2102,7 +2102,7 @@ a.work-card:hover {
 }
 
 .school-years {
-  font-size: clamp(13px, 1.05vw, 16px);
+  font-size: clamp(15px, 1.18vw, 16px);
   font-weight: 800;
   letter-spacing: .06em;
   color: rgba(11, 11, 11, .5);
@@ -2113,13 +2113,13 @@ a.work-card:hover {
   border-radius: 999px;
   background: var(--accent);
   color: var(--ink);
-  font-size: clamp(11px, .9vw, 13px);
+  font-size: clamp(15px, 1.01vw, 15px);
   font-weight: 800;
 }
 
 .school-name {
   margin: 6px 0 2px;
-  font-size: clamp(21px, 1.9vw, 29px);
+  font-size: clamp(21px, 2.13vw, 29px);
   font-weight: 900;
   letter-spacing: -.03em;
   line-height: 1.15;
@@ -2127,14 +2127,14 @@ a.work-card:hover {
 
 .school-major {
   margin: 0;
-  font-size: clamp(14px, 1.1vw, 16px);
+  font-size: clamp(16px, 1.23vw, 16px);
   color: rgba(11, 11, 11, .62);
 }
 
 .school-items {
   margin: 10px 0 0;
   padding-left: 16px;
-  font-size: clamp(13px, 1vw, 14.5px);
+  font-size: clamp(15px, 1.12vw, 15px);
   line-height: 1.7;
   color: rgba(11, 11, 11, .66);
 }
@@ -2143,7 +2143,7 @@ a.work-card:hover {
 
 .school-label {
   margin: 12px 0 0;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: .16em;
   color: rgba(11, 11, 11, .45);
@@ -2173,7 +2173,7 @@ a.work-card:hover {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  font-size: clamp(30px, 3.3vw, 48px);
+  font-size: clamp(30px, 3.7vw, 48px);
   font-weight: 900;
   letter-spacing: -.02em;
   color: var(--paper);
@@ -2189,7 +2189,7 @@ a.work-card:hover {
   border-radius: 999px;
   background: var(--accent);
   color: var(--ink);
-  font-size: clamp(14px, 1.3vw, 20px);
+  font-size: clamp(16px, 1.46vw, 20px);
   font-weight: 800;
   letter-spacing: .01em;
   line-height: 1.25;
