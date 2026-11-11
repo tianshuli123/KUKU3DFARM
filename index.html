@@ -955,15 +955,18 @@
       return `<li><div class="work-slot">${w}<br><span>图待补</span></div></li>`;
     }
     if (w.pdf) {
-      return `<li><a class="work-file" href="${w.pdf}" data-title="${w.title}" target="_blank" rel="noopener">
-        <span class="work-file-name">${w.title}</span>
-        <span class="work-file-tag">PDF</span>
+      return `<li><a class="work-card" href="${w.pdf}" data-pdf="${w.pdf}" data-title="${w.title}" target="_blank" rel="noopener">
+        <span class="work-cover" data-pdf="${w.pdf}"></span>
+        <span class="work-card-meta">
+          <span class="work-card-name">${w.title}</span>
+          <span class="work-card-tag">PDF</span>
+        </span>
       </a></li>`;
     }
-    return `<li><figure class="work-item">
-      <img src="${w.img}" alt="${w.title}" loading="lazy">
-      <figcaption>${w.title}</figcaption>
-    </figure></li>`;
+    return `<li><a class="work-card" href="${w.img}" target="_blank" rel="noopener">
+      <span class="work-cover work-cover--img"><img src="${w.img}" alt="${w.title}" loading="lazy"></span>
+      <span class="work-card-meta"><span class="work-card-name">${w.title}</span></span>
+    </a></li>`;
   }
 
   function detailHTML(s) {
@@ -988,6 +991,79 @@
       <ul class="tags">${s.tags.map(t => `<li>${t}</li>`).join('')}</ul>`;
   }
 
+  /* ---------- 作品缩略图：用 pdf.js 渲染每个 PDF 的第一页 ---------- */
+  let thumbObserver = null;
+  let thumbRunning = 0;
+  const thumbQueue = [];
+
+  function waitPdfLib() {
+    if (window.__pdfjs) return Promise.resolve(window.__pdfjs);
+    return new Promise((resolve) => {
+      const t = setTimeout(() => resolve(null), 8000);
+      window.addEventListener('pdfjs-ready', () => { clearTimeout(t); resolve(window.__pdfjs); }, { once: true });
+    });
+  }
+
+  function thumbPump() {
+    while (thumbRunning < 2 && thumbQueue.length) {
+      const el = thumbQueue.shift();
+      thumbRunning++;
+      drawThumb(el).finally(() => { thumbRunning--; thumbPump(); });
+    }
+  }
+
+  async function drawThumb(el) {
+    if (!el.isConnected || el.dataset.loaded) return;
+    el.dataset.loaded = '1';
+
+    const lib = await waitPdfLib();
+    if (!lib) return;
+
+    try {
+      const doc = await lib.getDocument({ url: el.dataset.pdf }).promise;
+      const page = await doc.getPage(1);
+      const base = page.getViewport({ scale: 1 });
+      const w = el.clientWidth || 300;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const vp = page.getViewport({ scale: (w / base.width) * dpr });
+
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.floor(vp.width);
+      canvas.height = Math.floor(vp.height);
+      canvas.style.width = '100%';
+      canvas.style.height = 'auto';
+      el.appendChild(canvas);
+
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+      doc.destroy();
+    } catch (err) {
+      el.classList.add('is-failed');
+    }
+  }
+
+  function buildThumbs() {
+    const covers = dialogInner.querySelectorAll('.work-cover[data-pdf]');
+    if (!covers.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      covers.forEach(c => thumbQueue.push(c));
+      thumbPump();
+      return;
+    }
+
+    if (thumbObserver) thumbObserver.disconnect();
+    thumbObserver = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        thumbObserver.unobserve(en.target);
+        thumbQueue.push(en.target);
+        thumbPump();
+      });
+    }, { root: dialog, rootMargin: '300px' });
+
+    covers.forEach(c => thumbObserver.observe(c));
+  }
+
   document.getElementById('eduRails').addEventListener('click', (e) => {
     const btn = e.target.closest('.edu-card');
     if (!btn) return;
@@ -995,6 +1071,7 @@
     if (!s) return;
     dialogInner.innerHTML = detailHTML(s);
     dialog.showModal();
+    buildThumbs();
     document.querySelectorAll('.edu-rail').forEach(r => r.dataset.paused = 'true');
   });
 
@@ -1302,7 +1379,7 @@
 
     // 点作品条目：有 PDF 就开预览，没有就让它正常跳转
     document.addEventListener('click', (e) => {
-      const a = e.target.closest('.work-file');
+      const a = e.target.closest('.work-card[data-pdf]');
       if (!a) return;
       e.preventDefault();
       openPreview(a.getAttribute('href'), a.dataset.title || '作品集');

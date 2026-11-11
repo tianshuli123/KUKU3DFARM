@@ -732,9 +732,9 @@ a.card:hover {
 /* ---------------- 学员弹窗 ---------------- */
 
 .student-dialog {
-  width: min(94vw, 1120px);
+  width: min(96vw, 1320px);
   max-width: none;
-  max-height: 90vh;
+  max-height: 92vh;
   margin: auto;
   padding: 0;
   border: 3px solid var(--ink);
@@ -981,46 +981,89 @@ body:has(.student-dialog[open]) { overflow: hidden; }
   color: rgba(11, 11, 11, .6);
 }
 
-/* 弹窗里的作品列表：图片和小方块并排，PDF 是文字链接
+/* 弹窗里的作品：一格一个项目，封面是 PDF 首页
    ⚠️ 必须限定在弹窗内：页面上的「工作经历」区块也用了 .works 这个类名 */
 .dlg-block .works {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: clamp(14px, 1.6vw, 22px);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.work-file {
+.work-card {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.work-cover {
+  display: block;
+  min-height: 120px;
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  background: #e9e6dd;
+  overflow: hidden;
+  transition: transform .18s var(--ease), box-shadow .18s var(--ease);
+}
+
+/* 还没渲染出来时先撑成 A4 比例，避免卡片高度跳动 */
+.work-cover[data-pdf]:empty { aspect-ratio: 3 / 4; }
+
+.work-cover canvas { display: block; width: 100%; height: auto; }
+
+.work-card:hover .work-cover {
+  transform: translateY(-3px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.work-card-meta {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 12px;
-  border: 2px solid var(--ink);
-  border-radius: 12px;
-  background: #fff;
-  color: var(--ink);
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.35;
-  transition: background .16s, transform .16s;
 }
 
-.work-file:hover { background: var(--accent); transform: translateY(-2px); }
+.work-card-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.35;
+}
 
-.work-file-name { flex: 1 1 auto; min-width: 0; }
-
-.work-file-tag {
+.work-card-tag {
   flex: none;
-  padding: 2px 6px;
+  padding: 2px 7px;
   border-radius: 5px;
   background: var(--ink);
   color: var(--accent);
   font-size: 9.5px;
   font-weight: 900;
   letter-spacing: .08em;
+}
+
+.work-cover.is-failed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(11, 11, 11, .45);
+}
+
+.work-cover.is-failed::after { content: "PDF"; }
+
+/* 图片类作品 */
+.work-cover--img { aspect-ratio: 4 / 3; min-height: 0; }
+
+.work-cover--img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ---------------- 关于 ---------------- */
