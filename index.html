@@ -715,7 +715,8 @@
         if (isWip) btn.disabled = true;
         btn.setAttribute('aria-label', '查看 ' + st.name + ' 的作品');
         btn.innerHTML = '<span class="edu-tile">' + figure(st.look) + '</span>' +
-                        '<span class="edu-name">' + st.name + '</span>';
+                        '<span class="edu-name">' + st.name + '</span>' +
+                        '<span class="edu-sub">' + st.major + '</span>';
         cardsBox.appendChild(btn);
       });
 

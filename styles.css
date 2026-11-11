@@ -1322,7 +1322,7 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 .edu-track {
   position: relative;
   width: 100%;
-  height: clamp(320px, 28vw, 420px);
+  height: clamp(360px, 30vw, 460px);
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
@@ -1363,17 +1363,31 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 
 .edu-name {
   display: block;
-  margin-top: 9px;
-  font-size: clamp(13px, 1.1vw, 16px);
+  margin-top: 10px;
+  font-size: clamp(15px, 1.25vw, 19px);
   font-weight: 800;
   letter-spacing: .01em;
+  line-height: 1.2;
   text-align: center;
   color: var(--ink);
 }
 
+/* 申请方向：国家 · 学历 */
+.edu-sub {
+  display: block;
+  margin-top: 3px;
+  font-size: clamp(11.5px, 0.95vw, 13.5px);
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-align: center;
+  color: rgba(11, 11, 11, .55);
+}
+
 @media (max-width: 900px) {
-  .edu-track { height: 290px; }
+  .edu-track { height: 320px; }
   .edu-card { width: 168px; }
+  .edu-name { font-size: 15px; }
+  .edu-sub { font-size: 12px; }
   .edu-tile { border-radius: 15px; box-shadow: 3px 3px 0 var(--ink); }
 }
 
