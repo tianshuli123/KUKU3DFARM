@@ -960,7 +960,7 @@
     if (pdf) {
       // 封面是预先截好的第一页，和 PDF 同名、后缀换掉
       const cover = w.cover || pdf.replace(/\.pdf$/i, '.cover.webp');
-      return `<li><a class="work-card" href="${pdf}" data-pdf="${pdf}" data-title="${title}">
+      return `<li><a class="work-card" href="${pdf}" data-pdf="${pdf}" data-title="${title}" data-cover="${cover}">
         <span class="work-cover">
           <img src="${cover}" alt="${title} 第一页" loading="lazy" onerror="this.style.display='none'">
         </span>
@@ -1353,7 +1353,7 @@
       });
     }
 
-    async function openPreview(href, label) {
+    async function openPreview(href, label, cover) {
       // 直接双击 HTML（file://）时浏览器不让读本地 PDF，交给新标签页打开
       if (location.protocol === 'file:') {
         window.open(href, '_blank');
@@ -1362,6 +1362,14 @@
 
       const my = ++token;
       box.innerHTML = '';
+      // 先把第一页的截图顶上去，页面解析完再换成真页面
+      if (cover) {
+        const pre = document.createElement('img');
+        pre.className = 'pdf-preload';
+        pre.src = cover;
+        pre.alt = '';
+        box.appendChild(pre);
+      }
       titleEl.textContent = label || '作品集';
       metaEl.textContent = '加载中…';
       openEl.href = href;
@@ -1380,6 +1388,7 @@
       }
       if (my !== token) return;
 
+      box.innerHTML = '';
       metaEl.textContent = '共 ' + doc.numPages + ' 页 · 上下滑动';
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -1433,7 +1442,7 @@
       const a = e.target.closest('.work-card[data-pdf]');
       if (!a) return;
       e.preventDefault();
-      openPreview(a.getAttribute('href'), a.dataset.title || '作品集');
+      openPreview(a.getAttribute('href'), a.dataset.title || '作品集', a.dataset.cover);
     });
   })();
 </script>

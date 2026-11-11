@@ -849,6 +849,15 @@ body:has(.student-dialog[open]) { overflow: hidden; }
   box-shadow: 0 12px 30px rgba(0, 0, 0, .55);
 }
 
+/* 解析 PDF 期间先顶一张首页截图 */
+.pdf-preload {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  border-radius: 8px;
+  background: #fff;
+}
+
 /* 还没渲染的页：先占住位置，避免滚动条跳动 */
 .pdf-ph {
   max-width: 100%;
