@@ -1392,8 +1392,64 @@
       '#students': '这些卡片可以点击'
     };
 
+    /* 找某位学员当前可见的卡片（滚动轨道里同一个名字有三份，取最靠中间的那张） */
+    function findStudentCard(name) {
+      const vh = window.innerHeight;
+      let best = null;
+      let bestGap = Infinity;
+
+      document.querySelectorAll('.edu-card').forEach((card) => {
+        const label = card.querySelector('.edu-name');
+        if (!label || label.textContent.trim() !== name) return;
+
+        const r = card.getBoundingClientRect();
+        if (!r.width) return;
+        if (r.bottom < 0 || r.top > vh) return;
+
+        // 至少要露出 40% 才算「出现」
+        const seen = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+        if (seen < r.height * 0.4) return;
+
+        const gap = Math.abs((r.top + r.bottom) / 2 - vh / 2);
+        if (gap < bestGap) { bestGap = gap; best = card; }
+      });
+
+      return best;
+    }
+
+    function visibleRatio(node) {
+      const vh = window.innerHeight;
+      const r = node.getBoundingClientRect();
+      if (!r.width || !r.height) return 0;
+      const seen = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+      return seen / r.height;
+    }
+
     function updatePerch() {
       const vh = window.innerHeight;
+
+      // 已经蹲在简雨笳的卡上：只要她还露着，就别动，避免来回跳
+      if (perchEl && perchEl.classList.contains('edu-card') && visibleRatio(perchEl) > 0.15) {
+        return;
+      }
+
+      // 1) 简雨笳的卡出现就蹲她，说一句特别的
+      const jy = findStudentCard('简雨笳');
+      if (jy) {
+        if (perchEl !== jy) {
+          perchEl = jy;
+          perchSection = document.querySelector('#students');
+          el.classList.add('is-pointing');
+          showBubble('这个人给我吃过零食');
+          clearTimeout(promoteTimer);
+          promoteTimer = setTimeout(() => bubble.classList.remove('is-on'), 3600);
+        }
+        return;
+      }
+
+      // 她滑走了：放开，让下面的逻辑重新挑
+      if (perchEl && perchEl.classList.contains('edu-card')) releasePerch();
+
       let best = null;
       let bestSel = '';
       let bestRatio = 0;
