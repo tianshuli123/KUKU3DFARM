@@ -1317,12 +1317,12 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 
 .edu-rail.is-wip .edu-card { cursor: default; }
 
-.edu-rail.is-wip .edu-name { color: rgba(11, 11, 11, .4); }
+.edu-rail.is-wip .edu-name { opacity: .45; }
 
 .edu-track {
   position: relative;
   width: 100%;
-  height: clamp(360px, 30vw, 460px);
+  height: clamp(330px, 27vw, 420px);
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
@@ -1361,27 +1361,38 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 
 .edu-tile .figure { width: 100%; height: auto; display: block; }
 
-.edu-name {
-  display: block;
+/* 名字和申请方向排在同一行 */
+.edu-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px 7px;
   margin-top: 10px;
+  line-height: 1.2;
+}
+
+.edu-name {
+  display: inline;
   font-size: clamp(15px, 1.25vw, 19px);
   font-weight: 800;
   letter-spacing: .01em;
-  line-height: 1.2;
   text-align: center;
   color: var(--ink);
 }
 
 /* 申请方向：国家 · 学历 */
 .edu-sub {
-  display: block;
-  margin-top: 4px;
-  font-size: clamp(12.5px, 1vw, 14.5px);
-  font-weight: 800;
+  display: inline;
+  font-size: clamp(11.5px, 0.92vw, 13.5px);
+  font-weight: 700;
   letter-spacing: .02em;
-  text-align: center;
-  color: rgba(11, 11, 11, .62);
+  color: rgba(11, 11, 11, .55);
+  white-space: nowrap;
 }
+
+/* 深色区里要反过来 */
+.dark-band .edu-sub { color: rgba(242, 241, 234, .6); }
 
 @media (max-width: 900px) {
   .edu-track { height: 320px; }

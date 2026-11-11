@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -715,8 +715,10 @@
         if (isWip) btn.disabled = true;
         btn.setAttribute('aria-label', '查看 ' + st.name + ' 的作品');
         btn.innerHTML = '<span class="edu-tile">' + figure(st.look) + '</span>' +
-                        '<span class="edu-name">' + st.name + '</span>' +
-                        '<span class="edu-sub">' + st.major + '</span>';
+                        '<span class="edu-label">' +
+                          '<span class="edu-name">' + st.name + '</span>' +
+                          '<span class="edu-sub">' + st.major + '</span>' +
+                        '</span>';
         cardsBox.appendChild(btn);
       });
 
