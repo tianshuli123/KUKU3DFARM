@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -383,16 +383,27 @@
          ============================================ -->
     <section class="section contact" id="contact">
       <div class="contact-panel">
-        <p class="contact-label">他在找 3D 设计师的岗位，也接外包</p>
-        <a class="contact-mail" href="mailto:664301622@qq.com">664301622@qq.com</a>
-        <div class="contact-rows">
-          <button class="contact-wechat" type="button" data-copy="lts66159" aria-label="复制微信号 lts66159">
-            <span class="cw-k">微信</span>
-            <span class="cw-v">lts66159</span>
-            <span class="cw-tip">点击复制</span>
-          </button>
+        <div class="contact-main">
+          <p class="contact-label">他在找 3D 设计师的岗位，也接外包</p>
+          <a class="contact-mail" href="mailto:664301622@qq.com">664301622@qq.com</a>
+          <div class="contact-rows">
+            <button class="contact-wechat" type="button" data-copy="lts66159" aria-label="复制微信号 lts66159">
+              <span class="cw-k">微信</span>
+              <span class="cw-v">lts66159</span>
+              <span class="cw-tip">点击复制</span>
+            </button>
+          </div>
+          <p class="contact-note">简历和作品集 PDF 可以直接发你，回信更快。</p>
         </div>
-        <p class="contact-note">简历和作品集 PDF 可以直接发你，回信更快。</p>
+
+        <!-- ✏️ 微信二维码：图放在 assets/个人材料/wechat-qr.png
+             图片加载成功才显示，没有图时不会出现裂图 -->
+        <figure class="contact-qr" id="contactQr" hidden>
+          <img src="assets/个人材料/wechat-qr.png" alt="李天舒的微信二维码"
+               width="220" height="220" loading="lazy"
+               onload="document.getElementById('contactQr').hidden = false">
+          <figcaption>扫码加微信</figcaption>
+        </figure>
       </div>
     </section>
 
