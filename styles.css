@@ -1280,14 +1280,6 @@ body:has(.student-dialog[open]) { overflow: hidden; }
   letter-spacing: -.05em;
 }
 
-.edu-count {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: rgba(11, 11, 11, .55);
-}
-
 /* 「静待好消息中」：压在滚动轨道正中间 */
 .edu-wip {
   position: absolute;
@@ -1572,7 +1564,6 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 .dark-band .section-head p { color: rgba(242, 241, 234, .58); }
 
 .dark-band .edu-year { color: var(--paper); }
-.dark-band .edu-count { color: rgba(242, 241, 234, .55); }
 .dark-band .edu-head { border-bottom-color: rgba(242, 241, 234, .26); }
 .dark-band .edu-name { color: var(--paper); }
 
