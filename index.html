@@ -1510,6 +1510,13 @@
         }
       }
 
+      // 停靠的目标已经滚出视野（比如关于作者那张照片），先松开让它回到鼠标
+      if (perchEl && !perchEl.classList.contains('edu-card')) {
+        const pr = perchEl.getBoundingClientRect();
+        const pSeen = Math.min(pr.bottom, vh) - Math.max(pr.top, 0);
+        if (pSeen < Math.min(pr.height, 160) * 0.25) releasePerch();
+      }
+
       let best = null;
       let bestSel = '';
       let bestRatio = 0;
