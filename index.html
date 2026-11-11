@@ -251,6 +251,36 @@
 </section>
 
     <!-- ============================================
+         个人作品集：竖版长图，框内滚动查看
+         图片切片在 assets/pf/，除第一张外都懒加载
+         ============================================ -->
+    <section class="section" id="portfolio">
+      <div class="section-head">
+        <h2>个人作品集</h2>
+        <p>完整版 · 在框里上下滚动</p>
+      </div>
+
+      <div class="pf-frame" id="pfFrame">
+        <div class="pf-bar">
+          <span class="pf-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="pf-name">李天舒_作品集_2025</span>
+          <button class="pf-toggle" type="button" id="pfToggle" aria-expanded="false">全屏</button>
+        </div>
+        <div class="pf-scroll" id="pfScroll" tabindex="0" aria-label="作品集内容，可上下滚动">
+          <img src="assets/pf/01.webp" alt="作品集第 1 屏：封面" width="1400" height="1909">
+          <img src="assets/pf/02.webp" alt="作品集第 2 屏：个人信息与目录" width="1400" height="1909" loading="lazy">
+          <img src="assets/pf/03.webp" alt="作品集第 3 屏：建模作品" width="1400" height="1909" loading="lazy">
+          <img src="assets/pf/04.webp" alt="作品集第 4 屏：材质与道具" width="1400" height="1909" loading="lazy">
+          <img src="assets/pf/05.webp" alt="作品集第 5 屏：UE 专项" width="1400" height="1909" loading="lazy">
+          <img src="assets/pf/06.webp" alt="作品集第 6 屏：场景与关卡" width="1400" height="1909" loading="lazy">
+          <img src="assets/pf/07.webp" alt="作品集第 7 屏：Unity 项目" width="1400" height="1909" loading="lazy">
+          <img src="assets/pf/08.webp" alt="作品集第 8 屏：结尾" width="1400" height="1909" loading="lazy">
+        </div>
+        <div class="pf-hint" id="pfHint">↓ 在框内滚动</div>
+      </div>
+    </section>
+
+    <!-- ============================================
          作品
          ============================================ -->
     <section class="section" id="work">
@@ -941,6 +971,29 @@
 
     paint(true);
     window.addEventListener('resize', () => paint(true));
+  })();
+
+  /* ---------- 个人作品集：滚动提示 + 全屏切换 ---------- */
+  (function () {
+    const frame = document.getElementById('pfFrame');
+    const scroller = document.getElementById('pfScroll');
+    const hint = document.getElementById('pfHint');
+    const toggle = document.getElementById('pfToggle');
+    if (!frame || !scroller) return;
+
+    if (hint) {
+      scroller.addEventListener('scroll', () => {
+        hint.classList.toggle('is-hidden', scroller.scrollTop > 60);
+      }, { passive: true });
+    }
+
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const full = frame.classList.toggle('is-full');
+        toggle.textContent = full ? '收起' : '全屏';
+        toggle.setAttribute('aria-expanded', String(full));
+      });
+    }
   })();
 </script>
 

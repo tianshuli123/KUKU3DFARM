@@ -389,6 +389,105 @@ img { max-width: 100%; display: block; }
   color: rgba(11, 11, 11, .55);
 }
 
+/* ---------------- 个人作品集（长图查看器） ---------------- */
+
+.pf-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: min(78vh, 780px);
+  border: 3px solid var(--ink);
+  border-radius: 28px;
+  overflow: hidden;
+  background: #0d0d0f;
+  box-shadow: 8px 8px 0 var(--ink);
+  transition: height .28s var(--ease);
+}
+
+.pf-frame.is-full {
+  height: calc(100vh - 140px);
+}
+
+/* 顶栏：做成一个「文件窗口」的样子 */
+.pf-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 14px;
+  background: var(--accent);
+  border-bottom: 3px solid var(--ink);
+}
+
+.pf-dots { display: flex; gap: 6px; }
+
+.pf-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: .3;
+}
+
+.pf-dots i:first-child { opacity: 1; }
+
+.pf-name {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  color: var(--ink);
+}
+
+.pf-toggle {
+  margin-left: auto;
+  padding: 6px 15px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background .16s, color .16s;
+}
+
+.pf-toggle:hover { background: var(--ink); color: var(--paper); }
+
+.pf-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+
+.pf-scroll img { display: block; width: 100%; height: auto; }
+
+.pf-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  padding: 7px 16px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 800;
+  pointer-events: none;
+  transition: opacity .25s var(--ease);
+}
+
+.pf-hint.is-hidden { opacity: 0; }
+
+@media (max-width: 720px) {
+  .pf-frame { height: 64vh; border-radius: 20px; box-shadow: 5px 5px 0 var(--ink); }
+  .pf-name { display: none; }
+}
+
 /* ---------------- 作品卡片 ---------------- */
 
 .grid {
