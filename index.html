@@ -1325,21 +1325,12 @@
     let cy = ty;
     let face = 1;
     let visible = false;
-    let lastMoveAt = 0;
-
-    // 正在被「推荐」的可点元素
-    let promoting = null;
     let promoteTimer = 0;
 
     window.addEventListener('pointermove', (e) => {
-      lastMoveAt = Date.now();
-
-      // 用户一动手，立刻放弃推荐，回到鼠标旁边
-      if (promoting) stopPromote();
-
       const nx = e.clientX + 20;
       const ny = e.clientY + 12;
-      if (visible) face = nx < tx ? -1 : 1;
+      if (visible && !perchEl) face = nx < tx ? -1 : 1;
       tx = nx;
       ty = ny;
       if (!visible) {
@@ -1351,49 +1342,7 @@
     function showBubble(text) {
       bubble.textContent = text;
       bubble.classList.add('is-on');
-    }
-
-    function stopPromote() {
-      promoting = null;
-      clearTimeout(promoteTimer);
-      bubble.classList.remove('is-on');
-      el.classList.remove('is-pointing');
-    }
-
-    function startPromote(target) {
-      target.dataset.catTold = '1';
-      promoting = target;
-      el.classList.add('is-pointing');
-      showBubble('这里可以点击');
-      clearTimeout(promoteTimer);
-      promoteTimer = setTimeout(stopPromote, 2800);
-    }
-
-    /* 找当前视野里最值得点的那个：排除导航、已提示过的、太小的 */
-    function pickTarget() {
-      const vh = window.innerHeight;
-      const mid = vh / 2;
-      let best = null;
-      let bestGap = Infinity;
-
-      document.querySelectorAll('a[href], button:not([disabled]), .edu-card, .work-card').forEach((node) => {
-        if (node.closest('.nav')) return;
-        if (node.dataset.catTold) return;
-
-        const r = node.getBoundingClientRect();
-        if (r.width < 56 || r.height < 20) return;
-        if (r.top > vh - 60 || r.bottom < 60) return;
-
-        const gap = Math.abs((r.top + r.bottom) / 2 - mid);
-        if (gap < bestGap) { bestGap = gap; best = node; }
-      });
-
-      return best;
-    }
-
-    let lastPick = 0;
-
-    // 一开始就让它待在右下角：只滚动、不动鼠标的用户也能看到引导
+    }    // 一开始就让它待在右下角：只滚动、不动鼠标的用户也能看到
     setTimeout(() => {
       if (!visible) {
         visible = true;
@@ -1401,46 +1350,95 @@
       }
     }, 1200);
 
+    /* ---------- 进入某个区块就趴在可点元素上，离开才回来 ---------- */
+
+    // 只有这些区块会触发「趴上去」；想加就往后塞选择器
+    const PERCH_SECTIONS = ['#work', '#students', '#contact', '#portfolio'];
+
+    let perchEl = null;
+    let perchSection = null;
+
+    // 区块里优先趴哪一个：大卡片 > 主按钮 > 第一个链接
+    function targetFor(section) {
+      const prefer = section.querySelector('.card, .edu-card, .work-card, .contact-mail, .pf-toggle, .btn, .hero-qr');
+      if (prefer) return prefer;
+
+      const links = [...section.querySelectorAll('a[href], button:not([disabled])')]
+        .filter(n => !n.closest('.nav') && n.getBoundingClientRect().width > 56);
+      return links[0] || null;
+    }
+
+    function releasePerch() {
+      if (!perchSection) return;
+      perchSection = null;
+      perchEl = null;
+      el.classList.remove('is-pointing');
+      bubble.classList.remove('is-on');
+      clearTimeout(promoteTimer);
+    }
+
+    function updatePerch() {
+      const vh = window.innerHeight;
+      let best = null;
+      let bestRatio = 0;
+
+      PERCH_SECTIONS.forEach((sel) => {
+        const s = document.querySelector(sel);
+        if (!s) return;
+        const r = s.getBoundingClientRect();
+        const seen = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+        const ratio = seen / Math.min(r.height || 1, vh);
+        if (ratio > bestRatio) { bestRatio = ratio; best = s; }
+      });
+
+      // 这一屏没有哪个区块占主导，就放手回到鼠标旁边
+      if (!best || bestRatio < 0.5) { releasePerch(); return; }
+      if (best === perchSection) return;
+
+      const t = targetFor(best);
+      if (!t) { releasePerch(); return; }
+
+      perchSection = best;
+      perchEl = t;
+      el.classList.add('is-pointing');
+      showBubble('这里可以点击');
+      clearTimeout(promoteTimer);
+      promoteTimer = setTimeout(() => bubble.classList.remove('is-on'), 2400);
+    }
+
+    let perchFrame = 0;
     window.addEventListener('scroll', () => {
-      // 用户在用鼠标、或正在推荐、或刚推荐过，都不打断
-      if (Date.now() - lastMoveAt < 500) return;
-      if (promoting) return;
-      if (Date.now() - lastPick < 1200) return;
-
-      const target = pickTarget();
-      if (!target) return;
-
-      lastPick = Date.now();
-      startPromote(target);
+      if (perchFrame) return;
+      perchFrame = requestAnimationFrame(() => {
+        perchFrame = 0;
+        updatePerch();
+      });
     }, { passive: true });
 
-    // 进页面两秒先示范一次，不滚也能看到
-    setTimeout(() => {
-      if (promoting) return;
-      const target = pickTarget();
-      if (target) startPromote(target);
-    }, 2200);
+    window.addEventListener('resize', updatePerch);
+    setTimeout(updatePerch, 1400);
 
     function tick() {
-      // 有推荐目标时，跑过去蹲在它左上角
+      const w = el.offsetWidth || 80;
+
+      // 有目标就趴在它上面，否则跟着鼠标
       let gx = tx;
       let gy = ty;
 
-      if (promoting) {
-        const r = promoting.getBoundingClientRect();
+      if (perchEl) {
+        const r = perchEl.getBoundingClientRect();
         if (r.width) {
-          gx = r.left + Math.min(r.width * 0.5, 120);
-          gy = r.top - 26;
+          gx = r.left + r.width / 2 - w / 2;
+          gy = r.top - w * 0.92;
         }
       }
 
-      const ease = promoting ? 0.24 : 0.15;
+      const ease = perchEl ? 0.22 : 0.15;
       cx += (gx - cx) * ease;
       cy += (gy - cy) * ease;
 
       if (Math.abs(gx - cx) > 1.5) face = gx < cx ? -1 : 1;
 
-      const w = el.offsetWidth || 80;
       const x = Math.min(window.innerWidth - w - 6, Math.max(6, cx));
       const y = Math.min(window.innerHeight - w * 1.15, Math.max(6, cy));
 
@@ -1463,7 +1461,7 @@
       showBubble(lines[Math.floor(Math.random() * lines.length)]);
 
       setTimeout(() => el.classList.remove('is-hop'), 480);
-      setTimeout(() => { if (!promoting) bubble.classList.remove('is-on'); }, 1200);
+      setTimeout(() => { if (!perchEl) bubble.classList.remove('is-on'); }, 1200);
     });
   })();
   /* ---------- 微信：点一下复制 ---------- */
