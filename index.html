@@ -1377,12 +1377,12 @@
       clearTimeout(promoteTimer);
     }
 
-    // 每个区块说不一样的话
+    // 每个区块说不一样的话，只留关键词
     const PERCH_TEXT = {
-      '#portfolio': '滚动滑轮即可观看全部内容',
-      '#students': '点击学员卡片看作品集',
-      '#work': '点开项目看详情',
-      '#contact': '这里可以点'
+      '#portfolio': '滚动查看',
+      '#students': '点击学员',
+      '#work': '点开项目',
+      '#contact': '点这里'
     };
 
     function updatePerch() {
