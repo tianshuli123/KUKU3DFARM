@@ -1306,13 +1306,6 @@ body:has(.student-dialog[open]) { overflow: hidden; }
   pointer-events: none;
 }
 
-/* 字数多的说明（例如「早期案例 · 最新成果见 2025」）字号缩小一档 */
-.edu-wip--note {
-  padding: 8px 24px;
-  font-size: clamp(15px, 1.55vw, 22px);
-  letter-spacing: .02em;
-}
-
 /* 作品还没做完，先模糊掉 */
 .edu-rail.is-wip .edu-tile {
   filter: blur(6px);

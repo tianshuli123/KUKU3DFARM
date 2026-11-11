@@ -593,7 +593,7 @@
 
   // 没有真实作品的年份：生成模糊占位卡，并在轨道中间写一句话
   const PLACEHOLDER_YEARS = {
-    2024: { count: 6, note: '早期案例 · 最新成果见 2025' }
+    2024: { count: 6, label: '2023-2024', note: '早期案例 · 最新成果见 2025' }
   };
 
   // ⚠️ 换成真实数据后把这里改成 false，页面上的「示例数据」标记就会消失
@@ -712,14 +712,14 @@
       }
 
       const isWip = year >= 2026 || !!note;
+      const yearLabel = (ph && ph.label) || year;
 
       const rail = document.createElement('div');
       rail.className = 'edu-rail' + (isWip ? ' is-wip' : '');
       rail.innerHTML =
-        '<div class="edu-head"><span class="edu-year">' + year + '</span></div>' +
+        '<div class="edu-head"><span class="edu-year">' + yearLabel + '</span></div>' +
         '<div class="edu-track"><div class="edu-cards"></div>' +
-        (isWip ? '<span class="edu-wip' + (note ? ' edu-wip--note' : '') + '">' +
-                  (note || '静待好消息中') + '</span>' : '') +
+        (isWip ? '<span class="edu-wip">' + (note || '静待好消息中') + '</span>' : '') +
         '</div>';
 
       const cardsBox = rail.querySelector('.edu-cards');
