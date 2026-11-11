@@ -1322,7 +1322,7 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 .edu-track {
   position: relative;
   width: 100%;
-  height: clamp(260px, 23vw, 330px);
+  height: clamp(320px, 28vw, 420px);
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
@@ -1337,7 +1337,7 @@ body:has(.student-dialog[open]) { overflow: hidden; }
   position: absolute;
   top: 50%;
   left: 50%;
-  width: clamp(150px, 13vw, 190px);
+  width: clamp(180px, 16vw, 240px);
   padding: 0;
   border: 0;
   background: none;
@@ -1363,15 +1363,17 @@ body:has(.student-dialog[open]) { overflow: hidden; }
 
 .edu-name {
   display: block;
-  margin-top: 7px;
-  font-size: 12px;
-  font-weight: 700;
+  margin-top: 9px;
+  font-size: clamp(13px, 1.1vw, 16px);
+  font-weight: 800;
+  letter-spacing: .01em;
   text-align: center;
+  color: var(--ink);
 }
 
 @media (max-width: 900px) {
-  .edu-track { height: 220px; }
-  .edu-card { width: 136px; }
+  .edu-track { height: 290px; }
+  .edu-card { width: 168px; }
   .edu-tile { border-radius: 15px; box-shadow: 3px 3px 0 var(--ink); }
 }
 
