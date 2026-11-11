@@ -1322,6 +1322,69 @@ a.work-card:hover {
 .contact-wechat.is-copied .cw-k,
 .contact-wechat.is-copied .cw-tip { color: rgba(11, 11, 11, .6); }
 
+/* ---------------- 全页跟随的小猫 ---------------- */
+
+.cat-companion {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 40;
+  width: clamp(62px, 5.6vw, 92px);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-200px, -200px, 0);
+  transition: opacity .45s var(--ease);
+  will-change: transform;
+}
+
+.cat-companion.is-on { opacity: 1; }
+
+.cat-companion img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 16px rgba(11, 11, 11, .38));
+  transform-origin: 50% 80%;
+  transition: transform .25s var(--ease);
+}
+
+.cat-companion.is-hop img {
+  animation: catHop .46s var(--ease);
+}
+
+@keyframes catHop {
+  0%, 100% { translate: 0 0; }
+  38% { translate: 0 -16px; }
+  62% { translate: 0 -4px; }
+}
+
+.cat-bubble {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% - 4px);
+  padding: 5px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, 8px) scale(.9);
+  transition: opacity .2s var(--ease), transform .2s var(--ease);
+}
+
+.cat-bubble.is-on {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+/* 触屏和「减少动态效果」下不出现 */
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .cat-companion { display: none; }
+}
+
 /* ---------------- 页脚 ---------------- */
 
 .footer {

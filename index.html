@@ -469,6 +469,12 @@
   <span>手写 HTML &amp; CSS</span>
 </footer>
 
+<!-- 全页跟随的小猫：跟着鼠标跑，点一下会跳一下 -->
+<div class="cat-companion" id="catCompanion" aria-hidden="true">
+  <span class="cat-bubble" id="catBubble">喵</span>
+  <img src="assets/个人材料/cat-8.png" alt="" width="658" height="760">
+</div>
+
 <script>
   // 年份
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -1300,6 +1306,68 @@
         toggle.setAttribute('aria-expanded', String(full));
       });
     }
+  })();
+
+  /* ---------- 全页跟随的小猫 ---------- */
+  (function () {
+    const el = document.getElementById('catCompanion');
+    if (!el) return;
+
+    const img = el.querySelector('img');
+    const bubble = document.getElementById('catBubble');
+    const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!fine || reduce) return;
+
+    let tx = window.innerWidth - 160;
+    let ty = window.innerHeight - 180;
+    let cx = tx;
+    let cy = ty;
+    let face = 1;
+    let visible = false;
+
+    window.addEventListener('pointermove', (e) => {
+      const nx = e.clientX + 20;
+      const ny = e.clientY + 12;
+      if (visible) face = nx < tx ? -1 : 1;
+      tx = nx;
+      ty = ny;
+      if (!visible) {
+        visible = true;
+        setTimeout(() => el.classList.add('is-on'), 30);
+      }
+    }, { passive: true });
+
+    function tick() {
+      cx += (tx - cx) * 0.15;
+      cy += (ty - cy) * 0.15;
+
+      const w = el.offsetWidth || 80;
+      const x = Math.min(window.innerWidth - w - 6, Math.max(6, cx));
+      const y = Math.min(window.innerHeight - w * 1.15, Math.max(6, cy));
+
+      el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)';
+      img.style.transform = 'scaleX(' + face + ')';
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    const lines = ['喵', '看这里', '往下滑', '找我主人？'];
+    let lastHop = 0;
+
+    window.addEventListener('pointerdown', () => {
+      if (!visible) return;
+      const now = Date.now();
+      if (now - lastHop < 500) return;
+      lastHop = now;
+
+      el.classList.add('is-hop');
+      bubble.textContent = lines[Math.floor(Math.random() * lines.length)];
+      bubble.classList.add('is-on');
+
+      setTimeout(() => el.classList.remove('is-hop'), 480);
+      setTimeout(() => bubble.classList.remove('is-on'), 1200);
+    });
   })();
 
   /* ---------- 微信：点一下复制 ---------- */
