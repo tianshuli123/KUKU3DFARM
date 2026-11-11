@@ -1357,6 +1357,7 @@
 
     let perchEl = null;
     let perchSection = null;
+    let perchPos = 'top';   // top = 悬在元素上方；right = 站在元素右边
 
     // 区块里优先趴哪一个：大卡片 > 主按钮 > 第一个链接
     function targetFor(section) {
@@ -1395,12 +1396,14 @@
       '#portfolio': '滚动查看',
       '#work': '点开项目',
       '#contact': '扫码可以添加李天舒微信',
-      '#students': '这些卡片可以点击'
+      '#students': '卡片可以点击'
     };
 
-    /* 找某位学员当前可见的卡片（滚动轨道里同一个名字有三份，取最靠中间的那张） */
+    /* 找某位学员的卡片：必须滚到屏幕中间那一段才算「出现」 */
     function findStudentCard(name) {
       const vh = window.innerHeight;
+      const midX = window.innerWidth / 2;
+      const band = Math.min(420, window.innerWidth * 0.2);   // 中央带半宽
       let best = null;
       let bestGap = Infinity;
 
@@ -1412,9 +1415,13 @@
         if (!r.width) return;
         if (r.bottom < 0 || r.top > vh) return;
 
-        // 至少要露出 40% 才算「出现」
+        // 竖直方向至少露出 30%
         const seen = Math.min(r.bottom, vh) - Math.max(r.top, 0);
-        if (seen < r.height * 0.4) return;
+        if (seen < r.height * 0.3) return;
+
+        // 水平方向必须在屏幕中间那一段
+        const cx = r.left + r.width / 2;
+        if (Math.abs(cx - midX) > band) return;
 
         const gap = Math.abs((r.top + r.bottom) / 2 - vh / 2);
         if (gap < bestGap) { bestGap = gap; best = card; }
@@ -1445,6 +1452,7 @@
         if (perchEl !== jy) {
           perchEl = jy;
           perchSection = document.querySelector('#students');
+          perchPos = 'top';
           el.classList.add('is-pointing');
           showBubble('这个人给我吃过零食');
           clearTimeout(promoteTimer);
@@ -1478,6 +1486,7 @@
 
       perchSection = best;
       perchEl = t;
+      perchPos = bestSel === '#students' ? 'right' : 'top';
       el.classList.add('is-pointing');
 
       // 有文案才弹气泡；空字符串就安静地趴着
@@ -1511,9 +1520,15 @@
       if (perchEl) {
         const r = perchEl.getBoundingClientRect();
         if (r.width) {
-          // 悬在元素正上方，底部留出 10px，别压住它的文字
-          gx = r.left + r.width / 2 - w / 2;
-          gy = r.top - w * 1.16 - 10;
+          if (perchPos === 'right') {
+            // 站在元素右边，垂直方向大致对齐
+            gx = r.right + 14;
+            gy = r.top + r.height / 2 - w * 0.62;
+          } else {
+            // 悬在元素正上方，底部留出 10px，别压住它的文字
+            gx = r.left + r.width / 2 - w / 2;
+            gy = r.top - w * 1.16 - 10;
+          }
         }
       }
 
