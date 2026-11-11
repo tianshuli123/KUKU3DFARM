@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1491,6 +1491,12 @@
 
       const t = targetFor(best);
       if (!t) { releasePerch(); return; }
+
+      // 目标本身还没滚进视野就别提前跑过去（比如艺术教育区刚露出名校那圈的时候）
+      const tr = t.getBoundingClientRect();
+      if (!tr.width) return;
+      const tSeen = Math.min(tr.bottom, vh) - Math.max(tr.top, 0);
+      if (tSeen < Math.min(tr.height, 120) * 0.5) return;
 
       perchSection = best;
       perchEl = t;
