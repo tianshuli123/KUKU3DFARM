@@ -1367,6 +1367,12 @@
         if (y2025) return y2025;
       }
 
+      // 联系方式区固定蹲在二维码上方
+      if (section.id === 'contact') {
+        const qr = section.querySelector('.contact-qr');
+        if (qr) return qr;
+      }
+
       const prefer = section.querySelector('.card, .edu-card, .work-card, .contact-mail, .pf-toggle, .btn, .hero-qr');
       if (prefer) return prefer;
 
@@ -1388,7 +1394,7 @@
     const PERCH_TEXT = {
       '#portfolio': '滚动查看',
       '#work': '点开项目',
-      '#contact': '点这里',
+      '#contact': '扫码可以添加李天舒微信',
       '#students': '这些卡片可以点击'
     };
 
