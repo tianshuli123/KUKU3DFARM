@@ -730,7 +730,9 @@
       const rail = document.createElement('div');
       rail.className = 'edu-rail' + (isWip ? ' is-wip' : '');
       rail.innerHTML =
-        '<div class="edu-head"><span class="edu-year">' + yearLabel + '</span></div>' +
+        '<div class="edu-head"><span class="edu-year">' + yearLabel + '</span>' +
+        (year === 2025 ? '<span class="edu-tip">点击学员了解更多</span>' : '') +
+        '</div>' +
         '<div class="edu-track"><div class="edu-cards"></div>' +
         (isWip ? '<span class="edu-wip">' + (note || '静待好消息中') + '</span>' : '') +
         '</div>';
