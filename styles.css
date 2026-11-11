@@ -26,7 +26,7 @@
   --cat-width-sm: clamp(210px, 34vw, 300px);  /* 手机上那只猫 */
   --name-size:    clamp(52px, 8.2vw, 124px);  /* 「李天舒」的字号 */
   --lead-size:    clamp(17px, 1.6vw, 21px);   /* 首屏那段话的字号 */
-  --cover-ratio:  4 / 3;                      /* 作品封面图的高宽比 */
+  --cover-ratio:  16 / 9;                     /* 作品封面图的高宽比 */
   --person-size:  72px;                       /* 学员小人的大小 */
 
   --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "HarmonyOS Sans SC",
