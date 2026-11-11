@@ -864,6 +864,47 @@ body:has(.student-dialog[open]) { overflow: hidden; }
   color: rgba(11, 11, 11, .6);
 }
 
+/* 弹窗里的作品列表：图片和小方块并排，PDF 是文字链接 */
+.works {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.work-file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  transition: background .16s, transform .16s;
+}
+
+.work-file:hover { background: var(--accent); transform: translateY(-2px); }
+
+.work-file-name { flex: 1 1 auto; min-width: 0; }
+
+.work-file-tag {
+  flex: none;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: var(--ink);
+  color: var(--accent);
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
 /* ---------------- 关于 ---------------- */
 
 #about {
