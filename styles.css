@@ -1513,6 +1513,13 @@ body:has(.student-dialog[open]) { overflow: hidden; }
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   gap: clamp(20px, 3vw, 48px);
   align-items: start;
+  /* 顶部比其它卡片再收一点，避免开头空一截 */
+  padding-top: clamp(12px, 1.1vw, 16px);
+}
+
+/* 字体自带的上方行距会把左栏压低几像素，这里拉回来，跟右边的数字框齐平 */
+.school-card--wide .school-meta {
+  margin-top: -4px;
 }
 
 .school-stats {
