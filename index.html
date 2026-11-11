@@ -696,9 +696,10 @@
       rail.className = 'edu-rail' + (isWip ? ' is-wip' : '');
       rail.innerHTML =
         '<div class="edu-head"><span class="edu-year">' + year + '</span>' +
-        '<span class="edu-count">' + list.length + ' 位学员</span>' +
-        (isWip ? '<span class="edu-wip">静待好消息中</span>' : '') + '</div>' +
-        '<div class="edu-track"><div class="edu-cards"></div></div>';
+        '<span class="edu-count">' + list.length + ' 位学员</span></div>' +
+        '<div class="edu-track"><div class="edu-cards"></div>' +
+        (isWip ? '<span class="edu-wip">静待好消息中</span>' : '') +
+        '</div>';
 
       const cardsBox = rail.querySelector('.edu-cards');
       // 复制三份，卡片首尾相接，营造"还有很多"的连续感
