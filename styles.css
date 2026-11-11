@@ -47,6 +47,13 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+
+  /* 鼠标换成逗猫棒：杆子在左下，粉色毛球对准点击点 */
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M3.5 29.5 L21 11' stroke='%238a5a2b' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M21 11 q4 -3.6 6.4 -4.6' fill='none' stroke='%23e2e2e2' stroke-width='1.1'/%3E%3Ccircle cx='28' cy='6' r='3.7' fill='%23ff7aa2' stroke='%231a1a1a' stroke-width='1.2'/%3E%3C/svg%3E") 28 6, auto;
+}
+
+@media (hover: none) {
+  body { cursor: auto; }
 }
 
 a { color: inherit; }
