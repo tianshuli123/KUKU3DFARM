@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1383,9 +1383,17 @@
 
     let lastPick = 0;
 
+    // 一开始就让它待在右下角：只滚动、不动鼠标的用户也能看到引导
+    setTimeout(() => {
+      if (!visible) {
+        visible = true;
+        el.classList.add('is-on');
+      }
+    }, 1200);
+
     window.addEventListener('scroll', () => {
       // 用户在用鼠标、或正在推荐、或刚推荐过，都不打断
-      if (Date.now() - lastMoveAt < 700) return;
+      if (Date.now() - lastMoveAt < 500) return;
       if (promoting) return;
       if (Date.now() - lastPick < 1400) return;
 
